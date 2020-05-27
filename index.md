@@ -11,5 +11,6 @@ Feel free to stop by my office in 325 Annenberg. You can also contact me by emai
 # News
 
 October 2019 - Started at Caltech!
+
 December 2018 - Graduated from Carnegie Mellon University
 
