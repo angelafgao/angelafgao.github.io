@@ -13,7 +13,7 @@ img {
 }
 </style>
 
-<img src="/assets/profile_pic.jpg" alt="Profile"
+<img src="/assets/profile_pic.JPG" alt="Profile"
         title="Profile" height="250" class="center" />
 
 
