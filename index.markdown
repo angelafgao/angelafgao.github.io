@@ -14,7 +14,7 @@ img {
 </style>
 
 <img src="/assets/profile_pic.JPG" alt="Profile"
-        title="Profile" height="250" class="center" />
+        title="Profile" class="center" />
 
 
 I am a first year PhD student in the Computing and Mathematical Sciences department at Caltech and advised by [Katie Bouman](http://users.cms.caltech.edu/~klbouman/). Prior to my doctoral studies at Caltech, I was an undergrad at Carnegie Mellon University, where I recieved a B.S in Electrical and Computer Engineering with an additional major in Biomedical Engineering with Honors in December of 2018. 
