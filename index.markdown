@@ -7,6 +7,8 @@ layout: home
 
 <style>
 img {
+  width: 50%;
+  height: auto;
   display: block;
   margin-left: auto;
   margin-right: auto;
