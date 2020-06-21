@@ -25,10 +25,19 @@ Click [here](/assets/cv_W20.pdf) for a PDF of my CV.
 
 # News
 
-October 2019 - Started at Caltech!
+April 2020 - Received Honorable Mention for the NSF GRFP. 
+
+October 2019 - Started my PhD at Caltech!
 
 September 2019 - Participated in the Keck Institute for Space Studies workshop: [Beyond Interstellar: Estracting Science from Black Hole Images](https://www.kiss.caltech.edu/workshops/black_hole/black_hole.html)
 
-December 2018 - Graduated from Carnegie Mellon University
+April 2019 - Received Honorable Mention for the NSF GRFP. 
 
+December 2018 - Graduated from Carnegie Mellon University with a B.S in Electrical and Computer Engineering and an additional major in Biomedical Engineering with University Honors.
+
+November 2018 - Inducted into Tau Beta Pi. 
+
+September 2018 - Attended Grace Hopper Celebration for the first time. 
+
+August 2018 - Received the Mary Louise Brown Graham Memorial Scholarship for top undergraduate female students in engineering and science. 
 
