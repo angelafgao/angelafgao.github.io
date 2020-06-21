@@ -49,7 +49,7 @@ My research interests are in computational imaging and photography, focusing on 
 
 <div align="center">
   <img src="/assets/chamonix_fixed.jpg" alt="Chamonix"
-        title="Chamonix" height="330" class="center"/>
+        title="Chamonix" class="center"/>
 </div>
 
 Outside of research, I enjoy watercoloring nature and exploring new places. 
