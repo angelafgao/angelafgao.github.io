@@ -20,44 +20,14 @@ embed{
 }
 </style>
 
-## Research Projects
 
-# AI Powered Inline Cardiac Strain Mapping in Gadgetron on MR Scanners
-NIH NHLBI
-Peter Kellman, Hui Xue
+# ECE Capstone Design Project: Baby Got Track
+#### Carnegie Mellon University
+For my senior design project, my team developed a next-generation baby monitoring system with 3 componenets. The smart sock gathers data that is wirelessly transmitted to the raspberry pi via Bluetooth. Biometric information, such as heart rate and sleep cycles, is calculated through signal processing methods. The raspberry pi also has a camera and tracks the eye motion of the baby. We then use a decision tree to predict whether the baby has woken up and sends push notifications through an Android app to parents.
+<embed src="/assets/capstone.mp4" alt="Capstone"
+        title="Capstone" height="250" class="center" />
 
-<img src="/assets/results_final.png" alt="Cardiac Strain Map"
-        title="Cardiac Strain Map" height="250" class="center" />
-
-# Single Shot Illumination Souce Separation
-Carnegie Mellon University
-Aswin Sankaranarayanan
-
-# Social Network Effects on Growth and Development of Adolescents
-Ecole Polytechnique Federale de Lausanne
-Elisa Celis
-
-# 3D Reconstruction of Sonorines Using Photometric Stero
-Princeton University
-Adam Finklestein, Szymon Rusinkiewicz
-
-
-<embed src="/assets/sonorine.pdf" alt="Sonorine"
-        title="Sonorine" height="250" class="center" />
-
-
-## Class Projects
-
-# Baby Got Track
-ECE Capstone Design Project
-Carnegie Mellon University
-
-
-# Medtronic Positional Stabilizer for Image GUidance Trackers Used in Spinal Procedures
-Biomedical Engineering Senior Project
-Carnegie Mellon University
-
-# Outfit Generator
-Fundamentals of Programming and Computer Science Term Project
-Carnegie Mellon Unversity
+# Biomedical Engineering Senior Project: Medtronic Positional Stabilizer for Image Guidance Trackers Used in Spinal Procedures
+#### Carnegie Mellon University
+For my BME senior design project, my team worked with Medtronic Inc. to design a stabilizer for image guidance trackers used on surgical instruments. The objective was to allow the tracker to be fixed so that surgeons can operate without holding the tracker fixed. We focused on two different techniques, a counterweight device and a moder based system with a PID controller. 
 
