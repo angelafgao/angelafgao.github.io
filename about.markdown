@@ -38,6 +38,11 @@ img {
     width: 100%;
   }
 }
+
+img {
+  width: 50%;
+  height: auto;
+}
 </style>
 
 
@@ -47,13 +52,15 @@ My name is Angela Gao and I am a Ph.D student at Caltech in the Computing and Ma
 
 My research interests are in computational imaging and photography, focusing on the intersection of physics based models with data driven methods. 
 
+Outside of research, I enjoy watercoloring nature and exploring new places. 
+
+Here is a photo of me hiking in Chamonix, France.
 <div align="center">
   <img src="/assets/chamonix_fixed.jpg" alt="Chamonix"
         title="Chamonix" class="center"/>
 </div>
 
-Outside of research, I enjoy watercoloring nature and exploring new places. 
-
+Here are some of my recent watercolors.
 <div class="row">
   <div class="column">
     <img src="/assets/heather.jpg" alt="Snow" style="width:100%">
