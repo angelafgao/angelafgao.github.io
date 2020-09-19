@@ -24,6 +24,9 @@ embed{
 
 I currently work on learning improved inverse algorithms by jointly solving for updated forward models and inversion in the context of seismology. 
 
+<img src="/assets/MT.png" alt="Seismogram Reconstruction"
+        title="Seismogram Reconstruction" height="250" class="center" />
+
 # AI Powered Inline Cardiac Strain Mapping in Gadgetron on MR Scanners- NIH NHLBI
 Dr. Peter Kellman, Dr. Hui Xue
 
@@ -34,11 +37,12 @@ I implemented and trained DenseUNets to segment myocardial tissue for strain cal
 # Single Shot Illumination Souce Separation- Carnegie Mellon University
 Professor Aswin Sankaranarayanan
 
+I constructed physics motivated deep network architectures to learn the components of the image formation model: albedo, reflectivity, and shading. 
 
 # Social Network Effects on Growth and Development of Adolescents- Ecole Polytechnique Federale de Lausanne
 Dr. Elisa Celis
 
-I worked with the ADD Health dataset to interpret contagion effects of mental and physical health. I used non-linear models to predict future health markers. 
+I used the ADD Health dataset to interpret contagion effects of mental and physical health. I used non-linear models to predict future health markers. 
 
 # 3D Reconstruction of Sonorines Using Photometric Stero- Princeton University
 Professor Adam Finklestein, Professor Szymon Rusinkiewicz
