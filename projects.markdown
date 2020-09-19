@@ -30,11 +30,3 @@ For my senior design project, my team developed a next-generation baby monitorin
 # Biomedical Engineering Senior Project: Medtronic Positional Stabilizer for Image Guidance Trackers Used in Spinal Procedures
 #### Carnegie Mellon University
 For my BME senior design project, my team worked with Medtronic Inc. to design a stabilizer for image guidance trackers used on surgical instruments. The objective was to allow the tracker to be fixed so that surgeons can operate without holding the tracker fixed. We focused on two different techniques, a counterweight device and a motor based system with a PID controller. 
-<div class="row">
-  <div class="column">
-    <img src="/assets/counterweight.tiff" alt="Counterweight" style="width:100%">
-  </div>
-  <div class="column">
-    <img src="/assets/motor_config_2.tiff" alt="Motor" style="width:100%">
-  </div>
-</div>
