@@ -49,9 +49,6 @@ img {
 My name is Angela Gao and I am a Ph.D student at Caltech in the Computing and Mathematical Sciences Department. 
 
 
-
-My research interests are in computational imaging and photography, focusing on the intersection of physics based models with data driven methods. 
-
 Outside of research, I enjoy watercoloring nature and exploring new places. 
 
 Here is a photo of me hiking in Chamonix, France.

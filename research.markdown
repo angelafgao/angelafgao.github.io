@@ -20,31 +20,30 @@ embed{
 }
 </style>
 
+# Caltech Computational Cameras Lab- October 2019 - Present
 
-# AI Powered Inline Cardiac Strain Mapping in Gadgetron on MR Scanners
-NIH NHLBI
-Peter Kellman, Hui Xue
-- Implemented DenseUNets to segment myocardial tissue
-- Developed algorithm to calculate myocardian strain from cardiac MR scans in C++
+I currently work on learning improved inverse algorithms by jointly solving for updated forward models and inversion in the context of seismology. 
 
+# AI Powered Inline Cardiac Strain Mapping in Gadgetron on MR Scanners- NIH NHLBI
+Dr. Peter Kellman, Dr. Hui Xue
+
+I implemented and trained DenseUNets to segment myocardial tissue for strain calculations. i developed an algorithm to calculate the myocardial strain from cardiac MR scans in C++.
 <img src="/assets/results_final.png" alt="Cardiac Strain Map"
         title="Cardiac Strain Map" height="250" class="center" />
 
-# Single Shot Illumination Souce Separation
-Carnegie Mellon University
-Aswin Sankaranarayanan
+# Single Shot Illumination Souce Separation- Carnegie Mellon University
+Professor Aswin Sankaranarayanan
 
 
-# Social Network Effects on Growth and Development of Adolescents
-Ecole Polytechnique Federale de Lausanne
-Elisa Celis
-- Worked with the ADD Health dataset to intepret contagion effects of mental and physical health
-- Used non-linear models to predict future health markers
+# Social Network Effects on Growth and Development of Adolescents- Ecole Polytechnique Federale de Lausanne
+Dr. Elisa Celis
 
-# 3D Reconstruction of Sonorines Using Photometric Stero
-Princeton University
-Adam Finklestein, Szymon Rusinkiewicz
+I worked with the ADD Health dataset to interpret contagion effects of mental and physical health. I used non-linear models to predict future health markers. 
 
+# 3D Reconstruction of Sonorines Using Photometric Stero- Princeton University
+Professor Adam Finklestein, Professor Szymon Rusinkiewicz
+
+I developed a method to reconstruct the 3D shape of sonorines, a delicate plaster record, using photometric stereo. 
 
 <embed src="/assets/sonorine.pdf" alt="Sonorine"
         title="Sonorine" height="250" class="center" />
