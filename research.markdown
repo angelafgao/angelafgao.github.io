@@ -24,7 +24,7 @@ embed{
 
 I currently work on learning improved inverse algorithms by jointly solving for updated forward models and inversion in the context of seismology. 
 
-<img src="/assets/MT.png" alt="Seismogram Reconstruction"
+<img src="/assets/MT.PNG" alt="Seismogram Reconstruction"
         title="Seismogram Reconstruction" height="250" class="center" />
 
 # AI Powered Inline Cardiac Strain Mapping in Gadgetron on MR Scanners- NIH NHLBI
