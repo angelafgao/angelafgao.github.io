@@ -19,7 +19,7 @@ img {
         title="Profile" class="center" />
 
 
-I am a first year PhD student in the Computing and Mathematical Sciences department at Caltech and advised by [Professor Katie Bouman](http://users.cms.caltech.edu/~klbouman/). Prior to my doctoral studies at Caltech, I was an undergrad at Carnegie Mellon University, where I recieved a B.S in Electrical and Computer Engineering with an additional major in Biomedical Engineering with Honors in December of 2018. 
+I am a second year PhD student in the Computing and Mathematical Sciences department at Caltech and advised by [Professor Katie Bouman](http://users.cms.caltech.edu/~klbouman/). Prior to my doctoral studies at Caltech, I was an undergrad at Carnegie Mellon University, where I recieved a B.S in Electrical and Computer Engineering with an additional major in Biomedical Engineering with Honors in December of 2018. 
 
 My primary research interests are in computational imaging. I am interested in methods that integrate physics based models with data driven approaches, which can be applied to a broad range of imaging domains from traditional computer vision to medical imaging.
 
@@ -43,3 +43,7 @@ September 2018 - Attended Grace Hopper Celebration for the first time.
 
 August 2018 - Received the Mary Louise Brown Graham Memorial Scholarship for top undergraduate female students in engineering and science. 
 
+
+
+# Publications
+**Angela F. Gao**, Brandon Rasmussen, Peter Kulits, Eva L. Scheller, Rebecca Greenberger, Bethany L. Ehlmann; *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops*, 2021, pp. 4294-4303
