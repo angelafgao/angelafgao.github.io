@@ -46,5 +46,3 @@ August 2018 - Received the Mary Louise Brown Graham Memorial Scholarship for top
 
 
 
-# Publications
-**Angela F. Gao**, Brandon Rasmussen, Peter Kulits, Eva L. Scheller, Rebecca Greenberger, Bethany L. Ehlmann; *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops*, 2021, pp. 4294-4303
