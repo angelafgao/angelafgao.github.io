@@ -24,10 +24,10 @@ embed{
 
 ### Conference Publications
 
-**Gao, A. F.**, Castillo, J., Yue, Y., Ross, Z. E., and K. L. Bouman. DeepGEM: Generalized Expectation-Maximization for Blind Inversion, *35th Conference on Neural Information Processing Systems*, 2021.
+**A.F. Gao**, J. Castillo, Y. Yue, Z.E. Ross, and K. L. Bouman. DeepGEM: Generalized Expectation-Maximization for Blind Inversion, *35th Conference on Neural Information Processing Systems*, 2021. [[Paper]](https://proceedings.neurips.cc/paper/2021/hash/606c90a06173d69682feb83037a68fec-Abstract.html) [[Project Website & Code]](http://imaging.cms.caltech.edu/deepgem/)
 
-**Angela F. Gao**, Brandon Rasmussen, Peter Kulits, Eva L. Scheller, Rebecca Greenberger, Bethany L. Ehlmann; Generalized Unsupervised Clucstering of Hyperspectral Images of Gelogical Targets in the Near Infrared, *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops*, 2021, pp. 4294-4303.
+**A.F. Gao**, B. Rasmussen, P. Kulits, E.L. Scheller, R. Greenberger, B.L. Ehlmann; Generalized Unsupervised Clustering of Hyperspectral Images of Geological Targets in the Near Infrared, *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops*, 2021, pp. 4294-4303. [[Paper]](https://openaccess.thecvf.com/content/CVPR2021W/PBVS/papers/Gao_Generalized_Unsupervised_Clustering_of_Hyperspectral_Images_of_Geological_Targets_in_CVPRW_2021_paper.pdf) [[arxiv]](https://arxiv.org/abs/2106.13315) 
 
 ### Journal Publications
-Yang, Y.\*, **Gao, A. F.** \* , Castellanos, J. C.\*, Ross, Z. E., Azizzadenesheli, K., and R. W. Clayton. Seismic wave propagation and inversion with Neural Operators, The Seismic Record, in press, [arxiv](arXiv:2108.05421).
+Y. Yang\*, **A.F. Gao** \* , J.C. Castellanos\*, Z.E. Ross, K. Azizzadenesheli, and R. W. Clayton. Seismic wave propagation and inversion with Neural Operators, The Seismic Record, in press. [[Paper]](https://pubs.geoscienceworld.org/ssa/tsr/article/1/3/126/609317/Seismic-Wave-Propagation-and-Inversion-with-Neural) [[arxiv]](https://arxiv.org/abs/2108.05421) 
 
