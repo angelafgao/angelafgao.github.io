@@ -21,12 +21,12 @@ img {
 
 I am a PhD student in the Computing and Mathematical Sciences department at Caltech and advised by [Professor Katie Bouman](http://users.cms.caltech.edu/~klbouman/). Prior to my doctoral studies at Caltech, I was an undergrad at Carnegie Mellon University, where I recieved a B.S in Electrical and Computer Engineering with an additional major in Biomedical Engineering with Honors in December of 2018. 
 
-My primary research interests are in computational imaging. I am interested in methods that integrate physics based models with data driven approaches, which can be applied to a broad range of imaging domains from traditional computer vision to medical imaging.
+My primary research interests are in computational imaging. I am interested in methods that integrate physics-based models with data-driven approaches, which can be applied to a broad range of imaging domains from traditional computer vision to medical imaging.
 
-Click [here](/assets/Angela_Gao_cv.pdf) for a PDF of my CV.
+Click [here](/assets/Angela_Gao_CV_11_21.pdf) for a PDF of my CV.
 
 # News
-September 2021 - *DeepGEM: Generalized Expectation-Maximization for Blind Inversion* accepted to NeurIPS 2021
+September 2021 - *DeepGEM: Generalized Expectation-Maximization for Blind Inversion* accepted to NeurIPS 2021! Check out our [project page](http://imaging.cms.caltech.edu/deepgem/).
 
 April 2020 - Received Honorable Mention for the NSF GRFP. 
 
