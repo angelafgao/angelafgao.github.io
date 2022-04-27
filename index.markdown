@@ -23,7 +23,7 @@ I am a PhD student in the Computing and Mathematical Sciences department at Calt
 
 My primary research interests are in computational imaging. I am interested in methods that integrate physics-based models with data-driven approaches, which can be applied to a broad range of imaging domains from traditional computer vision to medical imaging.
 
-Click [here](/assets/Angela_Gao_CV_11_21.pdf) for a PDF of my CV.
+Click [here](/assets/Angela_Gao_CV_S22.pdf) for a PDF of my CV.
 
 # News
 September 2021 - *DeepGEM: Generalized Expectation-Maximization for Blind Inversion* accepted to NeurIPS 2021! Check out our [project page](http://imaging.cms.caltech.edu/deepgem/).
@@ -43,6 +43,5 @@ November 2018 - Inducted into Tau Beta Pi.
 September 2018 - Attended Grace Hopper Celebration for the first time. 
 
 August 2018 - Received the Mary Louise Brown Graham Memorial Scholarship for top undergraduate female students in engineering and science. 
-
 
 
