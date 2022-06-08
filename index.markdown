@@ -26,6 +26,9 @@ My primary research interests are in computational imaging. I am interested in m
 Click [here](/assets/Angela_Gao_CV_S22.pdf) for a PDF of my CV.
 
 # News
+
+May 2022 - Presented at [SOCAMS](https://www.socams.org/home) on new work with [Oscar](https://www.oscarleong.com/home), [He](http://users.cms.caltech.edu/~hesun/), and [Katie](http://users.cms.caltech.edu/~klbouman/) on learning image models from noisy data. More on that soon! 
+
 September 2021 - *DeepGEM: Generalized Expectation-Maximization for Blind Inversion* accepted to NeurIPS 2021! Check out our [project page](http://imaging.cms.caltech.edu/deepgem/).
 
 April 2020 - Received Honorable Mention for the NSF GRFP. 
