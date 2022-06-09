@@ -19,7 +19,7 @@ img {
         title="Profile" class="center" />
 
 
-I am a PhD student in the Computing and Mathematical Sciences department at Caltech and advised by [Professor Katie Bouman](http://users.cms.caltech.edu/~klbouman/). Prior to my doctoral studies at Caltech, I was an undergrad at Carnegie Mellon University, where I recieved a B.S in Electrical and Computer Engineering with an additional major in Biomedical Engineering with Honors in December of 2018. 
+I am a PhD student in the [Computing and Mathematical Sciences](https://www.cms.caltech.edu/) department at [Caltech](https://www.caltech.edu/) and advised by [Professor Katie Bouman](http://users.cms.caltech.edu/~klbouman/). Prior to my doctoral studies at Caltech, I was an undergrad at [Carnegie Mellon University](https://www.cmu.edu/), where I recieved a B.S in Electrical and Computer Engineering with an additional major in Biomedical Engineering with Honors in December of 2018. 
 
 My primary research interests are in computational imaging. I am interested in methods that integrate physics-based models with data-driven approaches, which can be applied to a broad range of imaging domains from traditional computer vision to medical imaging.
 
