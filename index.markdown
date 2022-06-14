@@ -27,7 +27,7 @@ Click [here](/assets/Angela_Gao_CV_S22.pdf) for a PDF of my CV.
 
 # News
 
-June 2022 - Started an internship at Google research! 
+June 2022 - Started an internship at Google Research! 
 
 May 2022 - Presented at [SOCAMS](https://www.socams.org/home) on new work with [Oscar](https://www.oscarleong.com/home), [He](http://users.cms.caltech.edu/~hesun/), and [Katie](http://users.cms.caltech.edu/~klbouman/) on learning image models from noisy data. More on that soon! 
 
