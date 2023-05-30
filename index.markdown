@@ -27,11 +27,14 @@ Click [here](/assets/Angela_Gao_CV_S22.pdf) for a PDF of my CV.
 
 # News
 
-June 2022 - Started an internship at Google Research! 
+June 2023 - Check out our work on [image reconstruction without explicit priors](http://imaging.cms.caltech.edu/igm), which I will be presenting on at ICASSP 2023!
 
-May 2022 - Presented at [SOCAMS](https://www.socams.org/home) on new work with [Oscar](https://www.oscarleong.com/home), [He](http://users.cms.caltech.edu/~hesun/), and [Katie](http://users.cms.caltech.edu/~klbouman/) on learning image models from noisy data. More on that soon! 
+June 2022 - Started an internship at Google Research.
 
-December 2021 - Attended [AGU 2021](https://www.agu.org/Fall-Meeting-2021), my first in person conference!
+
+May 2022 - Presented at [SOCAMS](https://www.socams.org/home) on new work with [Oscar](https://www.oscarleong.com/home), [He](http://users.cms.caltech.edu/~hesun/), and [Katie](http://users.cms.caltech.edu/~klbouman/) on learning image models from noisy data.
+
+December 2021 - Attended [AGU 2021](https://www.agu.org/Fall-Meeting-2021), my first in-person conference!
 
 September 2021 - *DeepGEM: Generalized Expectation-Maximization for Blind Inversion* accepted to NeurIPS 2021! Check out our [project page](http://imaging.cms.caltech.edu/deepgem/).
 
