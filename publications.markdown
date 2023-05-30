@@ -22,8 +22,8 @@ embed{
 
  \* denotes equal contribution
  
- ### In Submission 
-
+### In Submission
+ 
 O Leong\*, **AF Gao**\*, H Sun, and KL Bouman. Ill-Posed Image Reconstruction without an Image Prior.
 
 ### Conference Publications
