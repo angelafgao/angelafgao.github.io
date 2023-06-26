@@ -20,6 +20,10 @@ embed{
 }
 </style>
 
+# Tutorials
+
+See [this tutorial](https://github.com/helloquat/ehtim-tutorial)(led by [Yvette Lin](https://github.com/helloquat)) for details on how to use the [ehtim](https://achael.github.io/eht-imaging/) package to create your own black hole measurements.
+
 # Caltech Computational Cameras Lab: October 2019 - Present
 
 I currently work in the [Caltech Computational Cameras Lab](https://computationalcameras.org/), and I am advised by [Prof. Katherine Bouman](http://users.cms.caltech.edu/~klbouman/). My current project is developing variation methods to solve blind inverse problems. I am working on applying my methods to real world applications, such as seismology.
