@@ -27,6 +27,8 @@ Click [here](/assets/Angela_Gao_CV_S22.pdf) for a PDF of my CV.
 
 # News
 
+June 2023 - I received the [EAS New Horizons Award](https://www.eas.caltech.edu/academics/awards-and-prizes/newhorizons) for my contributions at Caltech. Here's the [announcement](https://www.eas.caltech.edu/news/winners-of-the-2023-new-horizons-award-announced).
+
 June 2023 - Check out our work on [image reconstruction without explicit priors](http://imaging.cms.caltech.edu/igm), which I will be presenting on at ICASSP 2023!
 
 June 2022 - Started an internship at Google Research.
