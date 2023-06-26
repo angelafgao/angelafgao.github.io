@@ -19,6 +19,10 @@ embed{
   margin-right: auto;
 }
 </style>
+# Tutorials
+
+See this [tutorial](https://github.com/helloquat/ehtim-tutorial)(led by [Yvette Lin](https://github.com/helloquat)) for details on how to use the [ehtim](https://achael.github.io/eht-imaging/) package to create your own black hole measurements.
+
 
 # Caltech Computational Cameras Lab: October 2019 - Present
 
