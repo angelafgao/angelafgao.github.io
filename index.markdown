@@ -23,7 +23,7 @@ I am a PhD student in the [Computing and Mathematical Sciences](https://www.cms.
 
 My primary research interests are in computational imaging. I am interested in methods that integrate physics-based models with data-driven approaches, which can be applied to a broad range of imaging domains from traditional computer vision to medical imaging.
 
-Click [here](/assets/Angela_Gao_CV_S22.pdf) for a PDF of my CV.
+Click [here](/assets/Angela_Gao_CV_F23.pdf) for a PDF of my CV.
 
 # News
 
