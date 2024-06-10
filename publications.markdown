@@ -24,7 +24,7 @@ embed{
  
 ### In Submission
 
-Y Shi, **AF Gao**, ZE Ross, K Azizzadenesheli. Universal Functional Regression with Neural Operator Flows. [[arxiv]](arXiv:2404.02986 (2024))
+Y Shi, **AF Gao**, ZE Ross, K Azizzadenesheli. Universal Functional Regression with Neural Operator Flows. [[arxiv]](https://arxiv.org/pdf/2404.02986)
 
 ### Conference Publications
 
