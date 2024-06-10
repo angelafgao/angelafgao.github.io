@@ -23,10 +23,12 @@ embed{
  \* denotes equal contribution
  
 ### In Submission
- 
-O Leong\*, **AF Gao**\*, H Sun, and KL Bouman. Ill-Posed Image Reconstruction without an Image Prior. [[arxiv]](https://arxiv.org/abs/2304.05589)
+
+Y Shi, **AF Gao**, ZE Ross, K Azizzadenesheli. Universal Functional Regression with Neural Operator Flows. [[arxiv]](arXiv:2404.02986 (2024))
 
 ### Conference Publications
+
+Y Lin\*, **AF Gao**\*, and KL Bouman. Imaging an evolving black hole by leveraging shared structure. *International Conference on Acoustics, Speech, and Signal Processing (ICASSP)*, 2024.  [[Project Website]](http://imaging.cms.caltech.edu/igm/)[[code]](https://github.com/angelafgao/IGM)
 
 **AF Gao**\*, O Leong\*, H Sun, and KL Bouman. Image Reconstruction without Explicit Priors. *International Conference on Acoustics, Speech, and Signal Processing (ICASSP)*, 2023. [[arxiv]](https://arxiv.org/abs/2303.12217) [[Project Website]](http://imaging.cms.caltech.edu/igm/)[[code]](https://github.com/angelafgao/IGM)
 
@@ -35,6 +37,8 @@ O Leong\*, **AF Gao**\*, H Sun, and KL Bouman. Ill-Posed Image Reconstruction wi
 **A.F. Gao**, B. Rasmussen, P. Kulits, E.L. Scheller, R. Greenberger, B.L. Ehlmann; Generalized Unsupervised Clustering of Hyperspectral Images of Geological Targets in the Near Infrared, *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops*, 2021, pp. 4294-4303. [[Paper]](https://openaccess.thecvf.com/content/CVPR2021W/PBVS/papers/Gao_Generalized_Unsupervised_Clustering_of_Hyperspectral_Images_of_Geological_Targets_in_CVPRW_2021_paper.pdf) [[arxiv]](https://arxiv.org/abs/2106.13315) [[code]](https://github.com/angelafgao/GyPSUM)
 
 ### Journal Publications
+
+O Leong\*, **AF Gao**\*, H Sun, and KL Bouman. Ill-Posed Image Reconstruction without an Image Prior. [[arxiv]](https://arxiv.org/abs/2304.05589)
 
 Y Yang, **AF Gao**, ZE Ross, K Azizzadenesheli, and RW Clayton. Rapid Seismic Waveform Modeling and Inversion
 with Neural Operators. *IEEE Transactions on Geoscience and Remote Sensing*, 2023.
