@@ -27,12 +27,13 @@ Click [here](/assets/Angela_Gao_CV_F23.pdf) for a PDF of my CV.
 
 # News
 
+April 2024 - Check out our work on [black hole video reconstruction](http://imaging.cms.caltech.edu/igm), which was presented at ICASSP 2024!
+
 June 2023 - I received the [EAS New Horizons Award](https://www.eas.caltech.edu/academics/awards-and-prizes/newhorizons) for my contributions at Caltech. Here's the [announcement](https://www.eas.caltech.edu/news/winners-of-the-2023-new-horizons-award-announced).
 
 June 2023 - Check out our work on [image reconstruction without explicit priors](http://imaging.cms.caltech.edu/igm), which I will be presenting on at ICASSP 2023!
 
 June 2022 - Started an internship at Google Research.
-
 
 May 2022 - Presented at [SOCAMS](https://www.socams.org/home) on new work with [Oscar](https://www.oscarleong.com/home), [He](http://users.cms.caltech.edu/~hesun/), and [Katie](http://users.cms.caltech.edu/~klbouman/) on learning image models from noisy data.
 
