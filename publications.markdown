@@ -28,7 +28,7 @@ Y Shi, **AF Gao**, ZE Ross, K Azizzadenesheli. Universal Functional Regression w
 
 ### Conference Publications
 
-Y Lin\*, **AF Gao**\*, and KL Bouman. Imaging an evolving black hole by leveraging shared structure. *International Conference on Acoustics, Speech, and Signal Processing (ICASSP)*, 2024.  [[Project Website]](http://imaging.cms.caltech.edu/igm/)[[code]](https://github.com/angelafgao/IGM)
+Y Lin\*, **AF Gao**\*, and KL Bouman. Imaging an Evolving Black Hole by Leveraging Shared Structure. *International Conference on Acoustics, Speech, and Signal Processing (ICASSP)*, 2024.  [[Project Website]](http://imaging.cms.caltech.edu/igm/)[[code]](https://github.com/angelafgao/IGM)
 
 **AF Gao**\*, O Leong\*, H Sun, and KL Bouman. Image Reconstruction without Explicit Priors. *International Conference on Acoustics, Speech, and Signal Processing (ICASSP)*, 2023. [[arxiv]](https://arxiv.org/abs/2303.12217) [[Project Website]](http://imaging.cms.caltech.edu/igm/)[[code]](https://github.com/angelafgao/IGM)
 
@@ -38,11 +38,12 @@ Y Lin\*, **AF Gao**\*, and KL Bouman. Imaging an evolving black hole by leveragi
 
 ### Journal Publications
 
-O Leong\*, **AF Gao**\*, H Sun, and KL Bouman. Ill-Posed Image Reconstruction without an Image Prior. [[arxiv]](https://arxiv.org/abs/2304.05589)
+O Leong\*, **AF Gao**\*, H Sun, and KL Bouman. Discovering Structure From Corruption for
+Unsupervised Image Reconstruction." *IEEE Transactions on Computational Imaging*, 2023. [[arxiv]](https://arxiv.org/abs/2304.05589) [[IEEE]](https://ieeexplore.ieee.org/abstract/document/10309279/?casa_token=ptLqGDKel28AAAAA:d9WBijpINRLoYge7SSvyjRFK6Y7UdO4ysO7MEqZAxPN6nZ7itRGJeiEjKG1hT0GsvjdUpD7d7A)[[Project Website]](http://imaging.cms.caltech.edu/igm/)[[code]](https://github.com/angelafgao/IGM)
 
 Y Yang, **AF Gao**, ZE Ross, K Azizzadenesheli, and RW Clayton. Rapid Seismic Waveform Modeling and Inversion
-with Neural Operators. *IEEE Transactions on Geoscience and Remote Sensing*, 2023.
+with Neural Operators. *IEEE Transactions on Geoscience and Remote Sensing*, 2023. [[arxiv]](https://arxiv.org/pdf/2209.11955)
 
-Y. Yang\*, **A.F. Gao** \* , J.C. Castellanos\*, Z.E. Ross, K. Azizzadenesheli, and R. W. Clayton. Seismic wave propagation and inversion with Neural Operators, The Seismic Record, in press. [[Paper]](https://pubs.geoscienceworld.org/ssa/tsr/article/1/3/126/609317/Seismic-Wave-Propagation-and-Inversion-with-Neural) [[arxiv]](https://arxiv.org/abs/2108.05421) 
+Y. Yang\*, **A.F. Gao** \* , J.C. Castellanos\*, Z.E. Ross, K. Azizzadenesheli, and R. W. Clayton. Seismic Wave Propagation and Inversion with Neural Operators, The Seismic Record, in press. [[Paper]](https://pubs.geoscienceworld.org/ssa/tsr/article/1/3/126/609317/Seismic-Wave-Propagation-and-Inversion-with-Neural) [[arxiv]](https://arxiv.org/abs/2108.05421) 
 
 
