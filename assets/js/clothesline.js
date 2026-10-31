@@ -8,13 +8,15 @@
   "use strict";
 
   var SWING_STIFFNESS = 22;   // pendulum restoring force
-  var SWING_DAMPING = 1.8;
-  var BREEZE = 22;            // idle sway strength (~1° at rest)
+  var SWING_DAMPING = 2.8;    // higher = settles faster
+  var BREEZE = 11;            // idle sway strength (~0.5° at rest)
   var DROP_STIFFNESS = 90;    // rope bounce
   var DROP_DAMPING = 7;
   var ROPE_COUPLING = 30;     // how much a tug pulls on neighbours
-  var BRUSH = 0.05;           // pointer speed (px/s) -> swing impulse (deg/s)
-  var MAX_IMPULSE = 90;
+  var BRUSH = 0.028;          // pointer speed (px/s) -> swing impulse (deg/s)
+  var MAX_IMPULSE = 45;
+  var HOVER_TUG = 35;         // rope dip when the pointer lands on a card
+  var FOCUS_NUDGE = 25;       // swing when a card gets keyboard focus
   var ROPE_TOP = 18;          // px from top of the container to the rope ends
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -62,8 +64,8 @@
     root.addEventListener("pointerleave", function () { self.pointer = null; });
 
     this.items.forEach(function (it) {
-      it.card.addEventListener("pointerenter", function () { it.dropVel += 70; self.start(); });
-      it.card.addEventListener("focus", function () { it.vel += 45; it.dropVel += 50; self.start(); });
+      it.card.addEventListener("pointerenter", function () { it.dropVel += HOVER_TUG; self.start(); });
+      it.card.addEventListener("focus", function () { it.vel += FOCUS_NUDGE; it.dropVel += FOCUS_NUDGE; self.start(); });
       it.card.addEventListener("click", function () { Lightbox.open(it.card); });
     });
 
