@@ -47,7 +47,7 @@ Image priors are essential for ill-posed inverse problems, but many scientific a
 </article>
 
 <article class="project">
-  <a class="project-thumb" href="https://doi.org/10.1093/gji/ggag179"><img src="/assets/research/kilauea-thumb.jpg" alt="3D isosurfaces of high Vp/Vs regions in the magmatic system beneath Kilauea, with earthquake locations" width="560" height="467" loading="lazy"></a>
+  <a class="project-thumb" href="https://doi.org/10.1093/gji/ggag179"><img src="/assets/research/kilauea-thumb.jpg" alt="3D view beneath Kilauea showing the volcano caldera, clusters of earthquakes, and magma chambers several kilometers deep" width="560" height="560" loading="lazy"></a>
   <div>
   <h3 class="project-title">Imaging Kilauea's Magmatic System</h3>
   <p class="project-meta">Geophysical Journal International 2026</p>
