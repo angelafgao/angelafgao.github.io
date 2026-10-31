@@ -15,6 +15,7 @@
   --color-rule: rgba(107, 26, 42, 0.18);
   --color-highlight: rgba(156, 42, 63, 0.10);
   --color-pop: #c7d33b;         /* chartreuse accent: fills and marks only, never text */
+  --color-pop-soft: rgba(199, 211, 59, 0.5); /* the chartreuse at half strength: text selection */
 
   /* Type families (overridden live by the font lab in development) */
   --font-heading: "Fraunces", Georgia, serif;
@@ -70,7 +71,7 @@ body {
 
 html { accent-color: var(--color-text); }
 
-::selection { background: var(--color-pop); color: var(--color-heading); }
+::selection { background: var(--color-pop-soft); color: var(--color-heading); }
 
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
