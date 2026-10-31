@@ -238,8 +238,7 @@ main { padding: var(--space-8) 0 var(--space-16); }
   flex: 0 0 13rem;
   width: 13rem;
   margin: 0.35rem 0 0;
-  padding: 6px;
-  background: #fff;
+  overflow: hidden;
   border-radius: var(--radius);
   box-shadow:
     0 1px 1px rgba(74, 14, 27, 0.06),
@@ -253,8 +252,6 @@ a.project-thumb:hover {
     0 14px 26px -12px rgba(74, 14, 27, 0.5);
 }
 .page-content .project-thumb img { display: block; width: 100%; margin: 0; border-radius: 0; }
-/* Projects without a thumbnail still line up with the text column */
-.project > div:only-child { margin-left: calc(13rem + var(--space-6)); }
 
 /* Override the eyebrow style .page-content h3 uses elsewhere */
 .page-content .project-title {
@@ -287,7 +284,6 @@ a.project-thumb:hover {
 @media (max-width: 600px) {
   .project { flex-direction: column; gap: var(--space-3); }
   .page-content .project-thumb { width: 100%; flex-basis: auto; }
-  .project > div:only-child { margin-left: 0; }
 }
 
 /* ---------- Clothesline (about page) ---------- */

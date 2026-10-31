@@ -9,7 +9,7 @@ My research develops methods for imaging problems where measurements are indirec
 ## Projects
 
 <article class="project">
-  <a class="project-thumb" href="https://imaging.cms.caltech.edu/deepgem/"><img src="/assets/research/deepgem-thumb.jpg" alt="Baseline and DeepGEM subsurface velocity reconstructions side by side; DeepGEM recovers the central anomaly" width="560" height="421" loading="lazy"></a>
+  <a class="project-thumb" href="https://imaging.cms.caltech.edu/deepgem/"><img src="/assets/research/deepgem-thumb.jpg" alt="Diagram: seismic waves from an earthquake reach surface receivers, and DeepGEM reconstructs both the Earth velocity structure and the earthquake locations" width="560" height="560" loading="lazy"></a>
   <div>
   <h3 class="project-title">DeepGEM: Generalized Expectation-Maximization for Blind Inversion</h3>
   <p class="project-meta">NeurIPS 2021 · JGR: Solid Earth 2025</p>
@@ -27,7 +27,7 @@ Most inverse problems assume the forward model is known exactly. DeepGEM solves 
 </article>
 
 <article class="project">
-  <a class="project-thumb" href="https://imaging.cms.caltech.edu/igm/"><img src="/assets/research/igm-thumb.jpg" alt="Black hole video frames: ground truth, blurry measurements, and our sharp reconstructions" width="560" height="625" loading="lazy"></a>
+  <a class="project-thumb" href="https://imaging.cms.caltech.edu/igm/"><img src="/assets/research/igm-thumb.jpg" alt="Diagram: three blurry black hole measurements pass through inferred common structure to produce three sharp ring reconstructions" width="560" height="560" loading="lazy"></a>
   <div>
   <h3 class="project-title">Image Reconstruction Without Explicit Priors</h3>
   <p class="project-meta">ICASSP 2023 · IEEE TCI 2023 · ICASSP 2024</p>
