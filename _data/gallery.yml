@@ -30,34 +30,34 @@ places:
 
 watercolor:
   - title: Heather
-    src: /assets/heather.jpg
+    src: /assets/paintings/watercolor/heather.jpg
     alt: Watercolor of purple and pink heather
     width: 1525
     height: 2295
   - title: Rocks
-    src: /assets/rocks.jpg
+    src: /assets/paintings/watercolor/rocks.jpg
     alt: Watercolor of pale rocks under a pink sunset sky
     width: 1582
     height: 2334
   - title: Poppy
-    src: /assets/poppy.jpg
+    src: /assets/paintings/watercolor/poppy.jpg
     alt: Watercolor of a red poppy
     width: 1419
     height: 2097
 
 silk:
   - title: Chrysanthemums
-    src: /assets/silk_paintings/chrysanthemum.jpg
+    src: /assets/paintings/silk/chrysanthemum.jpg
     alt: Silk painting of pink chrysanthemums on an orange background
     width: 1200
     height: 1200
   - title: Lotus
-    src: /assets/silk_paintings/lotus.jpg
+    src: /assets/paintings/silk/lotus.jpg
     alt: Silk painting of pink lotus flowers among green lily pads
     width: 1200
     height: 1200
   - title: Thistle
-    src: /assets/silk_paintings/thistle.jpg
+    src: /assets/paintings/silk/thistle.jpg
     alt: Silk painting of blue thistles
     width: 1200
     height: 1200

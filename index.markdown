@@ -3,7 +3,7 @@ layout: home
 ---
 
 <div class="intro">
-<img src="/assets/AngelaGao.jpg" alt="Angela Gao" class="profile">
+<img src="/assets/profile.jpg" alt="Angela Gao" class="profile">
 <div markdown="1">
 
 I am currently the CTO/cofounder of [Fearn](https://fearn.ai). Previously, I received my PhD in [Computing and Mathematical Sciences](https://www.cms.caltech.edu/) from [Caltech](https://www.caltech.edu/), where I had the pleasure of being advised by [Professor Katie Bouman](https://users.cms.caltech.edu/~klbouman/). Before that, I received a B.S. in Electrical and Computer Engineering with an additional major in Biomedical Engineering from [Carnegie Mellon University](https://www.cmu.edu/).
