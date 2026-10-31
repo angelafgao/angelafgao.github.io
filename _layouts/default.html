@@ -8,7 +8,9 @@
   <main>
     {{ content }}
   </main>
+  <div class="footer-art" data-mode="{{ site.footer_animation | default: 'seismograph' }}"{% if jekyll.environment == "development" %} data-dev="true"{% endif %} aria-hidden="true"><canvas></canvas></div>
   {% include footer.html %}
+  <script src="{{ '/assets/js/footer-art.js' | relative_url }}" defer></script>
   {% if jekyll.environment == "development" %}{% include font-lab.html %}{% endif %}
 </body>
 </html>

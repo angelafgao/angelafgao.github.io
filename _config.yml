@@ -26,6 +26,11 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: af_gao
 scholar_url: https://scholar.google.com/citations?user=tWGjjskAAAAJ
+
+# Animation above the footer: seismograph | ripples | blackhole | per-page
+# (per-page = seismograph on home, ripples on Research, a bird on About,
+#  an ink line on Publications, a news ticker on News)
+footer_animation: seismograph
 github_username:  angelafgao
 
 # Build settings
