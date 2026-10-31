@@ -30,7 +30,6 @@
   <label>Headings <select data-var="--font-heading"></select></label>
   <label>Body <select data-var="--font-body"></select></label>
   <label>UI / labels <select data-var="--font-ui"></select></label>
-  <label>Handwriting <select data-var="--font-hand"></select></label>
   <label>Heading weight <span data-out="--heading-weight"></span>
     <input type="range" min="300" max="800" step="100" data-var="--heading-weight">
   </label>
@@ -73,20 +72,10 @@
     ["DM Mono", "ui-monospace, monospace", "wght@400;500"],
     ["Space Mono", "ui-monospace, monospace", "wght@400;700"]
   ];
-  var HAND = [
-    ["Caveat", "cursive", "wght@400..700"],
-    ["Kalam", "cursive", "wght@300;400;700"],
-    ["Nanum Pen Script", "cursive", "ital@0"],
-    ["Reenie Beanie", "cursive", "ital@0"],
-    ["Shadows Into Light", "cursive", "ital@0"],
-    ["Homemade Apple", "cursive", "ital@0"],
-    ["Gochi Hand", "cursive", "ital@0"]
-  ];
   var OPTIONS = {
     "--font-heading": SERIF.concat(SANS),
     "--font-body": SERIF.concat(SANS),
-    "--font-ui": MONO.concat(SANS),
-    "--font-hand": HAND
+    "--font-ui": MONO.concat(SANS)
   };
   var KEY = "font-lab";
   var root = document.documentElement;
