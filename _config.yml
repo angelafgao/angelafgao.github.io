@@ -42,6 +42,8 @@ plugins:
 #
 exclude:
   - serve.sh
+  - scripts/
+  - Gemfile.pins
   - README.md
   - vendor/
   - Gemfile
