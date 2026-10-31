@@ -213,15 +213,170 @@ main { padding: var(--space-8) 0 var(--space-16); }
   font-size: var(--text-xs);
 }
 
-/* ---------- Gallery (about page) ---------- */
+.hint { color: var(--color-muted); font-style: italic; }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: var(--space-4);
-  margin-bottom: var(--space-8);
+/* ---------- Clothesline (about page) ---------- */
+
+.clothesline-group { margin: var(--space-8) 0 var(--space-4); }
+.clothesline-label {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
-.page-content .gallery img { width: 100%; margin: 0; }
+.clothesline { position: relative; touch-action: pan-y; }
+.clothesline-rope { display: none; }
+.clothesline-items {
+  display: flex;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: var(--space-4) 0 0;
+}
+.clothesline-item { flex: 1; }
+
+/* Live (JS) mode: cards are positioned along the rope by clothesline.js */
+.clothesline.is-live .clothesline-rope {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.clothesline-rope path {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  opacity: 0.75;
+}
+.clothesline.is-live .clothesline-items { display: block; padding: 0; }
+.clothesline.is-live .clothesline-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+.clothesline-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 5px;
+  border: 0;
+  border-radius: 1px;
+  background: #fcf9f3;
+  box-shadow:
+    0 1px 1px rgba(74, 14, 27, 0.08),
+    0 10px 20px -10px rgba(74, 14, 27, 0.45);
+  cursor: zoom-in;
+  transition: box-shadow 0.2s;
+}
+.clothesline-card:hover {
+  box-shadow:
+    0 1px 1px rgba(74, 14, 27, 0.08),
+    0 16px 28px -12px rgba(74, 14, 27, 0.5);
+}
+.clothesline-card:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.page-content .clothesline-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Polaroid: photo with a title strip underneath */
+.clothesline-card.is-polaroid { padding: 7px 7px 0; }
+.clothesline-title {
+  display: block;
+  padding: 0.55rem 0.25rem 0.65rem;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* Wooden clothespin straddling the rope */
+.clothespin {
+  position: absolute;
+  z-index: 1;
+  top: -13px;
+  left: 50%;
+  width: 9px;
+  height: 26px;
+  margin-left: -4.5px;
+  border-radius: 2px 2px 3px 3px;
+  background: linear-gradient(90deg, #b8875a 0%, #dcb88e 45%, #c99d70 100%);
+  box-shadow: 0 1px 2px rgba(74, 14, 27, 0.35);
+}
+.clothespin::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 3px;
+  bottom: 3px;
+  border-left: 1px solid rgba(74, 14, 27, 0.35);
+}
+
+/* ---------- Lightbox ---------- */
+
+.lightbox {
+  max-width: min(92vw, 56rem);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+.lightbox::backdrop {
+  background: rgba(43, 8, 16, 0.78);
+  backdrop-filter: blur(4px);
+}
+.lightbox[open] { animation: lightbox-in 0.25s ease-out; }
+@keyframes lightbox-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+}
+.lightbox figure { margin: 0; }
+.lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 82vh;
+  margin: 0 auto;
+  background: #fcf9f3;
+  padding: 8px;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+}
+.lightbox figcaption {
+  margin-top: var(--space-3);
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+}
+.lightbox-close {
+  position: absolute;
+  top: -2.25rem;
+  right: 0;
+  border: 0;
+  background: none;
+  color: var(--color-bg);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox[open] { animation: none; }
+}
 
 /* ---------- Footer ---------- */
 

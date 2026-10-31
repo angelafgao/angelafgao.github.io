@@ -1,0 +1,25 @@
+{% comment %}
+  Paintings hung on an animated clothesline (see assets/js/clothesline.js).
+  Usage: {% include clothesline.html label="Watercolor" items=site.data.gallery.watercolor %}
+  Add polaroid=true to show each item's title under the image,
+  and hide_label=true when a heading above already names the line.
+  Without JavaScript this falls back to a plain row of images.
+{% endcomment %}
+<div class="clothesline-group">
+  {% unless include.hide_label %}<p class="clothesline-label">{{ include.label }}</p>{% endunless %}
+  <div class="clothesline" data-clothesline>
+    <svg class="clothesline-rope" aria-hidden="true"><path /></svg>
+    <ul class="clothesline-items">
+      {% for painting in include.items %}
+      <li class="clothesline-item">
+        {% if painting.caption %}{% assign caption = painting.caption %}{% else %}{% capture caption %}{{ painting.title }} · {{ include.label }}{% endcapture %}{% endif %}
+        <button type="button" class="clothesline-card{% if include.polaroid %} is-polaroid{% endif %}" data-caption="{{ caption | strip }}" aria-label="Enlarge {{ painting.title }} ({{ include.label | downcase }})">
+          <span class="clothespin" aria-hidden="true"></span>
+          <img src="{{ painting.src | relative_url }}" alt="{{ painting.alt }}" width="{{ painting.width }}" height="{{ painting.height }}" loading="lazy">
+          {% if include.polaroid %}<span class="clothesline-title" aria-hidden="true">{{ painting.title }}</span>{% endif %}
+        </button>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
