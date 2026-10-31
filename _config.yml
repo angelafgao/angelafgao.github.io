@@ -20,17 +20,19 @@
 
 title: Angela F Gao
 email: afgao@caltech.edu
-# description: >- # this means to ignore newlines until "baseurl:"
-  # Research Webpage of Angela Gao
+description: >-
+  CTO and cofounder of Fearn. PhD in Computing and Mathematical Sciences
+  from Caltech, working on generative models, machine learning, and
+  inverse problems.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://angelafgao.github.io" # used for absolute links in link previews
 twitter_username: af_gao
 scholar_url: https://scholar.google.com/citations?user=tWGjjskAAAAJ
 
 # Animation above the footer: seismograph | ripples | blackhole | per-page
 # (per-page = seismograph on home, ripples on Research, a bird on About,
 #  an ink line on Publications, a news ticker on News)
-footer_animation: seismograph
+footer_animation: ripples
 github_username:  angelafgao
 
 # Build settings
