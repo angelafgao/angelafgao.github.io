@@ -25,10 +25,10 @@ email: afgao@caltech.edu
 baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: af_gao
+scholar_url: https://scholar.google.com/citations?user=tWGjjskAAAAJ
 github_username:  angelafgao
 
 # Build settings
-theme: minima
 plugins:
   - jekyll-feed
 
@@ -40,6 +40,14 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
+exclude:
+  - serve.sh
+  - README.md
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+
+# Defaults also excluded by Jekyll:
 # exclude:
 #   - .sass-cache/
 #   - .jekyll-cache/

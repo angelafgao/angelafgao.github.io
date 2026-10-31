@@ -5,19 +5,9 @@
 layout: home
 ---
 
-<style>
-img {
-  width: 50%;
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
-
-<img src="/assets/IMG_6697.JPG" alt="Profile"
-        title="Profile" class="center" />
-
+<div class="intro">
+<img src="/assets/IMG_6697.JPG" alt="Angela Gao" class="profile">
+<div markdown="1">
 
 I am a PhD student in the [Computing and Mathematical Sciences](https://www.cms.caltech.edu/) department at [Caltech](https://www.caltech.edu/) and advised by [Professor Katie Bouman](http://users.cms.caltech.edu/~klbouman/). Prior to my doctoral studies at Caltech, I was an undergrad at [Carnegie Mellon University](https://www.cmu.edu/), where I recieved a B.S in Electrical and Computer Engineering with an additional major in Biomedical Engineering with Honors in December of 2018. 
 
@@ -25,7 +15,13 @@ My primary research interests are in computational imaging. I am interested in m
 
 Click [here](/assets/Angela_Gao_CV_F23.pdf) for a PDF of my CV.
 
-# News
+</div>
+</div>
+
+<div class="news" markdown="1">
+
+## News
+
 
 April 2024 - Check out our work on [black hole video reconstruction](http://imaging.cms.caltech.edu/igm), which was presented at ICASSP 2024!
 
@@ -55,6 +51,6 @@ November 2018 - Inducted into Tau Beta Pi.
 
 September 2018 - Attended Grace Hopper Celebration for the first time. 
 
-August 2018 - Received the Mary Louise Brown Graham Memorial Scholarship for top undergraduate female students in engineering and science. 
+August 2018 - Received the Mary Louise Brown Graham Memorial Scholarship for top undergraduate female students in engineering and science.
 
-
+</div>

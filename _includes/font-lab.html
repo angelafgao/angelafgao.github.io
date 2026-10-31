@@ -1,0 +1,170 @@
+<!-- Font lab: development only (jekyll serve). Never rendered in production builds. -->
+<style>
+  .font-lab {
+    max-width: calc(100vw - 2rem);
+    position: fixed; right: 1rem; bottom: 1rem; z-index: 1000;
+    width: 17rem; padding: 0.9rem 1rem;
+    background: var(--color-bg); color: var(--color-text);
+    border: 1px solid var(--color-rule); border-radius: 6px;
+    box-shadow: 0 8px 30px rgba(74, 14, 27, 0.15);
+    font: 12px/1.4 ui-monospace, monospace;
+  }
+  .font-lab[data-collapsed="true"] > :not(.font-lab-head) { display: none; }
+  .font-lab-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .font-lab[data-collapsed="true"] .font-lab-head { margin: 0; }
+  .font-lab label { display: block; margin: 0.5rem 0 0.2rem; color: var(--color-muted); }
+  .font-lab select, .font-lab input[type=range] { width: 100%; font: inherit; color: inherit; accent-color: var(--color-text); }
+  .font-lab select { background: var(--color-surface); border: 1px solid var(--color-rule); border-radius: 3px; padding: 0.2rem; }
+  .font-lab button {
+    font: inherit; color: inherit; cursor: pointer;
+    background: var(--color-surface); border: 1px solid var(--color-rule); border-radius: 3px; padding: 0.2rem 0.5rem;
+  }
+  .font-lab-actions { display: flex; gap: 0.4rem; margin-top: 0.8rem; }
+</style>
+
+<div class="font-lab" data-collapsed="false">
+  <div class="font-lab-head">
+    <strong>Font lab</strong>
+    <button type="button" data-action="toggle">–</button>
+  </div>
+  <label>Headings <select data-var="--font-heading"></select></label>
+  <label>Body <select data-var="--font-body"></select></label>
+  <label>UI / labels <select data-var="--font-ui"></select></label>
+  <label>Heading weight <span data-out="--heading-weight"></span>
+    <input type="range" min="300" max="800" step="100" data-var="--heading-weight">
+  </label>
+  <label>Body size <span data-out="--text-base"></span>
+    <input type="range" min="0.9" max="1.3" step="0.0125" data-var="--text-base" data-unit="rem">
+  </label>
+  <div class="font-lab-actions">
+    <button type="button" data-action="copy">Copy CSS</button>
+    <button type="button" data-action="reset">Reset</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  // [family name, fallback stack, google-fonts axis spec]
+  var SERIF = [
+    ["Fraunces", "Georgia, serif", "opsz,wght@9..144,300..800"],
+    ["Source Serif 4", "Georgia, serif", "ital,opsz,wght@0,8..60,300..800;1,8..60,400"],
+    ["Newsreader", "Georgia, serif", "ital,opsz,wght@0,6..72,300..800;1,6..72,400"],
+    ["EB Garamond", "Georgia, serif", "ital,wght@0,400..800;1,400"],
+    ["Cormorant Garamond", "Georgia, serif", "ital,wght@0,300..700;1,400"],
+    ["Instrument Serif", "Georgia, serif", "ital@0;1"],
+    ["Playfair Display", "Georgia, serif", "ital,wght@0,400..800;1,400"],
+    ["DM Serif Display", "Georgia, serif", "ital@0;1"],
+    ["Libre Caslon Text", "Georgia, serif", "ital,wght@0,400..700;1,400"],
+    ["Crimson Pro", "Georgia, serif", "ital,wght@0,300..800;1,400"],
+    ["Lora", "Georgia, serif", "ital,wght@0,400..700;1,400"],
+    ["Spectral", "Georgia, serif", "ital,wght@0,300;0,400;0,500;0,600;0,700;1,400"]
+  ];
+  var SANS = [
+    ["Inter", "system-ui, sans-serif", "wght@300..800"],
+    ["IBM Plex Sans", "system-ui, sans-serif", "ital,wght@0,300..700;1,400"],
+    ["DM Sans", "system-ui, sans-serif", "ital,opsz,wght@0,9..40,300..800;1,9..40,400"],
+    ["Work Sans", "system-ui, sans-serif", "wght@300..800"],
+    ["Manrope", "system-ui, sans-serif", "wght@300..800"]
+  ];
+  var MONO = [
+    ["IBM Plex Mono", "ui-monospace, monospace", "wght@400;500"],
+    ["JetBrains Mono", "ui-monospace, monospace", "wght@400;500"],
+    ["DM Mono", "ui-monospace, monospace", "wght@400;500"],
+    ["Space Mono", "ui-monospace, monospace", "wght@400;700"]
+  ];
+  var OPTIONS = {
+    "--font-heading": SERIF.concat(SANS),
+    "--font-body": SERIF.concat(SANS),
+    "--font-ui": MONO.concat(SANS)
+  };
+  var KEY = "font-lab";
+  var root = document.documentElement;
+  var panel = document.querySelector(".font-lab");
+  var defaults = {};
+  var loaded = {};
+
+  function stack(f) { return '"' + f[0] + '", ' + f[1]; }
+
+  function loadFont(f) {
+    if (loaded[f[0]]) return;
+    loaded[f[0]] = true;
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://fonts.googleapis.com/css2?family=" + f[0].replace(/ /g, "+") + ":" + f[2] + "&display=swap";
+    document.head.appendChild(link);
+  }
+
+  function current(name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
+
+  function apply(name, value) {
+    root.style.setProperty(name, value);
+    var out = panel.querySelector('[data-out="' + name + '"]');
+    if (out) out.textContent = value;
+  }
+
+  function save() {
+    var state = {};
+    panel.querySelectorAll("[data-var]").forEach(function (el) {
+      state[el.dataset.var] = root.style.getPropertyValue(el.dataset.var);
+    });
+    state.collapsed = panel.dataset.collapsed;
+    localStorage.setItem(KEY, JSON.stringify(state));
+  }
+
+  var saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+  if (saved.collapsed) panel.dataset.collapsed = saved.collapsed;
+
+  panel.querySelectorAll("select[data-var]").forEach(function (sel) {
+    var name = sel.dataset.var;
+    defaults[name] = current(name);
+    OPTIONS[name].forEach(function (f) {
+      var opt = document.createElement("option");
+      opt.value = stack(f);
+      opt.textContent = f[0];
+      sel.appendChild(opt);
+    });
+    var value = saved[name] || defaults[name];
+    var match = OPTIONS[name].filter(function (f) { return value.indexOf('"' + f[0] + '"') === 0; })[0];
+    if (match) { sel.value = stack(match); loadFont(match); }
+    if (saved[name]) apply(name, saved[name]);
+    sel.addEventListener("change", function () {
+      loadFont(OPTIONS[name][sel.selectedIndex]);
+      apply(name, sel.value);
+      save();
+    });
+  });
+
+  panel.querySelectorAll("input[data-var]").forEach(function (input) {
+    var name = input.dataset.var;
+    var unit = input.dataset.unit || "";
+    defaults[name] = current(name);
+    input.value = parseFloat(saved[name] || defaults[name]);
+    if (saved[name]) apply(name, saved[name]);
+    else panel.querySelector('[data-out="' + name + '"]').textContent = defaults[name];
+    input.addEventListener("input", function () {
+      apply(name, input.value + unit);
+      save();
+    });
+  });
+
+  panel.addEventListener("click", function (e) {
+    var action = e.target.dataset.action;
+    if (action === "toggle") {
+      panel.dataset.collapsed = panel.dataset.collapsed === "true" ? "false" : "true";
+      e.target.textContent = panel.dataset.collapsed === "true" ? "+" : "–";
+      save();
+    } else if (action === "reset") {
+      localStorage.removeItem(KEY);
+      location.reload();
+    } else if (action === "copy") {
+      var css = ":root {\n" + Object.keys(defaults).map(function (name) {
+        return "  " + name + ": " + (root.style.getPropertyValue(name) || defaults[name]) + ";";
+      }).join("\n") + "\n}";
+      navigator.clipboard.writeText(css);
+      e.target.textContent = "Copied!";
+      setTimeout(function () { e.target.textContent = "Copy CSS"; }, 1200);
+    }
+  });
+  panel.querySelector('[data-action="toggle"]').textContent = panel.dataset.collapsed === "true" ? "+" : "–";
+})();
+</script>

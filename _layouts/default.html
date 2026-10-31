@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body class="{{ page.body_class }}">
+  {% include header.html %}
+  <main>
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  {% if jekyll.environment == "development" %}{% include font-lab.html %}{% endif %}
+</body>
+</html>

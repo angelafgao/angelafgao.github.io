@@ -2,23 +2,8 @@
 layout: page
 title: Publications
 permalink: /Publications/
+body_class: publications
 ---
-
-<style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
-
-<style>
-embed{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
 
  \* denotes equal contribution
 
