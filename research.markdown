@@ -84,7 +84,7 @@ Neural operators learn solution maps for whole families of PDEs, making seismic 
 ## Earlier Research
 
 <article class="project">
-  <img class="project-thumb" src="/assets/results_final.png" alt="Cardiac strain map computed from an MR scan" loading="lazy">
+  <img class="project-thumb" src="/assets/research/cardiac-thumb.jpg" alt="Short-axis cardiac MR slice with the segmented myocardium outlined by green outer and red inner contours" width="309" height="308" loading="lazy">
   <div>
   <h3 class="project-title">AI-Powered Inline Cardiac Strain Mapping</h3>
   <p class="project-meta">NIH NHLBI · Summer 2019</p>
