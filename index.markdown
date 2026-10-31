@@ -8,8 +8,6 @@ layout: home
 
 I am currently the CTO/cofounder of [Fearn](https://fearn.ai). Previously, I received my PhD in [Computing and Mathematical Sciences](https://www.cms.caltech.edu/) from [Caltech](https://www.caltech.edu/), where I had the pleasure of being advised by [Professor Katie Bouman](https://users.cms.caltech.edu/~klbouman/). Before that, I received a B.S. in Electrical and Computer Engineering with an additional major in Biomedical Engineering from [Carnegie Mellon University](https://www.cmu.edu/).
 
-My research focuses on generative models, machine learning, and inverse problems: methods that integrate physics-based models with data-driven approaches, applied to domains from seismic tomography to black hole imaging.
-
 Click [here](/assets/Angela_Gao_CV_F23.pdf) for a PDF of my CV.
 
 </div>
