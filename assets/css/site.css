@@ -18,7 +18,7 @@
   --color-pop-soft: rgba(199, 211, 59, 0.5); /* the chartreuse at half strength: text selection */
 
   /* Type families (overridden live by the font lab in development) */
-  --font-heading: "Fraunces", Georgia, serif;
+  --font-heading: "Lora", Georgia, serif;
   --font-body: "Source Serif 4", Georgia, serif;
   --font-ui: "IBM Plex Mono", ui-monospace, monospace;
 
@@ -28,8 +28,8 @@
   --text-base: 1.0625rem;
   --text-lg: 1.25rem;
   --text-xl: 1.6rem;
-  --text-2xl: 2.1rem;
-  --text-3xl: 2.9rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
 
   --leading-tight: 1.15;
   --leading-body: 1.65;
