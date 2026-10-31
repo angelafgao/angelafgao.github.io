@@ -157,6 +157,15 @@ main { padding: var(--space-8) 0 var(--space-16); }
 
 .page-title { margin-top: var(--space-8); }
 .page-content > :first-child { margin-top: 0; }
+
+/* Section headings: a rule above sets each section apart */
+.page-content h2 {
+  margin-top: var(--space-16);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-rule);
+  font-weight: 600;
+}
+.page-content > h2:first-child { padding-top: 0; border-top: 0; }
 .page-content h3 {
   font-family: var(--font-ui);
   font-size: var(--text-xs);
@@ -214,6 +223,72 @@ main { padding: var(--space-8) 0 var(--space-16); }
 }
 
 .hint { color: var(--color-muted); font-style: italic; }
+
+/* ---------- Projects (research page) ---------- */
+
+.project {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  margin: var(--space-8) 0 var(--space-10, 2.5rem);
+}
+
+/* Thumbnail card beside each project; links to the project page */
+.page-content .project-thumb {
+  flex: 0 0 13rem;
+  width: 13rem;
+  margin: 0.35rem 0 0;
+  padding: 6px;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 1px rgba(74, 14, 27, 0.06),
+    0 8px 18px -12px rgba(74, 14, 27, 0.45);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+a.project-thumb:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 1px rgba(74, 14, 27, 0.06),
+    0 14px 26px -12px rgba(74, 14, 27, 0.5);
+}
+.page-content .project-thumb img { display: block; width: 100%; margin: 0; border-radius: 0; }
+/* Projects without a thumbnail still line up with the text column */
+.project > div:only-child { margin-left: calc(13rem + var(--space-6)); }
+
+/* Override the eyebrow style .page-content h3 uses elsewhere */
+.page-content .project-title {
+  margin: 0 0 var(--space-1);
+  padding: 0;
+  border: 0;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: var(--heading-weight);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--color-heading);
+}
+.project-meta {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.project-links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.project-links a {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+}
+.project-links a::after { content: " →"; }
+
+@media (max-width: 600px) {
+  .project { flex-direction: column; gap: var(--space-3); }
+  .page-content .project-thumb { width: 100%; flex-basis: auto; }
+  .project > div:only-child { margin-left: 0; }
+}
 
 /* ---------- Clothesline (about page) ---------- */
 
