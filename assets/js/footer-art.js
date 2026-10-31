@@ -18,7 +18,7 @@
   var styles = getComputedStyle(document.documentElement);
   var INK = styles.getPropertyValue("--color-text").trim() || "#6b1a2a";
   var MUTED = styles.getPropertyValue("--color-muted").trim() || "#8a4b56";
-  var PAPER = styles.getPropertyValue("--color-bg").trim() || "#f6f0e4";
+  var PAPER = styles.getPropertyValue("--color-bg").trim() || "#f3f0e9";
   var UI_FONT = styles.getPropertyValue("--font-ui").trim() || "monospace";
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
