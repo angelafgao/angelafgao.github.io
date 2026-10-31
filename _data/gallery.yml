@@ -3,6 +3,12 @@
 # caption: optional longer lightbox caption
 
 places:
+  - title: Antelope Canyon
+    caption: Antelope Canyon, Arizona · December 2022
+    src: /assets/places/antelope_canyon.jpg
+    alt: Angela in a beanie and camera between the curved orange sandstone walls of Antelope Canyon
+    width: 1200
+    height: 1600
   - title: Chamonix, France
     caption: Hiking in Chamonix, France during Summer@EPFL
     src: /assets/places/chamonix.jpg
@@ -15,12 +21,6 @@ places:
     alt: Angela on the cracked white salt flats of Badwater Basin under a clear blue sky
     width: 1600
     height: 900
-  - title: Antelope Canyon
-    caption: Antelope Canyon, Arizona · December 2022
-    src: /assets/places/antelope_canyon.jpg
-    alt: Angela in a beanie and camera between the curved orange sandstone walls of Antelope Canyon
-    width: 1200
-    height: 1600
   - title: Partial solar eclipse at Caltech
     caption: Crescent suns cast through the leaves during the partial solar eclipse at Caltech · April 2024
     src: /assets/places/partial_solar_eclipse.jpg
