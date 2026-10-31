@@ -453,7 +453,7 @@
   // 4c. Ticker (News page): recent news items scroll by. Hover to pause.
   // ---------------------------------------------------------------------------
   function Ticker() {
-    var items = Array.prototype.map.call(document.querySelectorAll(".news p"), function (p) {
+    var items = Array.prototype.map.call(document.querySelectorAll(".news-item"), function (p) {
       return p.textContent.replace(/\s+/g, " ").trim();
     }).filter(Boolean).slice(0, 6);
     if (!items.length) items = [document.title];

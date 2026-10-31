@@ -228,7 +228,33 @@ main { padding: var(--space-8) 0 var(--space-16); }
 }
 
 /* News: "Month YYYY - text" paragraphs rendered as a timeline-ish list */
-.news p { padding-left: var(--space-4); border-left: 2px solid var(--color-rule); }
+/* News: quiet list on a thin rule, with a small year label marked in chartreuse */
+.page-content .news-year {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-8) 0 var(--space-3);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+.page-content .news-year:first-child { margin-top: 0; }
+.news-year::before {
+  content: "";
+  width: 1rem;
+  height: 2px;
+  background: var(--color-pop);
+}
+.news-item { padding-left: var(--space-4); border-left: 2px solid var(--color-rule); }
+.news-date {
+  margin-right: var(--space-1);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
 
 /* ---------- Publications ---------- */
 

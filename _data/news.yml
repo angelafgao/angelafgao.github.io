@@ -1,0 +1,87 @@
+# News items, newest first. The News page groups them by year automatically.
+# text is Markdown: links, *italics*, and **bold** all work.
+
+- year: 2026
+  month: May
+  text: >-
+    Our paper on [high-resolution eikonal tomography of the Kilauea caldera](https://doi.org/10.1093/gji/ggag179) was published in *Geophysical Journal International*.
+
+- year: 2025
+  month: August
+  text: >-
+    Defended my PhD thesis, *Uncovering Hidden Structure in Data and the Physical World for Seismic Tomography and Beyond*, at Caltech.
+
+- year: 2024
+  month: April
+  text: >-
+    Check out our work on [black hole video reconstruction](http://imaging.cms.caltech.edu/igm), which was presented at ICASSP 2024!
+
+- year: 2023
+  month: June
+  text: >-
+    I received the [EAS New Horizons Award](https://www.eas.caltech.edu/academics/awards-and-prizes/newhorizons) for my contributions at Caltech. Here's the [announcement](https://www.eas.caltech.edu/news/winners-of-the-2023-new-horizons-award-announced).
+
+- year: 2023
+  month: June
+  text: >-
+    Check out our work on [image reconstruction without explicit priors](http://imaging.cms.caltech.edu/igm), which I will be presenting on at ICASSP 2023!
+
+- year: 2022
+  month: June
+  text: >-
+    Started an internship at Google Research.
+
+- year: 2022
+  month: May
+  text: >-
+    Presented at [SOCAMS](https://www.socams.org/home) on new work with [Oscar](https://www.oscarleong.com/home), [He](http://users.cms.caltech.edu/~hesun/), and [Katie](http://users.cms.caltech.edu/~klbouman/) on learning image models from noisy data.
+
+- year: 2021
+  month: December
+  text: >-
+    Attended [AGU 2021](https://www.agu.org/Fall-Meeting-2021), my first in-person conference!
+
+- year: 2021
+  month: September
+  text: >-
+    *DeepGEM: Generalized Expectation-Maximization for Blind Inversion* accepted to NeurIPS 2021! Check out our [project page](http://imaging.cms.caltech.edu/deepgem/).
+
+- year: 2020
+  month: April
+  text: >-
+    Received Honorable Mention for the NSF GRFP.
+
+- year: 2019
+  month: October
+  text: >-
+    Started my PhD at Caltech!
+
+- year: 2019
+  month: September
+  text: >-
+    Participated in the Keck Institute for Space Studies workshop: [Beyond Interstellar: Estracting Science from Black Hole Images](https://www.kiss.caltech.edu/workshops/black_hole/black_hole.html)
+
+- year: 2019
+  month: April
+  text: >-
+    Received Honorable Mention for the NSF GRFP.
+
+- year: 2018
+  month: December
+  text: >-
+    Graduated from Carnegie Mellon University with a B.S in Electrical and Computer Engineering and an additional major in Biomedical Engineering with University Honors.
+
+- year: 2018
+  month: November
+  text: >-
+    Inducted into Tau Beta Pi.
+
+- year: 2018
+  month: September
+  text: >-
+    Attended Grace Hopper Celebration for the first time.
+
+- year: 2018
+  month: August
+  text: >-
+    Received the Mary Louise Brown Graham Memorial Scholarship for top undergraduate female students in engineering and science.
