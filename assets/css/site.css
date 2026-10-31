@@ -43,7 +43,7 @@
   --space-16: 4rem;
 
   /* Layout */
-  --measure: 50.5rem; /* content width */
+  --measure: 53rem;   /* content width */
   --wide: 60rem;      /* header / footer width */
   --radius: 4px;
 }
@@ -289,8 +289,8 @@ a.project-thumb:hover {
 /* ---------- Clothesline (about page) ---------- */
 
 .clothesline-group {
-  /* Clotheslines break out of the text column: 30% wider, centered, never wider than the screen */
-  --line-width: min(calc(var(--measure) * 1.3), calc(100vw - 2 * var(--space-6)));
+  /* Clotheslines break out of the text column: wider, centered, never wider than the screen */
+  --line-width: min(65.5rem, calc(100vw - 2 * var(--space-6)));
   width: var(--line-width);
   margin: var(--space-8) 0 var(--space-4) calc((100% - var(--line-width)) / 2);
 }
