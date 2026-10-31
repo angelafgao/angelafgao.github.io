@@ -43,7 +43,7 @@
   --space-16: 4rem;
 
   /* Layout */
-  --measure: 44rem;   /* content width */
+  --measure: 50.5rem; /* content width */
   --wide: 60rem;      /* header / footer width */
   --radius: 4px;
 }
