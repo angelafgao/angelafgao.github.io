@@ -1,56 +1,32 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
 ---
 
 <div class="intro">
-<img src="/assets/IMG_6697.JPG" alt="Angela Gao" class="profile">
+<img src="/assets/AngelaGao.jpg" alt="Angela Gao" class="profile">
 <div markdown="1">
 
-I am a PhD student in the [Computing and Mathematical Sciences](https://www.cms.caltech.edu/) department at [Caltech](https://www.caltech.edu/) and advised by [Professor Katie Bouman](http://users.cms.caltech.edu/~klbouman/). Prior to my doctoral studies at Caltech, I was an undergrad at [Carnegie Mellon University](https://www.cmu.edu/), where I recieved a B.S in Electrical and Computer Engineering with an additional major in Biomedical Engineering with Honors in December of 2018. 
+I am the CTO of [Fearn](https://fearn.ai). I received my PhD in [Computing and Mathematical Sciences](https://www.cms.caltech.edu/) from [Caltech](https://www.caltech.edu/), where I was advised by [Professor Katie Bouman](https://users.cms.caltech.edu/~klbouman/). Before that, I received a B.S. in Electrical and Computer Engineering with an additional major in Biomedical Engineering from [Carnegie Mellon University](https://www.cmu.edu/).
 
-My primary research interests are in computational imaging. I am interested in methods that integrate physics-based models with data-driven approaches, which can be applied to a broad range of imaging domains from traditional computer vision to medical imaging.
+My research focuses on generative models, machine learning, and inverse problems: methods that integrate physics-based models with data-driven approaches, applied to domains from seismic tomography to black hole imaging.
 
 Click [here](/assets/Angela_Gao_CV_F23.pdf) for a PDF of my CV.
 
 </div>
 </div>
 
-<div class="news" markdown="1">
+<div class="selected-pubs" markdown="1">
 
-## News
+## Selected Publications
 
+**AF Gao**, JD Wilding, E Biondi, KL Bouman, and ZE Ross. High-resolution Eikonal-based Traveltime Tomography and Uncertainty Quantification of the Kilauea Caldera. *Geophysical Journal International*, 2026. [[Paper]](https://doi.org/10.1093/gji/ggag179) [[arxiv]](https://arxiv.org/abs/2507.23692)
 
-April 2024 - Check out our work on [black hole video reconstruction](http://imaging.cms.caltech.edu/igm), which was presented at ICASSP 2024!
+O Leong\*, **AF Gao**\*, H Sun, and KL Bouman. Discovering Structure From Corruption for Unsupervised Image Reconstruction. *IEEE Transactions on Computational Imaging*, 2023. [[arxiv]](https://arxiv.org/abs/2304.05589) [[Project Website]](http://imaging.cms.caltech.edu/igm/) [[code]](https://github.com/angelafgao/IGM)
 
-June 2023 - I received the [EAS New Horizons Award](https://www.eas.caltech.edu/academics/awards-and-prizes/newhorizons) for my contributions at Caltech. Here's the [announcement](https://www.eas.caltech.edu/news/winners-of-the-2023-new-horizons-award-announced).
+**AF Gao**, J Castellanos, Y Yue, ZE Ross, and KL Bouman. DeepGEM: Generalized Expectation-Maximization for Blind Inversion. *Advances in Neural Information Processing Systems (NeurIPS)*, 2021. [[Paper]](https://proceedings.neurips.cc/paper/2021/hash/606c90a06173d69682feb83037a68fec-Abstract.html) [[Project Website]](http://imaging.cms.caltech.edu/deepgem/) [[code]](https://github.com/angelafgao/DeepGEM)
 
-June 2023 - Check out our work on [image reconstruction without explicit priors](http://imaging.cms.caltech.edu/igm), which I will be presenting on at ICASSP 2023!
+Y Yang\*, **AF Gao**\*, JC Castellanos\*, ZE Ross, K Azizzadenesheli, and RW Clayton. Seismic Wave Propagation and Inversion with Neural Operators. *The Seismic Record*, 2021. [[Paper]](https://pubs.geoscienceworld.org/ssa/tsr/article/1/3/126/609317/Seismic-Wave-Propagation-and-Inversion-with-Neural) [[arxiv]](https://arxiv.org/abs/2108.05421)
 
-June 2022 - Started an internship at Google Research.
-
-May 2022 - Presented at [SOCAMS](https://www.socams.org/home) on new work with [Oscar](https://www.oscarleong.com/home), [He](http://users.cms.caltech.edu/~hesun/), and [Katie](http://users.cms.caltech.edu/~klbouman/) on learning image models from noisy data.
-
-December 2021 - Attended [AGU 2021](https://www.agu.org/Fall-Meeting-2021), my first in-person conference!
-
-September 2021 - *DeepGEM: Generalized Expectation-Maximization for Blind Inversion* accepted to NeurIPS 2021! Check out our [project page](http://imaging.cms.caltech.edu/deepgem/).
-
-April 2020 - Received Honorable Mention for the NSF GRFP. 
-
-October 2019 - Started my PhD at Caltech!
-
-September 2019 - Participated in the Keck Institute for Space Studies workshop: [Beyond Interstellar: Estracting Science from Black Hole Images](https://www.kiss.caltech.edu/workshops/black_hole/black_hole.html)
-
-April 2019 - Received Honorable Mention for the NSF GRFP. 
-
-December 2018 - Graduated from Carnegie Mellon University with a B.S in Electrical and Computer Engineering and an additional major in Biomedical Engineering with University Honors.
-
-November 2018 - Inducted into Tau Beta Pi. 
-
-September 2018 - Attended Grace Hopper Celebration for the first time. 
-
-August 2018 - Received the Mary Louise Brown Graham Memorial Scholarship for top undergraduate female students in engineering and science.
+\* denotes equal contribution. [All publications →](/Publications/)
 
 </div>

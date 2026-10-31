@@ -203,9 +203,12 @@ main { padding: var(--space-8) 0 var(--space-16); }
 
 /* ---------- Publications ---------- */
 
-.publications .page-content p { margin-bottom: var(--space-6); }
-.publications .page-content em { color: var(--color-muted); }
-.publications .page-content a[href] {
+.publications .page-content p,
+.selected-pubs p { margin-bottom: var(--space-6); }
+.publications .page-content em,
+.selected-pubs em { color: var(--color-muted); }
+.publications .page-content a[href],
+.selected-pubs a[href] {
   font-family: var(--font-ui);
   font-size: var(--text-xs);
 }

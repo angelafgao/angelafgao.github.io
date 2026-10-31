@@ -4,10 +4,7 @@ title: About
 permalink: /about/
 ---
 
-My name is Angela Gao and I am a Ph.D student at Caltech in the Computing and Mathematical Sciences Department. 
-
-
-Outside of research, I enjoy watercoloring nature and exploring new places. 
+Outside of work, I enjoy watercoloring nature and exploring new places. 
 
 Here is a photo of me hiking in Chamonix, France.
 <img src="/assets/chamonix_fixed.jpg" alt="Hiking in Chamonix">
