@@ -1,0 +1,90 @@
+# Research page projects. summary is Markdown.
+# thumb.href (optional) makes the thumbnail a link.
+
+current:
+  - title: 'DeepGEM: Generalized Expectation-Maximization for Blind Inversion'
+    meta: 'NeurIPS 2021 · JGR: Solid Earth 2025'
+    thumb:
+      href: 'https://imaging.cms.caltech.edu/deepgem/'
+      src: '/assets/research/deepgem-thumb.jpg'
+      alt: 'Diagram: seismic waves from an earthquake reach surface receivers, and DeepGEM reconstructs both the Earth velocity structure and the earthquake locations'
+      width: 560
+      height: 560
+    summary: >-
+      Most inverse problems assume the forward model is known exactly. DeepGEM solves *blind* inverse problems, recovering both the hidden source and unknown forward model parameters without supervision, using a variational expectation-maximization framework built on normalizing flows. On blind seismic tomography it significantly outperforms the standard method used in seismology. Follow-up work, [DeepGEM-EGF](https://doi.org/10.1029/2025JB031260), applies the framework to jointly estimate earthquake source-time functions and empirical Green's functions with uncertainty.
+    links:
+      - { label: 'Project page', url: 'https://imaging.cms.caltech.edu/deepgem/' }
+      - { label: 'Paper', url: 'https://proceedings.neurips.cc/paper/2021/hash/606c90a06173d69682feb83037a68fec-Abstract.html' }
+      - { label: 'Code', url: 'https://github.com/angelafgao/DeepGEM' }
+
+  - title: 'Image Reconstruction Without Explicit Priors'
+    meta: 'ICASSP 2023 · IEEE TCI 2023 · ICASSP 2024'
+    thumb:
+      href: 'https://imaging.cms.caltech.edu/igm/'
+      src: '/assets/research/igm-thumb.jpg'
+      alt: 'Diagram: three blurry black hole measurements pass through inferred common structure to produce three sharp ring reconstructions'
+      width: 560
+      height: 560
+    summary: >-
+      Image priors are essential for ill-posed inverse problems, but many scientific applications have no example images to learn them from. Instead, we reconstruct a *set* of images jointly, learning a shared image generator directly from corrupted measurements. As few as 150 measurement examples are enough for prior-free reconstruction, from denoising and phase retrieval to recovering a video of the evolving black hole M87*.
+    links:
+      - { label: 'Project page', url: 'https://imaging.cms.caltech.edu/igm/' }
+      - { label: 'TCI paper', url: 'https://arxiv.org/abs/2304.05589' }
+      - { label: 'ICASSP 2023', url: 'https://arxiv.org/abs/2303.12217' }
+      - { label: 'Black hole video', url: 'https://doi.org/10.1109/ICASSP48485.2024.10445896' }
+      - { label: 'Code', url: 'https://github.com/angelafgao/IGM' }
+
+  - title: 'Imaging Kilauea''s Magmatic System'
+    meta: 'Geophysical Journal International 2026'
+    thumb:
+      href: 'https://doi.org/10.1093/gji/ggag179'
+      src: '/assets/research/kilauea-thumb.jpg'
+      alt: '3D view beneath Kilauea showing the volcano caldera, clusters of earthquakes, and magma chambers several kilometers deep'
+      width: 560
+      height: 560
+    summary: >-
+      A stochastic eikonal tomography method with per-pixel uncertainties estimated through variational inference. It produces a 3D reconstruction of the magmatic system beneath Kilauea at previously unattained resolution, revealing a columnar high-velocity-ratio region beneath the caldera and constraining its melt fraction.
+    links:
+      - { label: 'Paper', url: 'https://doi.org/10.1093/gji/ggag179' }
+      - { label: 'arXiv', url: 'https://arxiv.org/abs/2507.23692' }
+
+  - title: 'Neural Operators for Seismology'
+    meta: 'The Seismic Record 2021 · IEEE TGRS 2023 · TMLR 2024'
+    thumb:
+      href: 'https://pubs.geoscienceworld.org/ssa/tsr/article/1/3/126/609317/Seismic-Wave-Propagation-and-Inversion-with-Neural'
+      src: '/assets/research/neural-operators-thumb.jpg'
+      alt: 'Simulated seismic wavefield expanding outward over time'
+      width: 560
+      height: 474
+    summary: >-
+      Neural operators learn solution maps for whole families of PDEs, making seismic wave simulation and full-waveform inversion far faster than traditional numerical solvers. Building on this, OpFlow extends normalizing flows to function spaces for functional regression with uncertainty quantification.
+    links:
+      - { label: 'Wave propagation', url: 'https://pubs.geoscienceworld.org/ssa/tsr/article/1/3/126/609317/Seismic-Wave-Propagation-and-Inversion-with-Neural' }
+      - { label: 'Waveform inversion', url: 'https://arxiv.org/abs/2209.11955' }
+      - { label: 'OpFlow', url: 'https://arxiv.org/abs/2404.02986' }
+
+earlier:
+  - title: 'AI-Powered Inline Cardiac Strain Mapping'
+    meta: 'NIH NHLBI · Summer 2019'
+    thumb:
+      src: '/assets/research/cardiac-thumb.jpg'
+      alt: 'Short-axis cardiac MR slice with the segmented myocardium outlined by green outer and red inner contours'
+      width: 309
+      height: 308
+    summary: >-
+      With Dr. Peter Kellman and Dr. Hui Xue at the [NIH NHLBI](https://www.nhlbi.nih.gov/), I computed myocardial strain from cardiac MR scans, using DenseUNets to segment myocardial tissue and implementing the strain calculation in C++ for the Gadgetron scanner pipeline.
+
+  - title: 'Single-Shot Illumination Source Separation'
+    meta: 'Carnegie Mellon University · 2018–2019'
+    summary: >-
+      In the [Image Science Lab](https://imagesci.ece.cmu.edu/) with [Prof. Aswin Sankaranarayanan](https://users.ece.cmu.edu/~saswin/), I separated illumination sources from a single image using physics-motivated deep networks that learn the components of the image formation model: albedo, reflectivity, and shading.
+
+  - title: '3D Reconstruction of Sonorines with Photometric Stereo'
+    meta: 'Princeton University · Summer 2017'
+    thumb:
+      src: '/assets/research/sonorine.jpg'
+      alt: '3D height-field reconstruction of the grooves of a sonorine plaster record'
+      width: 1400
+      height: 1082
+    summary: >-
+      With [Prof. Adam Finkelstein](https://www.cs.princeton.edu/~af/) and [Prof. Szymon Rusinkiewicz](https://www.cs.princeton.edu/~smr/), I developed photometric stereo methods to reconstruct the 3D shape of sonorines, delicate plaster records.

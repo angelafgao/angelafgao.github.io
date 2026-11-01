@@ -1,0 +1,20 @@
+{%- comment -%}
+  One Research page project, from _data/research.yml.
+  Usage: {% include project.html project=project %}
+  Kept free of blank lines so it can sit inside a Markdown page.
+{%- endcomment -%}
+{%- assign p = include.project -%}
+<article class="project">
+{%- if p.thumb -%}
+  {%- capture img -%}<img{% unless p.thumb.href %} class="project-thumb"{% endunless %} src="{{ p.thumb.src | relative_url }}" alt="{{ p.thumb.alt }}" width="{{ p.thumb.width }}" height="{{ p.thumb.height }}" loading="lazy">{%- endcapture -%}
+  {%- if p.thumb.href %}<a class="project-thumb" href="{{ p.thumb.href }}">{{ img }}</a>{% else %}{{ img }}{% endif -%}
+{%- endif %}
+<div>
+<h3 class="project-title">{{ p.title }}</h3>
+<p class="project-meta">{{ p.meta }}</p>
+{{ p.summary | markdownify | strip }}
+{%- if p.links %}
+<p class="project-links">{% for link in p.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %} {% endunless %}{% endfor %}</p>
+{%- endif %}
+</div>
+</article>

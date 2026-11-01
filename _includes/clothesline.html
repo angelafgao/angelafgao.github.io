@@ -23,3 +23,8 @@
     </ul>
   </div>
 </div>
+{%- comment -%} Load the script once per page, however many clotheslines it has. {%- endcomment -%}
+{%- unless clothesline_script_loaded %}
+<script src="{{ '/assets/js/clothesline.js' | relative_url }}" defer></script>
+{%- assign clothesline_script_loaded = true -%}
+{%- endunless %}
