@@ -513,12 +513,12 @@ a.project-thumb:hover {
 .illum-vine, .illum-spiral {
   fill: none;
   stroke: var(--color-text);
-  stroke-width: 0.9;
+  stroke-width: 1.1;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1;
 }
-.illum-spiral { stroke-width: 0.8; }
+.illum-spiral { stroke-width: 0.9; }
 .illum-leaf { fill: var(--color-text); transform-box: fill-box; transform-origin: 0 50%; }
 .illum-rib { fill: none; stroke: var(--color-bg); stroke-width: 0.35; }
 .illum-letter {
