@@ -155,10 +155,47 @@ main { padding: var(--space-8) 0 var(--space-16); }
   text-decoration-thickness: 2px;
   text-underline-offset: 0.45em;
 }
-.site-nav a[aria-current="page"] {
-  text-decoration: underline;
-  text-decoration-color: currentColor;
-  text-underline-offset: 0.4em;
+/* The current page's underline is a real element so it can slide between
+   items on navigation (see "Page transitions"). It sits exactly where a
+   1px underline at a 0.4em offset would. */
+.site-nav a[aria-current="page"] { position: relative; text-decoration: none; }
+.nav-mark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(1.6em - 0.5px);
+  height: 1px;
+  background: currentColor;
+}
+
+/* ---------- Page transitions ---------- */
+/* Same-site navigations cross-fade (cross-document view transitions). The
+   header holds still, the current-page underline slides to its new item and
+   the page title morphs into the next one. Off for reduced motion. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+
+  .site-header { view-transition-name: site-header; }
+  .nav-mark { view-transition-name: nav-mark; }
+  .page-title { view-transition-name: page-title; }
+  /* Inside the eht lens canvas these can't be captured in place: just fade */
+  .eht-gl .site-header, .eht-gl .nav-mark, .eht-gl .page-title { view-transition-name: none; }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.25s;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  /* Titles of different lengths: keep the text unstretched, pinned left */
+  ::view-transition-old(page-title),
+  ::view-transition-new(page-title) {
+    width: auto;
+    height: 100%;
+    object-fit: none;
+    object-position: left top;
+  }
 }
 
 /* ---------- Page ---------- */
