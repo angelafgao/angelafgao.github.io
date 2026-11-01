@@ -79,6 +79,7 @@ h1, h2, h3, h4 {
   color: var(--color-heading);
   line-height: var(--leading-tight);
   letter-spacing: -0.01em;
+  text-wrap: balance;   /* even line lengths (project titles are h3s too) */
   margin: var(--space-12) 0 var(--space-4);
 }
 h1 { font-size: var(--text-3xl); }
@@ -87,6 +88,7 @@ h3 { font-size: var(--text-xl); }
 h4 { font-size: var(--text-lg); }
 
 p, ul, ol { margin: 0 0 var(--space-4); }
+p, li, figcaption { text-wrap: pretty; }   /* avoid orphans and ragged ends */
 
 a {
   color: inherit;
