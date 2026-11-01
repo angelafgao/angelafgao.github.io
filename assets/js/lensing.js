@@ -107,6 +107,8 @@
       pos.x = target.x; pos.y = target.y;
       render();
       say("Event Horizon mode · press Esc to escape");
+      // Let other scripts (analytics.js) know the egg was found.
+      document.dispatchEvent(new CustomEvent("eht:toggle", { detail: { on: true } }));
     } else {
       say("Back to flat spacetime");
     }

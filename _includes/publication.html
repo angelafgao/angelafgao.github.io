@@ -5,5 +5,6 @@
 {%- assign pub = include.pub -%}
 {%- capture citation -%}
 {{ pub.authors }}. {{ pub.title }}. *{{ pub.venue }}*{% if pub.details %}, {{ pub.details }}{% endif %}, {{ pub.year }}.{% for link in pub.links %} [[{{ link.label }}]]({{ link.url }}){% endfor %}
+{: data-paper="{{ pub.title | replace: '"', "'" }}"}
 {%- endcapture -%}
 {{ citation | markdownify }}

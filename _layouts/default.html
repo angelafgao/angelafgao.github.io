@@ -18,5 +18,16 @@
   <script src="{{ '/assets/js/footer-art.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/lensing.js' | relative_url }}" defer></script>
   {% if jekyll.environment == "development" %}{% include font-lab.html %}{% endif %}
+  {%- comment -%}
+    Analytics: GoatCounter, only on production builds with a goatcounter_code
+    set in _config.yml (see the comment there). Cookieless and stores nothing
+    on the visitor's device; it records path, referrer, screen size,
+    browser/OS family and country (IP is used for the lookup, not stored).
+    No personal data, so no consent banner. analytics.js adds click events.
+  {%- endcomment -%}
+  {%- if site.goatcounter_code != "" and site.goatcounter_code and jekyll.environment == "production" %}
+  <script data-goatcounter="https://{{ site.goatcounter_code }}.goatcounter.com/count" async src="{{ '/assets/js/vendor/goatcounter-count.v5.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/analytics.js' | relative_url }}" defer></script>
+  {%- endif %}
 </body>
 </html>
