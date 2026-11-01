@@ -519,6 +519,8 @@ a.project-thumb:hover {
   stroke-dasharray: 1;
 }
 .illum-spiral { stroke-width: 0.9; }
+.illum-border { fill: none; stroke: var(--color-text); stroke-width: 0.8; stroke-dasharray: 1; }
+.illum-border-inner { stroke-width: 0.4; opacity: 0.6; }
 .illum-leaf { fill: var(--color-text); transform-box: fill-box; transform-origin: 0 50%; }
 .illum-rib { fill: none; stroke: var(--color-bg); stroke-width: 0.35; }
 .illum-letter {
@@ -532,7 +534,8 @@ a.project-thumb:hover {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .illum-vine   { animation: illum-draw 1.6s ease-in-out both; }
+  .illum-border { animation: illum-draw 1.2s ease-in-out both; }
+  .illum-vine   { animation: illum-draw 1.6s 0.2s ease-in-out both; }
   .illum-spiral { animation: illum-draw 0.6s calc(0.4s + var(--s) * 1.6s) ease-out both; }
   .illum-leaf   { animation: illum-unfurl 0.4s calc(0.2s + var(--s) * 1.6s) ease-out both; }
   .illum-letter { animation: illum-ink 1s 0.7s ease-in-out both, illum-fill 0.6s 1.5s ease-out both; }

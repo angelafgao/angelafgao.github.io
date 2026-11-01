@@ -1,20 +1,24 @@
 // Illuminated initial: turns the first letter of any paragraph marked
-// {: .illuminate } into a drop cap inside a square frame of leafy vine, all
-// in maroon. The vine is a smooth, softly rounded square with a gentle wave;
-// two tendrils grow in from opposite sides and curl beside the letter.
-// On load the vine draws itself, leaves unfurl as it passes, the tendrils
-// curl in, then the letter inks in.
+// {: .illuminate } into a foliate drop cap, all in maroon. A thin double-ruled
+// square holds a single flowing stem that rises up the left, arches over the
+// letter and comes down the right, with branches curling into the spaces
+// beside the letter and leaves along the way.
+// On load the frame draws, the stem grows, branches curl and leaves unfurl
+// as it passes, then the letter inks in.
 // The real letter stays in the text for screen readers; the artwork is
 // decorative. Timing lives in site.css under "Illuminated initial".
 (function () {
   "use strict";
 
   var NS = "http://www.w3.org/2000/svg";
-  var INSET = 7, SIZE = 86, RADIUS = 11;   // rounded-square frame in a 100x100 viewBox
 
-  // Tendrils (defined for the lower-left; the other is rotated 180°).
-  var TENDRIL = "M7 68 C17 70 25 62 24 52 C23 43 14 41 13 47 C12 52 19 53 19 48";
-  var TENDRIL_LEAVES = [0.18, 0.36, 0.55];  // positions along the tendril
+  // The stem: up the left, over the top, down the right (100x100 viewBox).
+  var STEM = [[13, 90], [18, 76], [14, 60], [19, 44], [15, 29], [24, 16], [38, 12], [50, 15],
+              [62, 12], [76, 16], [85, 29], [81, 44], [86, 60], [82, 76], [87, 90]];
+  // Branches: [spiral centre x, y, radius, turn direction]. Each grows from the
+  // nearest point of the stem and curls around its centre.
+  var BRANCHES = [[22, 87, 3.6, -1], [29, 67, 6.2, 1], [29, 41, 6, -1], [31, 24, 4.2, 1],
+                  [69, 24, 4.2, -1], [71, 41, 6, 1], [71, 67, 6.2, -1], [78, 87, 3.6, 1]];
 
   function el(name, attrs, parent) {
     var node = document.createElementNS(NS, name);
@@ -32,22 +36,30 @@
     };
   }
 
-  // Smooth closed curve through points (Catmull-Rom converted to cubic Béziers).
+  // Smooth open curve through points (Catmull-Rom converted to cubic Béziers).
   function smooth(pts) {
-    var n = pts.length, d = "M" + f(pts[0].x) + " " + f(pts[0].y);
-    for (var i = 0; i < n; i++) {
-      var p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
-      d += " C" + f(p1.x + (p2.x - p0.x) / 6) + " " + f(p1.y + (p2.y - p0.y) / 6) +
-           " " + f(p2.x - (p3.x - p1.x) / 6) + " " + f(p2.y - (p3.y - p1.y) / 6) +
-           " " + f(p2.x) + " " + f(p2.y);
+    var d = "M" + f(pts[0][0]) + " " + f(pts[0][1]);
+    for (var i = 0; i < pts.length - 1; i++) {
+      var p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      d += " C" + f(p1[0] + (p2[0] - p0[0]) / 6) + " " + f(p1[1] + (p2[1] - p0[1]) / 6) +
+           " " + f(p2[0] - (p3[0] - p1[0]) / 6) + " " + f(p2[1] - (p3[1] - p1[1]) / 6) +
+           " " + f(p2[0]) + " " + f(p2[1]);
     }
-    return d + " Z";
+    return d;
   }
 
-  // Point and tangent angle (degrees) at fraction t along an SVG path.
+  // Point, tangent angle (degrees) and fraction t along an SVG path.
   function along(path, t) {
     var L = path.getTotalLength(), a = path.getPointAtLength(t * L), b = path.getPointAtLength(Math.min(L, t * L + 0.5));
-    return { x: a.x, y: a.y, angle: Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI };
+    return { x: a.x, y: a.y, t: t, angle: Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI };
+  }
+  function nearest(path, x, y) {
+    var best = null;
+    for (var i = 0; i <= 200; i++) {
+      var p = along(path, i / 200), d = Math.hypot(p.x - x, p.y - y);
+      if (!best || d < best.d) { best = p; best.d = d; }
+    }
+    return best;
   }
 
   // A leaf with a pale midrib; --s sets when it unfurls (see site.css).
@@ -59,38 +71,31 @@
   }
 
   function ornament(svg, rand) {
-    // Sample a rounded square, then push each point in or out along a slow wave.
-    var guide = el("path", { d: "M" + (INSET + RADIUS) + " " + INSET + " h" + (SIZE - 2 * RADIUS) +
-      " a" + RADIUS + " " + RADIUS + " 0 0 1 " + RADIUS + " " + RADIUS + " v" + (SIZE - 2 * RADIUS) +
-      " a" + RADIUS + " " + RADIUS + " 0 0 1 -" + RADIUS + " " + RADIUS + " h-" + (SIZE - 2 * RADIUS) +
-      " a" + RADIUS + " " + RADIUS + " 0 0 1 -" + RADIUS + " -" + RADIUS + " v-" + (SIZE - 2 * RADIUS) +
-      " a" + RADIUS + " " + RADIUS + " 0 0 1 " + RADIUS + " -" + RADIUS + " Z" }, svg);
-    var L = guide.getTotalLength(), N = 48, phase = rand() * 6, pts = [];
-    for (var i = 0; i < N; i++) {
-      var s = i / N, a = guide.getPointAtLength(s * L), b = guide.getPointAtLength(((s + 0.004) % 1) * L);
-      var tx = b.x - a.x, ty = b.y - a.y, len = Math.hypot(tx, ty) || 1;
-      var wob = 1.1 * Math.sin(2 * Math.PI * 7 * s + phase);   // seven slow waves around
-      pts.push({ x: a.x - (ty / len) * wob, y: a.y + (tx / len) * wob });
-    }
-    svg.removeChild(guide);
-    var vine = el("path", { class: "illum-vine", d: smooth(pts), pathLength: "1" }, svg);
+    el("rect", { class: "illum-border", x: "2", y: "2", width: "96", height: "96", rx: "2.5", pathLength: "1" }, svg);
+    el("rect", { class: "illum-border illum-border-inner", x: "4.5", y: "4.5", width: "91", height: "91", rx: "1.5", pathLength: "1" }, svg);
 
-    // Leaves along the vine, alternating outward and inward
-    var count = 26;
-    for (var j = 0; j < count; j++) {
-      var t = (j + 0.5) / count, p = along(vine, t);
-      leaf(svg, p.x, p.y, p.angle + (j % 2 ? 1 : -1) * (40 + rand() * 20), 0.85 + rand() * 0.3, t);
-    }
+    var stem = el("path", { class: "illum-vine", d: smooth(STEM), pathLength: "1" }, svg);
 
-    // Two tendrils curling in beside the letter, rotationally balanced
-    ["", "rotate(180 50 50)"].forEach(function (turn, k) {
-      var g = el("g", turn ? { transform: turn } : {}, svg);
-      var tendril = el("path", { class: "illum-spiral", d: TENDRIL, pathLength: "1", style: "--s:" + (k ? 0.35 : 0.85) }, g);
-      TENDRIL_LEAVES.forEach(function (t, m) {
-        var p = along(tendril, t);
-        leaf(g, p.x, p.y, p.angle + (m % 2 ? 50 : -50), 0.8 + rand() * 0.2, (k ? 0.45 : 0.95) + m * 0.04);
-      });
+    // Branches spiral off the stem into the open spaces
+    BRANCHES.forEach(function (b) {
+      var start = nearest(stem, b[0], b[1]);
+      var r0 = Math.hypot(start.x - b[0], start.y - b[1]);
+      var a0 = Math.atan2(start.y - b[1], start.x - b[0]), pts = [[start.x, start.y]];
+      for (var i = 1; i <= 24; i++) {
+        var k = i / 24, r = r0 * (1 - 0.82 * k), a = a0 + b[3] * k * 1.6 * 2 * Math.PI;
+        pts.push([b[0] + r * Math.cos(a), b[1] + r * Math.sin(a)]);
+      }
+      var branch = el("path", { class: "illum-spiral", d: smooth(pts), pathLength: "1", style: "--s:" + f(start.t) }, svg);
+      var p = along(branch, 0.22);
+      leaf(svg, p.x, p.y, p.angle - b[3] * 55, 0.8 + rand() * 0.2, start.t + 0.05);
     });
+
+    // Leaves along the stem, alternating sides, a little irregular
+    var count = 18;
+    for (var j = 0; j < count; j++) {
+      var t = (j + 0.5) / count + (rand() - 0.5) * 0.02, q = along(stem, t);
+      leaf(svg, q.x, q.y, q.angle + (j % 2 ? 1 : -1) * (40 + rand() * 20), 0.85 + rand() * 0.3, t);
+    }
   }
 
   function illuminate(p, index) {
