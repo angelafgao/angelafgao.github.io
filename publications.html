@@ -1,0 +1,17 @@
+---
+layout: page
+title: Publications
+permalink: /Publications/
+body_class: publications
+---
+{% comment %} Papers live in _data/publications.yml; this lists them by type. {% endcomment %}
+<p>* denotes equal contribution</p>
+{% assign sections = "thesis:Thesis,journal:Journal Publications,conference:Conference Publications" | split: "," %}
+{% for section in sections %}
+  {% assign parts = section | split: ":" %}
+  {% assign pubs = site.data.publications | where: "type", parts[0] %}
+  {% if pubs.size > 0 %}
+<h3 id="{{ parts[1] | slugify }}">{{ parts[1] }}</h3>
+    {% for pub in pubs %}{% include publication.html pub=pub %}{% endfor %}
+  {% endif %}
+{% endfor %}

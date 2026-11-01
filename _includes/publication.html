@@ -1,0 +1,9 @@
+{%- comment -%}
+  One publication, formatted from an entry in _data/publications.yml.
+  Usage: {% include publication.html pub=pub %}
+{%- endcomment -%}
+{%- assign pub = include.pub -%}
+{%- capture citation -%}
+{{ pub.authors }}. {{ pub.title }}. *{{ pub.venue }}*{% if pub.details %}, {{ pub.details }}{% endif %}, {{ pub.year }}.{% for link in pub.links %} [[{{ link.label }}]]({{ link.url }}){% endfor %}
+{%- endcapture -%}
+{{ citation | markdownify }}

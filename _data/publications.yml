@@ -1,0 +1,113 @@
+# Every publication, newest first within each type.
+# authors is Markdown: **AF Gao** for bold, \* for equal contribution.
+# selected: N puts it on the home page (in that order).
+# type: thesis | journal | conference  (sets the section on the Publications page)
+
+- title: 'Uncovering Hidden Structure in Data and the Physical World for Seismic Tomography and Beyond'
+  authors: '**AF Gao**'
+  venue: 'Ph.D. Thesis, California Institute of Technology'
+  year: 2026
+  type: thesis
+  links:
+    - { label: 'Thesis', url: 'https://thesis.library.caltech.edu/18608/' }
+    - { label: 'PDF', url: 'https://thesis.caltech.edu/18608/01/AFG_Thesis_Final.pdf' }
+
+- title: 'High-resolution Eikonal-based Traveltime Tomography and Uncertainty Quantification of the Kilauea Caldera'
+  authors: '**AF Gao**, JD Wilding, E Biondi, KL Bouman, and ZE Ross'
+  venue: 'Geophysical Journal International'
+  details: '247(2)'
+  year: 2026
+  type: journal
+  selected: 1
+  links:
+    - { label: 'Paper', url: 'https://doi.org/10.1093/gji/ggag179' }
+    - { label: 'arxiv', url: 'https://arxiv.org/abs/2507.23692' }
+
+- title: 'DeepGEM-EGF: A Bayesian Strategy for Joint Estimates of Source-Time Functions and Empirical Green''s Functions'
+  authors: 'T Ragon, **AF Gao**, and ZE Ross'
+  venue: 'Journal of Geophysical Research: Solid Earth'
+  details: '130(12)'
+  year: 2025
+  type: journal
+  links:
+    - { label: 'Paper', url: 'https://doi.org/10.1029/2025JB031260' }
+
+- title: 'Universal Functional Regression with Neural Operator Flows'
+  authors: 'Y Shi, **AF Gao**, ZE Ross, and K Azizzadenesheli'
+  venue: 'Transactions on Machine Learning Research (TMLR)'
+  year: 2024
+  type: journal
+  links:
+    - { label: 'arxiv', url: 'https://arxiv.org/abs/2404.02986' }
+
+- title: 'Discovering Structure From Corruption for Unsupervised Image Reconstruction'
+  authors: 'O Leong\*, **AF Gao**\*, H Sun, and KL Bouman'
+  venue: 'IEEE Transactions on Computational Imaging'
+  year: 2023
+  type: journal
+  selected: 2
+  links:
+    - { label: 'arxiv', url: 'https://arxiv.org/abs/2304.05589' }
+    - { label: 'IEEE', url: 'https://ieeexplore.ieee.org/abstract/document/10309279/' }
+    - { label: 'Project Website', url: 'http://imaging.cms.caltech.edu/igm/' }
+    - { label: 'code', url: 'https://github.com/angelafgao/IGM' }
+
+- title: 'Rapid Seismic Waveform Modeling and Inversion with Neural Operators'
+  authors: 'Y Yang, **AF Gao**, K Azizzadenesheli, RW Clayton, and ZE Ross'
+  venue: 'IEEE Transactions on Geoscience and Remote Sensing'
+  year: 2023
+  type: journal
+  links:
+    - { label: 'arxiv', url: 'https://arxiv.org/abs/2209.11955' }
+
+- title: 'Seismic Wave Propagation and Inversion with Neural Operators'
+  authors: 'Y Yang\*, **AF Gao**\*, JC Castellanos\*, ZE Ross, K Azizzadenesheli, and RW Clayton'
+  venue: 'The Seismic Record'
+  details: '1(3)'
+  year: 2021
+  type: journal
+  selected: 4
+  links:
+    - { label: 'Paper', url: 'https://pubs.geoscienceworld.org/ssa/tsr/article/1/3/126/609317/Seismic-Wave-Propagation-and-Inversion-with-Neural' }
+    - { label: 'arxiv', url: 'https://arxiv.org/abs/2108.05421' }
+
+- title: 'Imaging an Evolving Black Hole by Leveraging Shared Structure'
+  authors: 'Y Lin\*, **AF Gao**\*, and KL Bouman'
+  venue: 'International Conference on Acoustics, Speech, and Signal Processing (ICASSP)'
+  year: 2024
+  type: conference
+  links:
+    - { label: 'Paper', url: 'https://doi.org/10.1109/ICASSP48485.2024.10445896' }
+    - { label: 'Project Website', url: 'http://imaging.cms.caltech.edu/igm/' }
+    - { label: 'code', url: 'https://github.com/angelafgao/IGM' }
+
+- title: 'Image Reconstruction without Explicit Priors'
+  authors: '**AF Gao**\*, O Leong\*, H Sun, and KL Bouman'
+  venue: 'International Conference on Acoustics, Speech, and Signal Processing (ICASSP)'
+  year: 2023
+  type: conference
+  links:
+    - { label: 'arxiv', url: 'https://arxiv.org/abs/2303.12217' }
+    - { label: 'Project Website', url: 'http://imaging.cms.caltech.edu/igm/' }
+    - { label: 'code', url: 'https://github.com/angelafgao/IGM' }
+
+- title: 'DeepGEM: Generalized Expectation-Maximization for Blind Inversion'
+  authors: '**AF Gao**, J Castellanos, Y Yue, ZE Ross, and KL Bouman'
+  venue: 'Advances in Neural Information Processing Systems (NeurIPS)'
+  year: 2021
+  type: conference
+  selected: 3
+  links:
+    - { label: 'Paper', url: 'https://proceedings.neurips.cc/paper/2021/hash/606c90a06173d69682feb83037a68fec-Abstract.html' }
+    - { label: 'Project Website', url: 'http://imaging.cms.caltech.edu/deepgem/' }
+    - { label: 'code', url: 'https://github.com/angelafgao/DeepGEM' }
+
+- title: 'Generalized Unsupervised Clustering of Hyperspectral Images of Geological Targets in the Near Infrared'
+  authors: '**AF Gao**, B Rasmussen, P Kulits, EL Scheller, R Greenberger, and BL Ehlmann'
+  venue: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops'
+  year: 2021
+  type: conference
+  links:
+    - { label: 'Paper', url: 'https://openaccess.thecvf.com/content/CVPR2021W/PBVS/papers/Gao_Generalized_Unsupervised_Clustering_of_Hyperspectral_Images_of_Geological_Targets_in_CVPRW_2021_paper.pdf' }
+    - { label: 'arxiv', url: 'https://arxiv.org/abs/2106.13315' }
+    - { label: 'code', url: 'https://github.com/angelafgao/GyPSUM' }

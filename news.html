@@ -1,0 +1,15 @@
+---
+layout: page
+title: News
+permalink: /news/
+---
+{% comment %} Items live in _data/news.yml (newest first); this groups them by year. {% endcomment %}
+<div class="news">
+  {% assign years = site.data.news | group_by: "year" %}
+  {% for year in years %}
+  <p class="news-year">{{ year.name }}</p>
+  {% for item in year.items %}
+  <p class="news-item"><span class="news-date">{{ item.month }}</span> {{ item.text | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>
+  {% endfor %}
+  {% endfor %}
+</div>
