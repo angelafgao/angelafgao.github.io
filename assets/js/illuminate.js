@@ -1,8 +1,7 @@
 // Illuminated initial: turns the first letter of any paragraph marked
 // {: .illuminate } into a foliate drop cap, all in maroon. A thin double-ruled
-// square holds a single flowing stem that rises up the left, arches over the
-// letter and comes down the right, with branches curling into the spaces
-// beside the letter and leaves along the way.
+// square holds a flowing stem that loops all the way around the letter, with
+// branches curling into the spaces beside it and leaves along the way.
 // On load the frame draws, the stem grows, branches curl and leaves unfurl
 // as it passes, then the letter inks in.
 // The real letter stays in the text for screen readers; the artwork is
@@ -12,13 +11,15 @@
 
   var NS = "http://www.w3.org/2000/svg";
 
-  // The stem: up the left, over the top, down the right (100x100 viewBox).
-  var STEM = [[13, 90], [18, 76], [14, 60], [19, 44], [15, 29], [24, 16], [38, 12], [50, 15],
-              [62, 12], [76, 16], [85, 29], [81, 44], [86, 60], [82, 76], [87, 90]];
+  // The stem: a closed loop around the letter, starting at the bottom centre and
+  // running up the left, over the top and down the right (100x100 viewBox).
+  var STEM = [[50, 87], [37, 89], [24, 86], [16, 76], [14, 60], [19, 44], [15, 29], [24, 16],
+              [38, 12], [50, 15], [62, 12], [76, 16], [85, 29], [81, 44], [86, 60], [84, 76],
+              [76, 86], [63, 89]];
   // Branches: [spiral centre x, y, radius, turn direction]. Each grows from the
-  // nearest point of the stem and curls around its centre.
-  var BRANCHES = [[22, 87, 3.6, -1], [29, 67, 6.2, 1], [29, 41, 6, -1], [31, 24, 4.2, 1],
-                  [69, 24, 4.2, -1], [71, 41, 6, 1], [71, 67, 6.2, -1], [78, 87, 3.6, 1]];
+  // nearest point of the stem and curls around its centre; four down each side.
+  var BRANCHES = [[31, 24, 4.3, 1], [29, 41, 5.6, -1], [29, 59, 5.6, 1], [31, 76, 4.3, -1],
+                  [69, 24, 4.3, -1], [71, 41, 5.6, 1], [71, 59, 5.6, -1], [69, 76, 4.3, 1]];
 
   function el(name, attrs, parent) {
     var node = document.createElementNS(NS, name);
@@ -36,16 +37,18 @@
     };
   }
 
-  // Smooth open curve through points (Catmull-Rom converted to cubic Béziers).
-  function smooth(pts) {
-    var d = "M" + f(pts[0][0]) + " " + f(pts[0][1]);
-    for (var i = 0; i < pts.length - 1; i++) {
-      var p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+  // Smooth curve through points (Catmull-Rom converted to cubic Béziers),
+  // open by default or closed into a loop.
+  function smooth(pts, closed) {
+    var n = pts.length, d = "M" + f(pts[0][0]) + " " + f(pts[0][1]);
+    function at(i) { return closed ? pts[(i + n) % n] : pts[Math.max(0, Math.min(n - 1, i))]; }
+    for (var i = 0; i < (closed ? n : n - 1); i++) {
+      var p0 = at(i - 1), p1 = at(i), p2 = at(i + 1), p3 = at(i + 2);
       d += " C" + f(p1[0] + (p2[0] - p0[0]) / 6) + " " + f(p1[1] + (p2[1] - p0[1]) / 6) +
            " " + f(p2[0] - (p3[0] - p1[0]) / 6) + " " + f(p2[1] - (p3[1] - p1[1]) / 6) +
            " " + f(p2[0]) + " " + f(p2[1]);
     }
-    return d;
+    return closed ? d + " Z" : d;
   }
 
   // Point, tangent angle (degrees) and fraction t along an SVG path.
@@ -74,7 +77,7 @@
     el("rect", { class: "illum-border", x: "2", y: "2", width: "96", height: "96", rx: "2.5", pathLength: "1" }, svg);
     el("rect", { class: "illum-border illum-border-inner", x: "4.5", y: "4.5", width: "91", height: "91", rx: "1.5", pathLength: "1" }, svg);
 
-    var stem = el("path", { class: "illum-vine", d: smooth(STEM), pathLength: "1" }, svg);
+    var stem = el("path", { class: "illum-vine", d: smooth(STEM, true), pathLength: "1" }, svg);
 
     // Branches spiral off the stem into the open spaces
     BRANCHES.forEach(function (b) {
@@ -91,7 +94,7 @@
     });
 
     // Leaves along the stem, alternating sides, a little irregular
-    var count = 18;
+    var count = 22;
     for (var j = 0; j < count; j++) {
       var t = (j + 0.5) / count + (rand() - 0.5) * 0.02, q = along(stem, t);
       leaf(svg, q.x, q.y, q.angle + (j % 2 ? 1 : -1) * (40 + rand() * 20), 0.85 + rand() * 0.3, t);
