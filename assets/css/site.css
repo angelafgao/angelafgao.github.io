@@ -500,6 +500,61 @@ a.project-thumb:hover {
   .lightbox[open] { animation: none; }
 }
 
+/* ---------- Illuminated initial (assets/js/illuminate.js) ---------- */
+/* Maroon only. Final state is the default; keyframes run from blank to finished. */
+
+.illuminated {
+  float: left;
+  width: 4.4em;
+  height: 4.4em;
+  margin: 0.25em 0.8em 0 0;
+}
+.illuminated svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.illum-vine, .illum-spiral {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+}
+.illum-spiral { stroke-width: 0.9; }
+.illum-border { fill: none; stroke: var(--color-text); stroke-width: 0.8; stroke-dasharray: 1; }
+.illum-border-inner { stroke-width: 0.4; opacity: 0.6; }
+.illum-leaf { fill: var(--color-text); transform-box: fill-box; transform-origin: 0 50%; }
+.illum-rib { fill: none; stroke: var(--color-bg); stroke-width: 0.35; }
+.illum-letter {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 66px;
+  fill: var(--color-heading);
+  stroke: var(--color-heading);
+  stroke-width: 0.6;
+  stroke-dasharray: 220;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .illum-border { animation: illum-draw 1.2s ease-in-out both; }
+  .illum-vine   { animation: illum-draw 1.6s 0.2s ease-in-out both; }
+  .illum-spiral { animation: illum-draw 0.6s calc(0.4s + var(--s) * 1.6s) ease-out both; }
+  .illum-leaf   { animation: illum-unfurl 0.4s calc(0.2s + var(--s) * 1.6s) ease-out both; }
+  .illum-letter { animation: illum-ink 1s 0.7s ease-in-out both, illum-fill 0.6s 1.5s ease-out both; }
+}
+@keyframes illum-draw   { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes illum-unfurl { from { transform: scale(0); } }
+@keyframes illum-ink    { from { stroke-dashoffset: 220; } to { stroke-dashoffset: 0; } }
+@keyframes illum-fill   { from { fill-opacity: 0; } }
+
+/* Visually hidden but still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 /* ---------- Footer animation ---------- */
 
 .footer-art {
