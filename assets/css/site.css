@@ -553,6 +553,46 @@ a.project-thumb:hover {
 }
 .eht-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
+/* ---------- Page ripples (assets/js/ripples.js) ---------- */
+
+/* While a ripple is alive this overlay shows a refracted copy of the page.
+   It never takes the pointer, so the real page underneath stays interactive. */
+.page-ripples {
+  position: fixed;
+  z-index: 999;            /* under the font lab, the lightbox and the eht hole */
+  top: 0;
+  left: 0;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.14s ease-out;
+}
+.page-ripples.is-visible { opacity: 1; }
+.page-ripples-view { position: relative; overflow: hidden; }
+.page-ripples-clone { position: absolute; top: 0; left: 0; margin: 0; }
+
+/* Fallback when the browser can't draw HTML into a canvas: a thin ring. */
+.page-ripple-ring {
+  position: fixed;
+  z-index: 999;
+  width: 240px;
+  height: 240px;
+  margin: -120px 0 0 -120px;
+  border: 1px solid var(--color-text);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.02);
+  animation: page-ripple-ring 1.1s cubic-bezier(0.2, 0.6, 0.35, 1) both;
+}
+@keyframes page-ripple-ring {
+  0%   { opacity: 0.55; transform: scale(0.02); }
+  100% { opacity: 0;    transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-ripples, .page-ripple-ring { display: none; }
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
