@@ -504,7 +504,7 @@ a.project-thumb:hover {
 @keyframes lightbox-in {
   from { opacity: 0; transform: translateY(8px) scale(0.97); }
 }
-.lightbox figure { margin: 0; }
+.lightbox figure { margin: 0; position: relative; }
 .lightbox img {
   display: block;
   max-width: 100%;
@@ -512,7 +512,20 @@ a.project-thumb:hover {
   margin: 0 auto;
   background: var(--color-paper);
   padding: 8px;
-  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+}
+.lightbox img,
+.lightbox-wash { box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6); }
+
+/* Watercolor wash (assets/js/watercolor-wash.js): the sheet of paper fades in,
+   a canvas over the <img> paints the picture on, then the <img> comes back. */
+.lightbox-wash { position: absolute; display: block; pointer-events: none; }
+.lightbox-wash[hidden] { display: none; }
+.lightbox.is-wash[open] { animation: lightbox-paper-in 0.2s ease-out; }
+.lightbox.is-wash figcaption,
+.lightbox.is-wash .lightbox-close { animation: lightbox-paper-in 0.5s 0.6s ease-out both; }
+.lightbox.is-washing img { opacity: 0; }   /* still in the accessibility tree */
+@keyframes lightbox-paper-in {
+  from { opacity: 0; }
 }
 .lightbox figcaption {
   margin-top: var(--space-3);
