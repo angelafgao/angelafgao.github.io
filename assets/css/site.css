@@ -79,6 +79,7 @@ h1, h2, h3, h4 {
   color: var(--color-heading);
   line-height: var(--leading-tight);
   letter-spacing: -0.01em;
+  text-wrap: balance;   /* even line lengths (project titles are h3s too) */
   margin: var(--space-12) 0 var(--space-4);
 }
 h1 { font-size: var(--text-3xl); }
@@ -87,6 +88,7 @@ h3 { font-size: var(--text-xl); }
 h4 { font-size: var(--text-lg); }
 
 p, ul, ol { margin: 0 0 var(--space-4); }
+p, li, figcaption { text-wrap: pretty; }   /* avoid orphans and ragged ends */
 
 a {
   color: inherit;
@@ -155,10 +157,47 @@ main { padding: var(--space-8) 0 var(--space-16); }
   text-decoration-thickness: 2px;
   text-underline-offset: 0.45em;
 }
-.site-nav a[aria-current="page"] {
-  text-decoration: underline;
-  text-decoration-color: currentColor;
-  text-underline-offset: 0.4em;
+/* The current page's underline is a real element so it can slide between
+   items on navigation (see "Page transitions"). It sits exactly where a
+   1px underline at a 0.4em offset would. */
+.site-nav a[aria-current="page"] { position: relative; text-decoration: none; }
+.nav-mark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(1.6em - 0.5px);
+  height: 1px;
+  background: currentColor;
+}
+
+/* ---------- Page transitions ---------- */
+/* Same-site navigations cross-fade (cross-document view transitions). The
+   header holds still, the current-page underline slides to its new item and
+   the page title morphs into the next one. Off for reduced motion. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+
+  .site-header { view-transition-name: site-header; }
+  .nav-mark { view-transition-name: nav-mark; }
+  .page-title { view-transition-name: page-title; }
+  /* Inside the eht lens canvas these can't be captured in place: just fade */
+  .eht-gl .site-header, .eht-gl .nav-mark, .eht-gl .page-title { view-transition-name: none; }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.25s;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  /* Titles of different lengths: keep the text unstretched, pinned left */
+  ::view-transition-old(page-title),
+  ::view-transition-new(page-title) {
+    width: auto;
+    height: 100%;
+    object-fit: none;
+    object-position: left top;
+  }
 }
 
 /* ---------- Page ---------- */
@@ -514,6 +553,12 @@ a.project-thumb:hover {
 
 /* ---------- Easter egg: type "eht" (assets/js/lensing.js) ---------- */
 
+:root {
+  /* Photon ring, shared by the CSS disc and the WebGL shader */
+  --eht-gold: #fbe2a0;
+  --eht-ember: #d6622a;
+  --eht-rust: #a83a2a;
+}
 .eht-on, .eht-on * { cursor: none !important; }
 .eht-hole {
   position: fixed;
@@ -527,13 +572,26 @@ a.project-thumb:hover {
   /* shadow, then a lopsided photon ring (brighter on the approaching side) */
   background:
     radial-gradient(circle, #000 0 55%, transparent 56%),
-    conic-gradient(from 200deg, #fbe2a0, #d6622a 30%, #6b1a2a 55%, #a83a2a 75%, #fbe2a0);
+    conic-gradient(from 200deg, var(--eht-gold), var(--eht-ember) 30%, var(--color-text) 55%, var(--eht-rust) 75%, var(--eht-gold));
   -webkit-mask: radial-gradient(circle, #000 0 66%, transparent 72%);
   mask: radial-gradient(circle, #000 0 66%, transparent 72%);
   filter: drop-shadow(0 0 6px rgba(214, 98, 42, 0.55));
   display: none;
 }
 .eht-on .eht-hole { display: block; }
+.eht-gl .eht-hole { display: none; }  /* the shader draws its own */
+
+/* WebGL mode: .page lives in a viewport-sized drawable inside this canvas */
+.eht-canvas {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.eht-viewport { width: 100%; height: 100%; overflow: hidden; background: var(--color-bg); }
 .eht-toast {
   position: fixed;
   z-index: 2001;
