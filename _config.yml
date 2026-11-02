@@ -20,6 +20,20 @@ scholar_url: https://scholar.google.com/citations?user=tWGjjskAAAAJ
 #  an ink line on Publications, a news ticker on News)
 footer_animation: ripples
 
+# Analytics (GoatCounter: cookieless, privacy-friendly page views and clicks).
+# To turn it on: sign up free at https://www.goatcounter.com, pick a site code
+# (e.g. "angelafgao", giving angelafgao.goatcounter.com) and put it here.
+# Empty = analytics off. It only ever runs on the production build, so local
+# ./serve.sh visits are never counted.
+#
+# What's collected per page view: the path, referrer, screen size, browser
+# and OS family, and country (looked up from the IP address, which GoatCounter
+# does not store). No cookies, nothing stored on the visitor's device, no
+# personal data or cross-site tracking, so no cookie/consent banner is needed.
+# Click events (assets/js/analytics.js) send only a label like "cv" or
+# "paper/arxiv/<title>".
+goatcounter_code: ""
+
 plugins:
   - jekyll-feed
 
