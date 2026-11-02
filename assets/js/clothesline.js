@@ -66,7 +66,7 @@
     this.items.forEach(function (it) {
       it.card.addEventListener("pointerenter", function () { it.dropVel += HOVER_TUG; self.start(); });
       it.card.addEventListener("focus", function () { it.vel += FOCUS_NUDGE; it.dropVel += FOCUS_NUDGE; self.start(); });
-      it.card.addEventListener("click", function () { Lightbox.open(it.card); });
+      it.card.addEventListener("click", function (e) { Lightbox.open(it.card, clickPoint(it.card, e)); });
     });
 
     reducedMotion.addEventListener("change", function () { self.render(); self.start(); });
@@ -165,15 +165,25 @@
     requestAnimationFrame(frame);
   };
 
+  // Where a click landed on the card's picture, as fractions (null for keyboard clicks).
+  function clickPoint(card, e) {
+    if (!e.detail) return null;
+    var r = card.querySelector("img").getBoundingClientRect();
+    return { x: clamp((e.clientX - r.left) / r.width, 0, 1), y: clamp((e.clientY - r.top) / r.height, 0, 1) };
+  }
+
   // One shared lightbox for every clothesline on the page.
+  // The picture washes in like watercolor when assets/js/watercolor-wash.js
+  // can run (WebGL2, motion allowed); otherwise the CSS fade plays.
   var Lightbox = {
-    open: function (card) {
+    open: function (card, origin, freeze) {
       if (!this.dialog) this.build();
       var img = card.querySelector("img");
       this.img.src = img.currentSrc || img.src;
       this.img.alt = img.alt;
       this.caption.textContent = card.dataset.caption;
       this.returnFocus = card;
+      if (window.WatercolorWash) WatercolorWash.prepare(this.dialog, this.img, origin, freeze);
       this.dialog.showModal();
     },
     build: function () {
@@ -194,4 +204,14 @@
   };
 
   document.querySelectorAll("[data-clothesline]").forEach(function (root) { new Clothesline(root); });
+
+  // Test hook: #wash-test=N opens the Nth card (1-based); #wash-test=N@0.4
+  // holds the wash at 40% so a headless browser can screenshot it, and
+  // #wash-test=N@0.4@0.1,0.9 starts it from that point of the picture.
+  var test = location.hash.match(/^#wash-test=(\d+)(?:@([\d.]+))?(?:@([\d.]+),([\d.]+))?$/);
+  var cards = document.querySelectorAll(".clothesline-card");
+  if (test && cards[test[1] - 1]) {
+    Lightbox.open(cards[test[1] - 1], test[3] ? { x: +test[3], y: +test[4] } : null,
+                  test[2] ? parseFloat(test[2]) : null);
+  }
 })();
