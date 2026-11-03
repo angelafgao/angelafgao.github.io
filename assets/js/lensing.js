@@ -117,7 +117,7 @@
     "uniform float u_re;\n" +        // Einstein radius θE, device px
     "uniform float u_reach;\n" +     // deflection has faded out by here
     "uniform float u_px;\n" +        // one CSS px in device px, for antialiasing
-    "uniform vec3 u_gold, u_ember, u_maroon;\n" +
+    "uniform vec3 u_bright, u_ring, u_dim, u_maroon;\n" +
     "out vec4 o;\n" +
     "void main() {\n" +
     "  vec2 p = vec2(gl_FragCoord.x, u_res.y - gl_FragCoord.y);\n" +
@@ -133,14 +133,14 @@
     // Magnification μ = 1/|1 − (θE/θ)⁴| blows up on the Einstein ring; let
     // a clamped share of it brighten the ring.
     "  float mu = 1.0 / max(abs(1.0 - pow(1.0 / x, 4.0)), 1e-3);\n" +
-    "  col = mix(col, u_gold, clamp((mu - 1.0) * 0.05, 0.0, 0.4) * fade);\n" +
-    // Photon ring: thin, warm, brighter on the approaching side (Doppler beaming).
+    "  col = mix(col, u_bright, clamp((mu - 1.0) * 0.05, 0.0, 0.4) * fade);\n" +
+    // Photon ring: thin, chartreuse, brighter on the approaching side (Doppler beaming).
     "  float rs = 0.32 * u_re, rp = rs + 2.5 * u_px;\n" +
     "  float side = 0.5 + 0.5 * cos(atan(th.y, th.x) - 3.6);\n" +
-    "  vec3 ring = side > 0.5 ? mix(u_ember, u_gold, side * 2.0 - 1.0) : mix(u_maroon, u_ember, side * 2.0);\n" +
+    "  vec3 ring = side > 0.5 ? mix(u_ring, u_bright, side * 2.0 - 1.0) : mix(u_dim, u_ring, side * 2.0);\n" +
     "  float band = smoothstep(rs - u_px, rs, r) * (1.0 - smoothstep(rp, rp + u_px, r));\n" +
     "  float glow = exp(-max(r - rp, 0.0) / (4.0 * u_px)) * (0.25 + 0.35 * side);\n" +
-    "  col = mix(col, u_ember, glow * step(rs, r));\n" +
+    "  col = mix(col, u_ring, glow * step(rs, r));\n" +
     "  col = mix(col, ring, band);\n" +
     // The shadow.
     "  col *= smoothstep(rs - u_px, rs, r);\n" +
@@ -185,12 +185,13 @@
     gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
     var u = {};
-    ["u_page", "u_res", "u_lens", "u_re", "u_reach", "u_px", "u_gold", "u_ember", "u_maroon"].forEach(function (n) {
+    ["u_page", "u_res", "u_lens", "u_re", "u_reach", "u_px", "u_bright", "u_ring", "u_dim", "u_maroon"].forEach(function (n) {
       u[n] = gl.getUniformLocation(prog, n);
     });
     gl.uniform1i(u.u_page, 0);
-    gl.uniform3fv(u.u_gold, token("--eht-gold", "#fbe2a0"));
-    gl.uniform3fv(u.u_ember, token("--eht-ember", "#d6622a"));
+    gl.uniform3fv(u.u_bright, token("--eht-ring-bright", "#eef4a8"));
+    gl.uniform3fv(u.u_ring, token("--eht-ring", "#c7d33b"));
+    gl.uniform3fv(u.u_dim, token("--eht-ring-dim", "#6d7720"));
     gl.uniform3fv(u.u_maroon, token("--color-text", "#6b1a2a"));
 
     var tex = gl.createTexture();
