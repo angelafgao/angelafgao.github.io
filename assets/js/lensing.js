@@ -127,23 +127,24 @@
     "  float fade = 1.0 - smoothstep(2.0 * u_re, u_reach, r);\n" +
     "  vec2 beta = th - fade * u_re * u_re * th / (r * r);\n" +
     "  vec3 col = texture(u_page, (u_lens + beta) / u_res).rgb;\n" +
-    // Inside θE the source lands on the far side of the lens: the faint,
-    // inverted secondary image. Dim it toward the shadow.
-    "  col = mix(col, u_maroon * 0.35, 0.75 * smoothstep(1.0, 0.4, x));\n" +
+    // Inside θE the source lands on the far side of the lens: the inverted
+    // secondary image. Keep it readable, only slightly dimmer than the page.
+    "  col = mix(col, col * 0.9, smoothstep(1.0, 0.6, x));\n" +
     // Magnification μ = 1/|1 − (θE/θ)⁴| blows up on the Einstein ring; let
     // a clamped share of it brighten the ring.
     "  float mu = 1.0 / max(abs(1.0 - pow(1.0 / x, 4.0)), 1e-3);\n" +
     "  col = mix(col, u_bright, clamp((mu - 1.0) * 0.05, 0.0, 0.4) * fade);\n" +
-    // Photon ring: thin, chartreuse, brighter on the approaching side (Doppler beaming).
-    "  float rs = 0.32 * u_re, rp = rs + 2.5 * u_px;\n" +
+    // Photon ring: a chartreuse hairline at the shadow's edge, brighter on
+    // the approaching side (Doppler beaming).
+    "  float rs = 0.32 * u_re, rp = rs + 1.1 * u_px;\n" +
     "  float side = 0.5 + 0.5 * cos(atan(th.y, th.x) - 3.6);\n" +
     "  vec3 ring = side > 0.5 ? mix(u_ring, u_bright, side * 2.0 - 1.0) : mix(u_dim, u_ring, side * 2.0);\n" +
-    "  float band = smoothstep(rs - u_px, rs, r) * (1.0 - smoothstep(rp, rp + u_px, r));\n" +
-    "  float glow = exp(-max(r - rp, 0.0) / (4.0 * u_px)) * (0.25 + 0.35 * side);\n" +
+    "  float band = smoothstep(rs - 0.5 * u_px, rs, r) * (1.0 - smoothstep(rp, rp + 0.75 * u_px, r));\n" +
+    "  float glow = exp(-max(r - rp, 0.0) / (2.0 * u_px)) * (0.08 + 0.14 * side);\n" +
     "  col = mix(col, u_ring, glow * step(rs, r));\n" +
     "  col = mix(col, ring, band);\n" +
     // The shadow.
-    "  col *= smoothstep(rs - u_px, rs, r);\n" +
+    "  col *= smoothstep(rs - 0.5 * u_px, rs, r);\n" +
     "  o = vec4(col, 1.0);\n" +
     "}\n";
 

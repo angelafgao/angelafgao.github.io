@@ -583,13 +583,13 @@ a.project-thumb:hover {
   height: 52px;
   border-radius: 50%;
   pointer-events: none;
-  /* shadow, then a lopsided photon ring (brighter on the approaching side) */
+  /* shadow, then a hairline photon ring (brighter on the approaching side) */
   background:
-    radial-gradient(circle, #000 0 55%, transparent 56%),
+    radial-gradient(circle, #000 0 60%, transparent 60.5%),
     conic-gradient(from 200deg, var(--eht-ring-bright), var(--eht-ring) 30%, var(--eht-ring-dim) 55%, var(--eht-ring) 75%, var(--eht-ring-bright));
-  -webkit-mask: radial-gradient(circle, #000 0 66%, transparent 72%);
-  mask: radial-gradient(circle, #000 0 66%, transparent 72%);
-  filter: drop-shadow(0 0 6px rgba(199, 211, 59, 0.55));
+  -webkit-mask: radial-gradient(circle, #000 0 64%, transparent 65.5%);
+  mask: radial-gradient(circle, #000 0 64%, transparent 65.5%);
+  filter: drop-shadow(0 0 2px rgba(199, 211, 59, 0.45));
   display: none;
 }
 .eht-on .eht-hole { display: block; }
