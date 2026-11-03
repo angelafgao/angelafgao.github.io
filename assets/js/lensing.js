@@ -134,8 +134,8 @@
     // a clamped share of it brighten the ring.
     "  float mu = 1.0 / max(abs(1.0 - pow(1.0 / x, 4.0)), 1e-3);\n" +
     "  col = mix(col, u_bright, clamp((mu - 1.0) * 0.05, 0.0, 0.4) * fade);\n" +
-    // Photon ring: a chartreuse hairline at the shadow's edge, brighter on
-    // the approaching side (Doppler beaming).
+    // Photon ring: a hairline at the shadow's edge in the EHT's afmhot
+    // colours, brighter on the approaching side (Doppler beaming).
     "  float rs = 0.32 * u_re, rp = rs + 1.1 * u_px;\n" +
     "  float side = 0.5 + 0.5 * cos(atan(th.y, th.x) - 3.6);\n" +
     "  vec3 ring = side > 0.5 ? mix(u_ring, u_bright, side * 2.0 - 1.0) : mix(u_dim, u_ring, side * 2.0);\n" +
@@ -190,9 +190,9 @@
       u[n] = gl.getUniformLocation(prog, n);
     });
     gl.uniform1i(u.u_page, 0);
-    gl.uniform3fv(u.u_bright, token("--eht-ring-bright", "#eef4a8"));
-    gl.uniform3fv(u.u_ring, token("--eht-ring", "#c7d33b"));
-    gl.uniform3fv(u.u_dim, token("--eht-ring-dim", "#6d7720"));
+    gl.uniform3fv(u.u_bright, token("--eht-ring-bright", "#ffde5e"));
+    gl.uniform3fv(u.u_ring, token("--eht-ring", "#e76701"));
+    gl.uniform3fv(u.u_dim, token("--eht-ring-dim", "#971a02"));
     gl.uniform3fv(u.u_maroon, token("--color-text", "#6b1a2a"));
 
     var tex = gl.createTexture();

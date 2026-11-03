@@ -567,11 +567,12 @@ a.project-thumb:hover {
 /* ---------- Easter egg: type "eht" (assets/js/lensing.js) ---------- */
 
 :root {
-  /* Photon ring, shared by the CSS disc and the WebGL shader: chartreuse,
-     brightest on the approaching side */
-  --eht-ring-bright: #eef4a8;
-  --eht-ring: #c7d33b;            /* = --color-pop */
-  --eht-ring-dim: #6d7720;
+  /* Photon ring, shared by the CSS disc and the WebGL shader: the EHT's
+     afmhot_10us colormap (ehtplot) sampled at 90% / 60% / 30%, brightest
+     on the approaching side */
+  --eht-ring-bright: #ffde5e;
+  --eht-ring: #e76701;
+  --eht-ring-dim: #971a02;
 }
 .eht-on, .eht-on * { cursor: none !important; }
 .eht-hole {
@@ -589,7 +590,7 @@ a.project-thumb:hover {
     conic-gradient(from 200deg, var(--eht-ring-bright), var(--eht-ring) 30%, var(--eht-ring-dim) 55%, var(--eht-ring) 75%, var(--eht-ring-bright));
   -webkit-mask: radial-gradient(circle, #000 0 64%, transparent 65.5%);
   mask: radial-gradient(circle, #000 0 64%, transparent 65.5%);
-  filter: drop-shadow(0 0 2px rgba(199, 211, 59, 0.45));
+  filter: drop-shadow(0 0 2px rgba(231, 103, 1, 0.45));
   display: none;
 }
 .eht-on .eht-hole { display: block; }
