@@ -214,11 +214,10 @@
     return [m[0] / 255, m[1] / 255, m[2] / 255];
   }
 
-  function Wash(dialog, img, origin, freeze) {
+  function Wash(dialog, img, origin) {
     this.dialog = dialog;
     this.img = img;
     this.origin = origin;      // {x, y} as fractions of the picture, or null for the centre
-    this.freeze = freeze;      // test hook: hold a single progress value
     this.raf = 0;
     this.done = false;
     var self = this;
@@ -254,14 +253,13 @@
 
     img.parentNode.insertBefore(canvas, img);
     canvas.hidden = false;
-    this.t = this.freeze != null ? this.freeze : 0;
+    this.t = 0;
     if (!this.fit()) return this.finish();
 
     // Keep the canvas over the picture if the window is resized mid-wash.
     var self = this;
     this.resize = new ResizeObserver(function () { if (!self.fit()) self.finish(); });
     this.resize.observe(img);
-    if (this.freeze != null) return;
 
     var start = performance.now();
     function frame(now) {
@@ -340,16 +338,16 @@
   window.WatercolorWash = {
     // Call just before dialog.showModal(); returns true if a wash will run.
     // origin: {x, y} in 0..1 across the picture, or null for the centre.
-    prepare: function (dialog, img, origin, freeze) {
+    prepare: function (dialog, img, origin) {
       if (current) current.finish();
       dialog.classList.remove("is-wash");
       if (reducedMotion.matches || !setup()) return false;
-      var wash = current = new Wash(dialog, img, origin, freeze);
+      var wash = current = new Wash(dialog, img, origin);
       dialog.classList.add("is-wash", "is-washing");   // paper fade instead of the zoom; <img> hidden
       var started = false;
       function go() { if (!started) { started = true; wash.begin(); } }
       // Wait for the picture to decode; if it takes too long, just show it.
-      if (freeze == null) wash.timer = setTimeout(function () { if (!started) { started = true; wash.finish(); } }, DECODE_WAIT);
+      wash.timer = setTimeout(function () { if (!started) { started = true; wash.finish(); } }, DECODE_WAIT);
       (img.decode ? img.decode() : Promise.resolve()).then(go, function () { wash.finish(); });
       return true;
     }
