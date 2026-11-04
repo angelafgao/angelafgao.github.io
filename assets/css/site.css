@@ -567,10 +567,12 @@ a.project-thumb:hover {
 /* ---------- Easter egg: type "eht" (assets/js/lensing.js) ---------- */
 
 :root {
-  /* Photon ring, shared by the CSS disc and the WebGL shader */
-  --eht-gold: #fbe2a0;
-  --eht-ember: #d6622a;
-  --eht-rust: #a83a2a;
+  /* Photon ring, shared by the CSS disc and the WebGL shader: the EHT's
+     afmhot_10us colormap (ehtplot) sampled at 90% / 60% / 30%, brightest
+     on the approaching side */
+  --eht-ring-bright: #ffde5e;
+  --eht-ring: #e76701;
+  --eht-ring-dim: #971a02;
 }
 .eht-on, .eht-on * { cursor: none !important; }
 .eht-hole {
@@ -582,13 +584,13 @@ a.project-thumb:hover {
   height: 52px;
   border-radius: 50%;
   pointer-events: none;
-  /* shadow, then a lopsided photon ring (brighter on the approaching side) */
+  /* shadow, then a hairline photon ring (brighter on the approaching side) */
   background:
-    radial-gradient(circle, #000 0 55%, transparent 56%),
-    conic-gradient(from 200deg, var(--eht-gold), var(--eht-ember) 30%, var(--color-text) 55%, var(--eht-rust) 75%, var(--eht-gold));
-  -webkit-mask: radial-gradient(circle, #000 0 66%, transparent 72%);
-  mask: radial-gradient(circle, #000 0 66%, transparent 72%);
-  filter: drop-shadow(0 0 6px rgba(214, 98, 42, 0.55));
+    radial-gradient(circle, #000 0 60%, transparent 60.5%),
+    conic-gradient(from 200deg, var(--eht-ring-bright), var(--eht-ring) 30%, var(--eht-ring-dim) 55%, var(--eht-ring) 75%, var(--eht-ring-bright));
+  -webkit-mask: radial-gradient(circle, #000 0 64%, transparent 65.5%);
+  mask: radial-gradient(circle, #000 0 64%, transparent 65.5%);
+  filter: drop-shadow(0 0 2px rgba(231, 103, 1, 0.45));
   display: none;
 }
 .eht-on .eht-hole { display: block; }
