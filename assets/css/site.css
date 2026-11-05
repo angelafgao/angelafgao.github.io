@@ -526,6 +526,44 @@ a.project-thumb:hover {
   transform: rotate(var(--tilt, -3deg));
 }
 .stamp--chartreuse { --stamp-ink: var(--color-pop); opacity: 1; }
+
+/* Movable stamps (assets/js/stamp-drag.js): a row along the bottom of a page,
+   each of which can be dragged anywhere over the content. The holder carries
+   the blend so the ink still multiplies into the paper while it's moved. */
+.stamp-tray {
+  /* a little wider than the text column, like the clotheslines, so four fit in a row */
+  --tray-width: min(65.5rem, calc(100vw - 2 * var(--space-6)));
+  width: var(--tray-width);
+  margin: var(--space-16) 0 var(--space-4) calc((100% - var(--tray-width)) / 2);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-6) var(--space-8);
+}
+.stamp-holder {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  mix-blend-mode: multiply;
+  transform: translate(var(--dx, 0px), var(--dy, 0px));
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+.stamp-holder .stamp { mix-blend-mode: normal; }
+.stamp-holder.is-held {
+  cursor: grabbing;
+  transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(1.03);
+  filter: drop-shadow(0 10px 14px rgba(var(--color-shadow-rgb), 0.22));
+}
+.stamp-holder.is-returning { transition: transform 0.35s ease; }
+.stamp-holder:focus-visible { outline: 2px dashed var(--color-accent); outline-offset: 6px; border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .stamp-holder.is-held { transform: translate(var(--dx, 0px), var(--dy, 0px)); }
+  .stamp-holder.is-returning { transition: none; }
+}
 .stamp .stamp-ink { flood-color: var(--stamp-ink); }
 .stamp text { fill: currentColor; }
 .stamp-rim { font-family: var(--font-ui); font-weight: 600; letter-spacing: 0.2em; }
