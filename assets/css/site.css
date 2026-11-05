@@ -116,6 +116,20 @@ code, pre {
 code { padding: 0.1em 0.3em; }
 pre { padding: var(--space-4); overflow-x: auto; }
 
+/* ---------- Paper (assets/paper/paper.js) ---------- */
+
+/* The page sits on a sheet of real-looking paper in the site's cream, drawn
+   once in WebGL. Until it draws (or without WebGL) the plain cream shows. */
+.paper-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.paper-layer.is-drawn { opacity: 1; }
+
 /* ---------- Layout ---------- */
 
 .wrap { max-width: var(--wide); margin: 0 auto; padding: 0 var(--space-6); }

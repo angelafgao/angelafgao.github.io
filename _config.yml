@@ -32,3 +32,5 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - Gemfile.pins
+  - assets/shaders/   # belongs to a separate project
+  - assets/paper/README.md
