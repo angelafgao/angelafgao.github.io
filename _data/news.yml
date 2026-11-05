@@ -11,8 +11,9 @@
   month: August
   text: >-
     Defended my PhD thesis, *Uncovering Hidden Structure in Data and the Physical World for Seismic Tomography and Beyond*, at Caltech.
-  # Optional rubber stamp beside the item (same options as _includes/stamp.html)
-  stamp: { shape: oval, top: "Caltech", big: "PhD", label: "Defended", bottom: "Aug 15, 2025", tilt: -6, ink: maroon, size: 220, seed: 3 }
+  # Optional rubber stamp beside the item (same options as _includes/stamp.html;
+  # movable: true lets visitors drag it onto the text)
+  stamp: { shape: oval, top: "Caltech", big: "PhD", label: "Defended", bottom: "Aug 15, 2025", tilt: -6, ink: maroon, size: 220, seed: 3, movable: true }
 
 - year: 2024
   month: April

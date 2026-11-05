@@ -73,6 +73,19 @@ html { accent-color: var(--color-text); }
 
 ::selection { background: var(--color-pop-soft); color: var(--color-heading); }
 
+/* For screen readers only */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: var(--heading-weight);
@@ -544,6 +557,51 @@ a.project-thumb:hover {
 @media (prefers-reduced-motion: reduce) {
   .stamp.is-armed { opacity: 0.96; }
   .stamp.is-thunk { animation: none; }
+}
+
+/* Movable stamps (assets/js/stamp-drag.js): pick one up and the text under it
+   makes way (assets/js/stamp-flow.js). */
+.stamp.is-movable {
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: transform 0.16s ease-out, filter 0.16s ease-out;
+}
+.stamp.is-movable:focus { outline: none; }
+.stamp.is-movable:focus-visible { outline: 1.5px dashed var(--color-accent); outline-offset: 6px; }
+.stamp.is-held {
+  cursor: grabbing;
+  transform: rotate(var(--tilt, -3deg)) scale(1.03);
+  filter: drop-shadow(0 8px 10px rgba(var(--color-shadow-rgb), 0.22));
+}
+.stamp-dragging, .stamp-dragging * { cursor: grabbing !important; -webkit-user-select: none; user-select: none; }
+/* Once moved it leaves the page's flow. Its own stacking layer keeps it
+   above the text it's on (and clickable), so it multiplies from here. */
+.stamp-field { position: relative; }
+[data-stamp-holder].is-placed,
+.stamp.is-placed {
+  position: absolute;
+  z-index: 1;
+  float: none;
+  width: max-content;
+  margin: 0;
+  shape-outside: none;
+  mix-blend-mode: multiply;
+}
+[data-stamp-holder].is-pending { visibility: hidden; }
+/* The space it took when it had a line of its own, closing up behind it */
+.stamp-gap { transition: height 0.3s ease, margin 0.3s ease; }
+.stamp-gap.is-closing { height: 0 !important; margin: 0 !important; }
+/* Text re-flowed around a stamp: the original stays, unseen, beneath */
+[data-flowed] { position: relative; }
+.flow-orig { opacity: 0; -webkit-user-select: none; user-select: none; }
+.flow-part { position: absolute; pointer-events: none; }
+.flow-line { position: absolute; white-space: nowrap; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .stamp.is-movable { transition: none; }
+  .stamp-gap { transition: none; }
+  .stamp.is-held { transform: rotate(var(--tilt, -3deg)); }
 }
 
 /* ---------- Lightbox ---------- */
