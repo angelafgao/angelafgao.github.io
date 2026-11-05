@@ -2,7 +2,10 @@ _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
-vendor
+/vendor/
 .DS_Store
 assets/edited_silkpaintings/
 assets/places/originals/
+
+# Shaders belonging to a separate project; never commit or publish them here
+assets/shaders/

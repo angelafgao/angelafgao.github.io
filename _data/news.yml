@@ -1,5 +1,6 @@
 # News items, newest first. The News page groups them by year automatically.
 # text is Markdown: links, *italics*, and **bold** all work.
+# stamp (optional) puts a rubber stamp beside the item; see _includes/stamp.html.
 
 - year: 2026
   month: May
@@ -10,6 +11,8 @@
   month: August
   text: >-
     Defended my PhD thesis, *Uncovering Hidden Structure in Data and the Physical World for Seismic Tomography and Beyond*, at Caltech.
+  # Optional rubber stamp beside the item (same options as _includes/stamp.html)
+  stamp: { shape: oval, top: "Caltech", big: "PhD", label: "Defended", bottom: "Aug 15, 2025", tilt: -6, ink: maroon, size: 220, seed: 3 }
 
 - year: 2024
   month: April

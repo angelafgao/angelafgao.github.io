@@ -1,0 +1,68 @@
+# Geometry for rubber stamps, in SVG viewBox units (the stamp is scaled to
+# its `size` in px). Read by _includes/stamp.html and, as JSON, by the
+# playground on /stamps/ so both draw the same stamp.
+#
+#   w, h          viewBox size
+#   rx, ry        outer ring (rect: the outer frame is inset by `inset`)
+#   ring          outer ring stroke width; ring2 is the thin inner ring
+#   ring2_gap     gap from the outer ring to the second ring
+#   rim_rx/ry     ellipse the rim text runs along (centre of the text band)
+#   rim_len       usable arc length for rim text (about 130 degrees)
+#   rim_fs        largest rim font size; text shrinks to fit, then squeezes
+#   big_w/big_fs  width and largest size for the big centre text
+#   label_w/fs    width and size for the label
+#   rule          half-width of the thin rules around the label
+#   cy_shift      nudge the centre block up (-) or down (+)
+
+oval:
+  w: 260
+  h: 170
+  rx: 124
+  ry: 79
+  ring: 3.4
+  ring2: 1.4
+  ring2_gap: 5.5
+  rim_rx: 107
+  rim_ry: 62
+  rim_len: 172
+  rim_fs: 15
+  big_w: 150
+  big_fs: 50
+  label_w: 140
+  label_fs: 14
+  rule: 68
+  cy_shift: 0
+
+circle:
+  w: 200
+  h: 200
+  rx: 95
+  ry: 95
+  ring: 3.4
+  ring2: 1.4
+  ring2_gap: 5.5
+  rim_rx: 79
+  rim_ry: 79
+  rim_len: 178
+  rim_fs: 15
+  big_w: 112
+  big_fs: 56
+  label_w: 112
+  label_fs: 14
+  rule: 56
+  cy_shift: 0
+
+rect:
+  w: 270
+  h: 150
+  inset: 4
+  ring: 3.4
+  ring2: 1.4
+  ring2_gap: 5.5
+  line_w: 220
+  line_fs: 13
+  big_w: 222
+  big_fs: 52
+  label_w: 222
+  label_fs: 17
+  cy_shift: 0

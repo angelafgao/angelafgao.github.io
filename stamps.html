@@ -1,0 +1,39 @@
+---
+layout: page
+permalink: /stamps/
+noindex: true
+# Stamp playground. Only rendered under `jekyll serve` (development); the
+# production build gets a bare "nothing here" page with noindex, and none
+# of the playground code. Gallery samples go through _includes/stamp.html.
+samples:
+  - { shape: circle, top: "Caltech", big: "PhD", label: "Defended", bottom: "Aug 15, 2025", tilt: -6, size: 190, seed: 3 }
+  - { shape: oval, top: "The Gao Gazette", big: "9", label: "Issues", bottom: "Est. 2018", tilt: 4, size: 220, seed: 11 }
+  - { shape: oval, top: "Published", big: "NeurIPS", bottom: "2021", tilt: -3, size: 220, seed: 21 }
+  - { shape: rect, top: "Fearn", big: "CTO", label: "Cofounder", tilt: 2, size: 230, seed: 5 }
+  - { shape: circle, top: "Approved", big: "OK", label: "Fresh ink", bottom: "Pasadena, CA", tilt: 8, ink: chartreuse, size: 180, seed: 8 }
+  - { shape: oval, top: "Official Notice", big: "1", label: "Abandoned", bottom: "First Draft", tilt: -7, size: 220, seed: 14, coverage: 0.55, rough: 1.4 }
+  - { shape: rect, top: "Transfer of title", big: "2", label: "Assigned", tilt: -2, size: 230, seed: 27, double: "false" }
+  - { shape: circle, top: "Event Horizon Telescope", big: "M87*", label: "Imaged", bottom: "Apr 10, 2019", tilt: -10, size: 190, seed: 40, rules: "false" }
+  - { shape: oval, big: "Received", tilt: 3, size: 200, seed: 6, coverage: 0.95, rough: 0.5 }
+  - { shape: rect, top: "Change of address", big: "Pasadena", label: "to SF", bottom: "Forwarded", tilt: 1, ink: chartreuse, size: 240, seed: 2 }
+---
+{% if jekyll.environment == "development" %}
+<h1 class="page-title">Stamps</h1>
+<p>Rubber-stamp kit: <code>_includes/stamp.html</code>. Set it up with the controls, then copy the include. Click any stamp to stamp it again.</p>
+
+{% include stamp-lab.html %}
+
+<h2>Gallery</h2>
+<p>Made with the include itself.</p>
+<div class="stamp-gallery">
+{%- for s in page.samples %}
+<figure data-stamp-params='{{ s | jsonify | escape }}'>
+<div class="stamp-sample-art">{% include stamp.html shape=s.shape top=s.top big=s.big label=s.label bottom=s.bottom tilt=s.tilt ink=s.ink size=s.size seed=s.seed rough=s.rough coverage=s.coverage double=s.double rules=s.rules %}</div>
+<figcaption></figcaption>
+</figure>
+{%- endfor %}
+</div>
+{% else %}
+<h1 class="page-title">Nothing here</h1>
+<p><a href="{{ '/' | relative_url }}">Back to the front page</a>.</p>
+{% endif %}

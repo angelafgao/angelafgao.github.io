@@ -116,6 +116,20 @@ code, pre {
 code { padding: 0.1em 0.3em; }
 pre { padding: var(--space-4); overflow-x: auto; }
 
+/* ---------- Paper (assets/paper/paper.js) ---------- */
+
+/* The page sits on a sheet of real-looking paper in the site's cream, drawn
+   once in WebGL. Until it draws (or without WebGL) the plain cream shows. */
+.paper-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.paper-layer.is-drawn { opacity: 1; }
+
 /* ---------- Layout ---------- */
 
 .wrap { max-width: var(--wide); margin: 0 auto; padding: 0 var(--space-6); }
@@ -286,6 +300,15 @@ main { padding: var(--space-8) 0 var(--space-16); }
   background: var(--color-pop);
 }
 .news-item { padding-left: var(--space-4); border-left: 2px solid var(--color-rule); }
+/* A stamp beside a news item, with the text wrapping around its oval */
+.news-stamp {
+  float: right;
+  margin: -0.5rem 0 0.75rem 1.5rem;
+  shape-outside: ellipse(50% 45%);
+}
+@media (max-width: 600px) {
+  .news-stamp { float: none; margin: 0 auto 1rem; width: max-content; }
+}
 .news-date {
   margin-right: var(--space-1);
   font-family: var(--font-ui);
@@ -484,6 +507,43 @@ a.project-thumb:hover {
   top: 3px;
   bottom: 3px;
   border-left: 1px solid rgba(var(--color-shadow-rgb), 0.35);
+}
+
+/* ---------- Stamps (_includes/stamp.html, assets/js/stamps.js) ---------- */
+
+/* Rubber stamps: ink pressed into the paper. The SVG filter in each stamp
+   roughs up the edges and leaves gaps; multiply lets the paper show through. */
+.stamp {
+  --stamp-ink: var(--color-text);
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+  vertical-align: middle;
+  color: var(--stamp-ink);   /* fallback if filters are off */
+  opacity: 0.96;
+  mix-blend-mode: multiply;
+  transform: rotate(var(--tilt, -3deg));
+}
+.stamp--chartreuse { --stamp-ink: var(--color-pop); opacity: 1; }
+.stamp .stamp-ink { flood-color: var(--stamp-ink); }
+.stamp text { fill: currentColor; }
+.stamp-rim { font-family: var(--font-ui); font-weight: 600; letter-spacing: 0.2em; }
+.stamp-big { font-family: var(--font-heading); font-weight: 700; letter-spacing: -0.01em; }
+.stamp-label { font-family: var(--font-ui); font-weight: 600; letter-spacing: 0.12em; }
+
+/* With JS (and motion): hidden until it scrolls in, then lands with a thunk */
+.stamp.is-armed { opacity: 0; }
+.stamp.is-stamped { cursor: pointer; }
+.stamp.is-thunk { animation: stamp-thunk 0.26s cubic-bezier(0.3, 0.6, 0.35, 1) both; }
+@keyframes stamp-thunk {
+  0%   { opacity: 0; transform: rotate(calc(var(--tilt, -3deg) + var(--kick, 4deg))) scale(1.16); }
+  55%  { opacity: 1; transform: rotate(var(--tilt, -3deg)) scale(0.975); filter: blur(0.5px); }
+  100% { transform: rotate(var(--tilt, -3deg)) scale(1); filter: blur(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stamp.is-armed { opacity: 0.96; }
+  .stamp.is-thunk { animation: none; }
 }
 
 /* ---------- Lightbox ---------- */
