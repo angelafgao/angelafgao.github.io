@@ -4,23 +4,31 @@
   {% include head.html %}
 </head>
 <body class="{{ page.body_class }}">
-  <div class="paper-layer" data-paper="site" aria-hidden="true"></div>
+  <div class="paper-layer" data-paper="site" data-paper-eager aria-hidden="true"></div>
   <div class="page">
   {% include header.html %}
   <main>
     {{ content }}
   </main>
-  <div class="footer-art" data-mode="{{ site.footer_animation | default: 'seismograph' }}"{% if jekyll.environment == "development" %} data-dev="true"{% endif %} aria-hidden="true"><canvas></canvas></div>
+  {%- assign footer_mode = page.footer_animation | default: site.footer_animation | default: "seismograph" %}
+  {%- unless footer_mode == "none" %}
+  <div class="footer-art" data-mode="{{ footer_mode }}"{% if jekyll.environment == "development" %} data-dev="true"{% endif %} aria-hidden="true"><canvas></canvas></div>
+  {%- endunless %}
   {% include footer.html %}
   </div>
-  {%- if jekyll.environment == "development" or site.footer_animation != "ripples" %}
+  <script type="module" src="{{ '/assets/paper/paper.js' | relative_url }}"></script>
+  {%- unless footer_mode == "none" %}
+  {%- if jekyll.environment == "development" or footer_mode != "ripples" %}
   <script src="{{ '/assets/js/footer-art-extras.js' | relative_url }}" defer></script>
   {%- endif %}
-  <script type="module" src="{{ '/assets/paper/paper.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/footer-art.js' | relative_url }}" defer></script>
+  {%- endunless %}
   <script src="{{ '/assets/js/lensing.js' | relative_url }}" defer></script>
   {%- if content contains 'class="stamp stamp--' %}
   <script src="{{ '/assets/js/stamps.js' | relative_url }}" defer></script>
+  {%- endif %}
+  {%- if content contains 'data-stamp-tray' %}
+  <script src="{{ '/assets/js/stamp-drag.js' | relative_url }}" defer></script>
   {%- endif %}
   {% if jekyll.environment == "development" %}{% include font-lab.html %}{% endif %}
 </body>

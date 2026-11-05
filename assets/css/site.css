@@ -119,16 +119,13 @@ pre { padding: var(--space-4); overflow-x: auto; }
 /* ---------- Paper (assets/paper/paper.js) ---------- */
 
 /* The page sits on a sheet of real-looking paper in the site's cream, drawn
-   once in WebGL. Until it draws (or without WebGL) the plain cream shows. */
+   once in WebGL as soon as the page loads. Without WebGL the plain cream shows. */
 .paper-layer {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.6s ease;
 }
-.paper-layer.is-drawn { opacity: 1; }
 
 /* ---------- Layout ---------- */
 
@@ -526,6 +523,53 @@ a.project-thumb:hover {
   transform: rotate(var(--tilt, -3deg));
 }
 .stamp--chartreuse { --stamp-ink: var(--color-pop); opacity: 1; }
+
+/* Movable stamps (assets/js/stamp-drag.js): a row along the bottom of a page,
+   each of which can be dragged anywhere over the content. The holder carries
+   the blend so the ink still multiplies into the paper while it's moved. */
+.stamp-tray {
+  /* a little wider than the text column, like the clotheslines, so four fit in a row */
+  --tray-width: min(65.5rem, calc(100vw - 2 * var(--space-6)));
+  width: var(--tray-width);
+  margin: var(--space-16) 0 var(--space-4) calc((100% - var(--tray-width)) / 2);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4) 0;
+}
+/* A loose pile: neighbours overlap at the edges and sit at staggered heights;
+   where two inks overlap they darken, like a real double impression. */
+.stamp-tray .stamp-holder + .stamp-holder { margin-left: -2.25rem; }
+.stamp-tray .stamp-holder:nth-child(even) { margin-top: 4.5rem; }
+.stamp-tray .stamp-holder:nth-child(3n) { margin-top: -1.5rem; }
+@media (max-width: 600px) {
+  .stamp-tray .stamp-holder + .stamp-holder { margin-left: -1rem; }
+  .stamp-tray .stamp-holder:nth-child(even) { margin-top: 2rem; }
+}
+.stamp-holder {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  mix-blend-mode: multiply;
+  transform: translate(var(--dx, 0px), var(--dy, 0px));
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+.stamp-holder .stamp { mix-blend-mode: normal; }
+.stamp-holder.is-held {
+  cursor: grabbing;
+  transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(1.03);
+  filter: drop-shadow(0 10px 14px rgba(var(--color-shadow-rgb), 0.22));
+}
+.stamp-holder.is-returning { transition: transform 0.35s ease; }
+.stamp-holder:focus-visible { outline: 2px dashed var(--color-accent); outline-offset: 6px; border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .stamp-holder.is-held { transform: translate(var(--dx, 0px), var(--dy, 0px)); }
+  .stamp-holder.is-returning { transition: none; }
+}
 .stamp .stamp-ink { flood-color: var(--stamp-ink); }
 .stamp text { fill: currentColor; }
 .stamp-rim { font-family: var(--font-ui); font-weight: 600; letter-spacing: 0.2em; }
