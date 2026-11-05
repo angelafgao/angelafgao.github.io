@@ -1,0 +1,186 @@
+{%- comment -%}
+  Rubber stamp: an inline SVG "pressed" onto the page in ink.
+
+  {% include stamp.html shape="oval" top="Caltech" big="PhD" label="Defended"
+     bottom="Aug 15, 2025" tilt="-6" ink="maroon" size="180" seed="3" %}
+
+  shape     oval (default) | circle | rect (double-ruled, straight lines)
+  top       text along the top of the rim (rect: the top line)
+  big       the large centre word or number
+  label     smaller word under the big text, between thin rules
+            (rect: set beside the big text)
+  bottom    text along the bottom of the rim (rect: the bottom line)
+  tilt      rotation in degrees (default -3)
+  ink       maroon (default) | chartreuse
+  size      width in px (default 180); shrinks to fit narrow screens
+  seed      any whole number: each gives a different impression (default 1)
+  rough     edge roughness, 0 to 2 (default 1)
+  coverage  how much ink took, 0 to 1 (default 0.75; lower = patchier)
+  double    "false" drops the thin second ring
+  rules     "false" drops the thin rules around the label
+
+  Geometry lives in _data/stamps.yml. The playground at /stamps/ (dev only)
+  builds the same markup in JS (_includes/stamp-lab.html): change both.
+  Ink texture is an SVG filter per stamp, so seeds don't collide.
+{%- endcomment -%}
+{%- assign st_shape = include.shape | default: "oval" | downcase -%}
+{%- unless st_shape == "circle" or st_shape == "rect" -%}{%- assign st_shape = "oval" -%}{%- endunless -%}
+{%- assign st_g = site.data.stamps[st_shape] -%}
+{%- assign st_ink = include.ink | default: "maroon" | downcase -%}
+{%- unless st_ink == "chartreuse" -%}{%- assign st_ink = "maroon" -%}{%- endunless -%}
+{%- assign st_seed = include.seed | default: 1 | plus: 0 | abs | round -%}
+{%- assign st_tilt = include.tilt | default: -3 | plus: 0 -%}
+{%- assign st_size = include.size | default: 180 | plus: 0 | at_least: 40 -%}
+{%- assign st_rough = include.rough | default: 1 | plus: 0 | at_least: 0 | at_most: 2 -%}
+{%- assign st_coverage = include.coverage | default: 0.75 | plus: 0 | at_least: 0 | at_most: 1 -%}
+{%- assign st_double = true -%}{%- if include.double == "false" or include.double == false -%}{%- assign st_double = false -%}{%- endif -%}
+{%- assign st_rules = true -%}{%- if include.rules == "false" or include.rules == false -%}{%- assign st_rules = false -%}{%- endif -%}
+{%- assign st_top = include.top | default: "" | strip | upcase -%}
+{%- assign st_big = include.big | default: "" | strip -%}
+{%- assign st_label = include.label | default: "" | strip | upcase -%}
+{%- assign st_bottom = include.bottom | default: "" | strip | upcase -%}
+{%- capture st_uid %}{% increment stamp_uid %}{% endcapture -%}
+{%- assign st_id = "stamp-" | append: st_seed | append: "-" | append: st_uid -%}
+{%- assign st_W = st_g.w -%}{%- assign st_H = st_g.h -%}
+{%- assign st_cx = st_W | divided_by: 2 -%}{%- assign st_cy = st_H | divided_by: 2 | plus: st_g.cy_shift -%}
+{%- assign st_px_h = st_size | times: st_H | times: 1.0 | divided_by: st_W | round -%}
+{%- comment -%} aria-label: the texts as written, joined {%- endcomment -%}
+{%- assign st_said = "" | split: "" -%}
+{%- for st_t in (1..4) -%}
+  {%- case st_t -%}{%- when 1 -%}{%- assign st_s = include.top -%}{%- when 2 -%}{%- assign st_s = include.big -%}{%- when 3 -%}{%- assign st_s = include.label -%}{%- else -%}{%- assign st_s = include.bottom -%}{%- endcase -%}
+  {%- assign st_s = st_s | default: "" | strip -%}
+  {%- if st_s != "" -%}{%- assign st_said = st_said | push: st_s -%}{%- endif -%}
+{%- endfor -%}
+{%- assign st_said = st_said | join: ", " | prepend: "Stamp: " -%}
+{%- comment -%} Font sizes: shrink to fit the space, never below a floor; below it, squeeze (textLength). Mono advance is 0.6em + letter-spacing. {%- endcomment -%}
+{%- if st_shape == "rect" -%}
+  {%- assign st_rim_len = st_g.line_w -%}{%- assign st_rim_max = st_g.line_fs -%}
+{%- else -%}
+  {%- assign st_rim_len = st_g.rim_len -%}{%- assign st_rim_max = st_g.rim_fs -%}
+{%- endif -%}
+{%- assign st_n = st_top | size | at_least: 1 -%}
+{%- assign st_top_fs = st_rim_len | times: 1.0 | divided_by: st_n | divided_by: 0.8 | at_most: st_rim_max | round: 2 -%}
+{%- assign st_top_sq = false -%}{%- if st_top_fs < 7 -%}{%- assign st_top_fs = 7 -%}{%- assign st_top_sq = true -%}{%- endif -%}
+{%- assign st_n = st_bottom | size | at_least: 1 -%}
+{%- assign st_bot_fs = st_rim_len | times: 1.0 | divided_by: st_n | divided_by: 0.8 | at_most: st_rim_max | round: 2 -%}
+{%- assign st_bot_sq = false -%}{%- if st_bot_fs < 7 -%}{%- assign st_bot_fs = 7 -%}{%- assign st_bot_sq = true -%}{%- endif -%}
+{%- assign st_n = st_big | size | at_least: 1 -%}
+{%- assign st_big_fs = st_g.big_w | times: 1.0 | divided_by: st_n | divided_by: 0.62 | at_most: st_g.big_fs | round: 2 -%}
+{%- assign st_big_sq = false -%}{%- if st_big_fs < 14 -%}{%- assign st_big_fs = 14 -%}{%- assign st_big_sq = true -%}{%- endif -%}
+{%- assign st_n = st_label | size | at_least: 1 -%}
+{%- assign st_lab_fs = st_g.label_w | times: 1.0 | divided_by: st_n | divided_by: 0.72 | at_most: st_g.label_fs | round: 2 -%}
+{%- assign st_lab_sq = false -%}{%- if st_lab_fs < 7 -%}{%- assign st_lab_fs = 7 -%}{%- assign st_lab_sq = true -%}{%- endif -%}
+{%- assign st_top_dy = st_top_fs | times: 0.35 | round: 2 -%}
+{%- assign st_bot_dy = st_bot_fs | times: 0.35 | round: 2 -%}
+{%- assign st_big_cap = st_big_fs | times: 0.7 -%}
+{%- assign st_lab_cap = st_lab_fs | times: 0.7 -%}
+{%- comment -%} Ink filter numbers {%- endcomment -%}
+{%- assign st_disp = st_rough | times: 2.2 | round: 2 -%}
+{%- assign st_cov = st_coverage | minus: 0.7 | times: 0.8 | plus: 1.3 | round: 3 -%}
+{%- assign st_ghosts = "0.9 0.35|-0.7 0.6|0.4 -0.85|-0.85 -0.3|0.6 0.75|-0.3 0.9|0.95 -0.2|-0.55 -0.75" | split: "|" -%}
+{%- assign st_gi = st_seed | modulo: 8 -%}{%- assign st_ghost = st_ghosts[st_gi] | split: " " -%}
+{%- assign st_s1 = st_seed | plus: 1 -%}{%- assign st_s2 = st_seed | plus: 2 -%}
+<svg class="stamp stamp--{{ st_shape }} stamp--{{ st_ink }}" role="img" aria-label="{{ st_said | escape }}" viewBox="0 0 {{ st_W }} {{ st_H }}" width="{{ st_size }}" height="{{ st_px_h }}" style="--tilt: {{ st_tilt }}deg" data-seed="{{ st_seed }}">
+<defs>
+<filter id="{{ st_id }}-ink" x="-8" y="-8" width="{{ st_W | plus: 16 }}" height="{{ st_H | plus: 16 }}" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.11" numOctaves="2" seed="{{ st_seed }}" result="warp"/>
+<feDisplacementMap in="SourceAlpha" in2="warp" scale="{{ st_disp }}" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+<feGaussianBlur in="rough" stdDeviation="0.35" result="soft"/>
+<feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="{{ st_s1 }}" result="grain"/>
+<feColorMatrix in="grain" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 -1.5" result="grainA"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="{{ st_s2 }}" result="press"/>
+<feColorMatrix in="press" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 -1" result="pressA"/>
+<feComposite in="grainA" in2="pressA" operator="arithmetic" k2="0.65" k3="0.35" result="noise"/>
+<feComposite in="soft" in2="noise" operator="arithmetic" k1="-1" k2="{{ st_cov }}" result="raw"/>
+<feComponentTransfer in="raw" result="mask"><feFuncA type="linear" slope="8" intercept="-3.6"/></feComponentTransfer>
+<feComposite in="mask" in2="pressA" operator="arithmetic" k1="0.3" k2="0.85" result="dense"/>
+<feOffset in="mask" dx="{{ st_ghost[0] }}" dy="{{ st_ghost[1] }}" result="shifted"/>
+<feComponentTransfer in="shifted" result="ghost"><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+<feMerge result="inked"><feMergeNode in="ghost"/><feMergeNode in="dense"/></feMerge>
+<feFlood class="stamp-ink" flood-color="{% if st_ink == 'chartreuse' %}#c7d33b{% else %}#6b1a2a{% endif %}"/>
+<feComposite in2="inked" operator="in"/>
+</filter>
+{%- if st_shape != "rect" %}
+<path id="{{ st_id }}-top" d="M{{ st_cx | minus: st_g.rim_rx }},{{ st_cy }} A{{ st_g.rim_rx }},{{ st_g.rim_ry }} 0 0 1 {{ st_cx | plus: st_g.rim_rx }},{{ st_cy }}"/>
+<path id="{{ st_id }}-bottom" d="M{{ st_cx | minus: st_g.rim_rx }},{{ st_cy }} A{{ st_g.rim_rx }},{{ st_g.rim_ry }} 0 0 0 {{ st_cx | plus: st_g.rim_rx }},{{ st_cy }}"/>
+{%- endif %}
+</defs>
+<g class="stamp-inked" filter="url(#{{ st_id }}-ink)">
+{%- if st_shape == "rect" -%}
+{%- assign st_i = st_g.inset -%}{%- assign st_i2 = st_g.inset | plus: st_g.ring2_gap -%}
+{%- assign st_top_y = 25 | plus: st_top_dy -%}{%- assign st_bot_y = st_H | minus: 25 | plus: st_bot_dy -%}
+{%- assign st_mt = 10 -%}{%- if st_top != "" -%}{%- assign st_mt = 36 -%}{%- endif -%}
+{%- assign st_mb = st_H | minus: 10 -%}{%- if st_bottom != "" -%}{%- assign st_mb = st_H | minus: 36 -%}{%- endif -%}
+{%- comment -%} big and label share one line: scale both down together to fit {%- endcomment -%}
+{%- assign st_gap = 0 -%}{%- if st_big != "" and st_label != "" -%}{%- assign st_gap = st_big_fs | times: 0.22 -%}{%- endif -%}
+{%- assign st_nb = st_big | size -%}{%- assign st_nl = st_label | size -%}
+{%- assign st_est = st_nb | times: 0.62 | times: st_g.big_fs -%}
+{%- assign st_est = st_nl | times: 0.72 | times: st_g.label_fs | plus: st_est | plus: st_gap -%}
+{%- assign st_k = 1 -%}{%- if st_est > st_g.big_w -%}{%- assign st_k = st_g.big_w | divided_by: st_est -%}{%- endif -%}
+{%- comment -%} too long to shrink legibly: hold the big text at 18 and squeeze the line {%- endcomment -%}
+{%- assign st_mid_sq = false -%}{%- assign st_kmin = 18.0 | divided_by: st_g.big_fs -%}
+{%- if st_k < st_kmin -%}{%- assign st_k = st_kmin -%}{%- assign st_mid_sq = true -%}{%- endif -%}
+{%- assign st_big_fs = st_g.big_fs | times: st_k | round: 2 -%}{%- assign st_lab_fs = st_g.label_fs | times: st_k | round: 2 -%}
+{%- assign st_gap = st_gap | times: st_k | round: 2 -%}
+{%- assign st_cap = st_big_fs | times: 0.7 -%}{%- if st_big == "" -%}{%- assign st_cap = st_lab_fs | times: 0.7 -%}{%- endif -%}
+{%- assign st_mid_y = st_mt | plus: st_mb | divided_by: 2.0 | plus: st_g.cy_shift -%}
+{%- assign st_mid_y = st_cap | divided_by: 2.0 | plus: st_mid_y | round: 2 %}
+<rect x="{{ st_i }}" y="{{ st_i }}" width="{{ st_W | minus: st_i | minus: st_i }}" height="{{ st_H | minus: st_i | minus: st_i }}" rx="3" fill="none" stroke="currentColor" stroke-width="{{ st_g.ring }}"/>
+{%- if st_double %}
+<rect x="{{ st_i2 }}" y="{{ st_i2 }}" width="{{ st_W | minus: st_i2 | minus: st_i2 }}" height="{{ st_H | minus: st_i2 | minus: st_i2 }}" rx="1.5" fill="none" stroke="currentColor" stroke-width="{{ st_g.ring2 }}"/>
+{%- endif -%}
+{%- if st_top != "" %}
+<text class="stamp-rim" x="{{ st_cx }}" y="{{ st_top_y | round: 2 }}" font-size="{{ st_top_fs }}" text-anchor="middle"{% if st_top_sq %} textLength="{{ st_rim_len }}" lengthAdjust="spacingAndGlyphs"{% endif %}>{{ st_top | escape }}</text>
+<line x1="20" y1="36" x2="{{ st_W | minus: 20 }}" y2="36" stroke="currentColor" stroke-width="1.1"/>
+{%- endif -%}
+{%- if st_big != "" or st_label != "" %}
+<text x="{{ st_cx }}" y="{{ st_mid_y }}" text-anchor="middle"{% if st_mid_sq %} textLength="{{ st_g.big_w }}" lengthAdjust="spacingAndGlyphs"{% endif %}>
+{%- if st_big != "" %}<tspan class="stamp-big" font-size="{{ st_big_fs }}">{{ st_big | escape }}</tspan>{% endif -%}
+{%- if st_label != "" %}<tspan class="stamp-label" font-size="{{ st_lab_fs }}"{% if st_gap != 0 %} dx="{{ st_gap }}"{% endif %}>{{ st_label | escape }}</tspan>{% endif -%}
+</text>
+{%- endif -%}
+{%- if st_bottom != "" %}
+<line x1="20" y1="{{ st_H | minus: 36 }}" x2="{{ st_W | minus: 20 }}" y2="{{ st_H | minus: 36 }}" stroke="currentColor" stroke-width="1.1"/>
+<text class="stamp-rim" x="{{ st_cx }}" y="{{ st_bot_y | round: 2 }}" font-size="{{ st_bot_fs }}" text-anchor="middle"{% if st_bot_sq %} textLength="{{ st_rim_len }}" lengthAdjust="spacingAndGlyphs"{% endif %}>{{ st_bottom | escape }}</text>
+{%- endif -%}
+{%- else -%}
+{%- comment -%} oval / circle: stack big, rule, label, rule around the centre {%- endcomment -%}
+{%- assign st_g1 = 8 -%}{%- assign st_g2 = 5.5 -%}
+{%- if st_big != "" and st_label != "" -%}
+  {%- assign st_block = st_big_cap | plus: st_g1 | plus: st_g2 | plus: st_lab_cap | plus: st_g2 -%}
+  {%- assign st_big_y = st_block | divided_by: -2.0 | plus: st_cy | plus: st_big_cap -%}
+  {%- assign st_r1 = st_big_y | plus: st_g1 -%}
+  {%- assign st_lab_y = st_r1 | plus: st_g2 | plus: st_lab_cap -%}
+{%- elsif st_big != "" -%}
+  {%- assign st_big_y = st_big_cap | divided_by: 2.0 | plus: st_cy -%}
+{%- else -%}
+  {%- assign st_lab_y = st_lab_cap | divided_by: 2.0 | plus: st_cy -%}
+  {%- assign st_r1 = st_lab_y | minus: st_lab_cap | minus: st_g2 -%}
+{%- endif -%}
+{%- assign st_r2 = st_lab_y | plus: st_g2 -%}
+{%- assign st_o2x = st_g.rx | minus: st_g.ring2_gap -%}{%- assign st_o2y = st_g.ry | minus: st_g.ring2_gap %}
+<ellipse cx="{{ st_cx }}" cy="{{ st_cy }}" rx="{{ st_g.rx }}" ry="{{ st_g.ry }}" fill="none" stroke="currentColor" stroke-width="{{ st_g.ring }}"/>
+{%- if st_double %}
+<ellipse cx="{{ st_cx }}" cy="{{ st_cy }}" rx="{{ st_o2x }}" ry="{{ st_o2y }}" fill="none" stroke="currentColor" stroke-width="{{ st_g.ring2 }}"/>
+{%- endif -%}
+{%- if st_top != "" %}
+<text class="stamp-rim" font-size="{{ st_top_fs }}"><textPath href="#{{ st_id }}-top" startOffset="50%" text-anchor="middle"{% if st_top_sq %} textLength="{{ st_rim_len }}" lengthAdjust="spacingAndGlyphs"{% endif %}><tspan dy="{{ st_top_dy }}">{{ st_top | escape }}</tspan></textPath></text>
+{%- endif -%}
+{%- if st_bottom != "" %}
+<text class="stamp-rim" font-size="{{ st_bot_fs }}"><textPath href="#{{ st_id }}-bottom" startOffset="50%" text-anchor="middle"{% if st_bot_sq %} textLength="{{ st_rim_len }}" lengthAdjust="spacingAndGlyphs"{% endif %}><tspan dy="{{ st_bot_dy }}">{{ st_bottom | escape }}</tspan></textPath></text>
+{%- endif -%}
+{%- if st_big != "" %}
+<text class="stamp-big" x="{{ st_cx }}" y="{{ st_big_y | round: 2 }}" font-size="{{ st_big_fs }}" text-anchor="middle"{% if st_big_sq %} textLength="{{ st_g.big_w }}" lengthAdjust="spacingAndGlyphs"{% endif %}>{{ st_big | escape }}</text>
+{%- endif -%}
+{%- if st_label != "" -%}
+{%- if st_rules %}
+<line x1="{{ st_cx | minus: st_g.rule }}" y1="{{ st_r1 | round: 2 }}" x2="{{ st_cx | plus: st_g.rule }}" y2="{{ st_r1 | round: 2 }}" stroke="currentColor" stroke-width="1.1"/>
+{%- endif %}
+<text class="stamp-label" x="{{ st_cx }}" y="{{ st_lab_y | round: 2 }}" font-size="{{ st_lab_fs }}" text-anchor="middle"{% if st_lab_sq %} textLength="{{ st_g.label_w }}" lengthAdjust="spacingAndGlyphs"{% endif %}>{{ st_label | escape }}</text>
+{%- if st_rules %}
+<line x1="{{ st_cx | minus: st_g.rule }}" y1="{{ st_r2 | round: 2 }}" x2="{{ st_cx | plus: st_g.rule }}" y2="{{ st_r2 | round: 2 }}" stroke="currentColor" stroke-width="1.1"/>
+{%- endif -%}
+{%- endif -%}
+{%- endif %}
+</g>
+</svg>

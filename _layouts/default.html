@@ -19,6 +19,9 @@
   <script type="module" src="{{ '/assets/paper/paper.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/footer-art.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/lensing.js' | relative_url }}" defer></script>
+  {%- if content contains 'class="stamp stamp--' %}
+  <script src="{{ '/assets/js/stamps.js' | relative_url }}" defer></script>
+  {%- endif %}
   {% if jekyll.environment == "development" %}{% include font-lab.html %}{% endif %}
 </body>
 </html>

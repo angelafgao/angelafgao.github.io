@@ -1,0 +1,336 @@
+<!-- Stamp playground: development only (rendered by stamps.html under jekyll serve). -->
+<style>
+  .stamp-lab { display: grid; grid-template-columns: minmax(14rem, 17rem) 1fr; gap: var(--space-8); align-items: start; margin-bottom: var(--space-12); }
+  .stamp-lab-controls { font: 12px/1.4 var(--font-ui); color: var(--color-muted); }
+  .stamp-lab-controls label { display: block; margin: 0 0 0.55rem; }
+  .stamp-lab-controls input[type=text], .stamp-lab-controls select, .stamp-lab-controls input[type=number] {
+    display: block; width: 100%; margin-top: 0.15rem; padding: 0.25rem 0.35rem;
+    font: inherit; color: var(--color-text); background: rgba(255, 255, 255, 0.35);
+    border: 1px solid var(--color-rule); border-radius: 3px;
+  }
+  .stamp-lab-controls input[type=range] { display: block; width: 100%; accent-color: var(--color-text); }
+  .stamp-lab-controls output { float: right; color: var(--color-text); }
+  .stamp-lab-row { display: flex; gap: 0.6rem; }
+  .stamp-lab-row > * { flex: 1; }
+  .stamp-lab-checks { display: flex; gap: 1rem; margin: 0.2rem 0 0.6rem; }
+  .stamp-lab-checks label { display: inline-flex; gap: 0.3rem; align-items: center; margin: 0; }
+  .stamp-lab button {
+    font: 12px/1.4 var(--font-ui); color: var(--color-text); cursor: pointer;
+    background: rgba(255, 255, 255, 0.35); border: 1px solid var(--color-rule); border-radius: 3px; padding: 0.25rem 0.6rem;
+  }
+  .stamp-lab button:hover { border-color: var(--color-text); }
+  .stamp-lab-stage { display: grid; place-items: center; min-height: 22rem; border: 1px dashed var(--color-rule); border-radius: var(--radius); padding: var(--space-6); }
+  .stamp-lab-out { display: flex; gap: 0.5rem; align-items: flex-start; margin-top: var(--space-4); }
+  .stamp-lab-out code { flex: 1; display: block; padding: 0.5rem 0.6rem; font-size: 12px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+  .stamp-lab-check { margin-top: var(--space-2); font: 11px/1.4 var(--font-ui); color: var(--color-muted); }
+  .stamp-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--space-8) var(--space-6); margin: var(--space-6) 0 0; }
+  .stamp-gallery figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .stamp-gallery .stamp-sample-art { min-height: 13rem; display: grid; place-items: center; }
+  .stamp-gallery figcaption { width: 100%; font: 10.5px/1.45 var(--font-ui); color: var(--color-muted); word-break: break-word; }
+  @media (max-width: 40rem) {
+    .stamp-lab { grid-template-columns: 1fr; }
+    .stamp-lab-view { order: -1; }
+    .stamp-lab-stage { min-height: 16rem; }
+  }
+</style>
+
+<div class="stamp-lab">
+  <form class="stamp-lab-controls" autocomplete="off" onsubmit="return false">
+    <label>Shape
+      <select name="shape"><option>oval</option><option>circle</option><option>rect</option></select>
+    </label>
+    <label>Top <input type="text" name="top" value="Caltech"></label>
+    <label>Big <input type="text" name="big" value="PhD"></label>
+    <label>Label <input type="text" name="label" value="Defended"></label>
+    <label>Bottom <input type="text" name="bottom" value="Aug 15, 2025"></label>
+    <div class="stamp-lab-row">
+      <label>Ink
+        <select name="ink"><option>maroon</option><option>chartreuse</option></select>
+      </label>
+      <label>Seed <input type="number" name="seed" value="3" min="0" step="1"></label>
+    </div>
+    <label>Tilt <output data-for="tilt"></output><input type="range" name="tilt" min="-20" max="20" step="1" value="-6"></label>
+    <label>Size <output data-for="size"></output><input type="range" name="size" min="80" max="360" step="10" value="220"></label>
+    <label>Roughness <output data-for="rough"></output><input type="range" name="rough" min="0" max="2" step="0.1" value="1"></label>
+    <label>Coverage <output data-for="coverage"></output><input type="range" name="coverage" min="0" max="1" step="0.05" value="0.75"></label>
+    <div class="stamp-lab-checks">
+      <label><input type="checkbox" name="double" checked> double ring</label>
+      <label><input type="checkbox" name="rules" checked> rules</label>
+    </div>
+    <div class="stamp-lab-row">
+      <button type="button" data-action="stamp">Stamp it</button>
+      <button type="button" data-action="seed">New seed</button>
+    </div>
+  </form>
+  <div class="stamp-lab-view">
+    <div class="stamp-lab-stage" data-preview></div>
+    <div class="stamp-lab-out">
+      <code data-include></code>
+      <button type="button" data-action="copy">Copy include</button>
+    </div>
+    <p class="stamp-lab-check" data-check></p>
+  </div>
+</div>
+
+<script type="application/json" id="stamp-geometry">{{ site.data.stamps | jsonify }}</script>
+<script>
+{% raw %}
+// Stamp playground: live controls drive a preview built here in JS. The
+// markup mirrors _includes/stamp.html line for line (same geometry from
+// _data/stamps.yml, same fitting rules, same filter), so what you see is
+// what the copied include renders. The gallery below is made with the
+// include; on load each one is rebuilt here and compared, and the result
+// is shown under the preview, so drift between the two is caught.
+(function () {
+  "use strict";
+
+  var GEO = JSON.parse(document.getElementById("stamp-geometry").textContent);
+  var GHOSTS = [[0.9, 0.35], [-0.7, 0.6], [0.4, -0.85], [-0.85, -0.3], [0.6, 0.75], [-0.3, 0.9], [0.95, -0.2], [-0.55, -0.75]];
+  var DEFAULTS = { shape: "oval", tilt: -3, ink: "maroon", size: 180, seed: 1, rough: 1, coverage: 0.75, double: true, rules: true };
+  var uid = 0;
+
+  // Liquid's round: N (half away from zero).
+  function r(v, n) {
+    var p = Math.pow(10, n == null ? 2 : n);
+    return Math.sign(v) * Math.round(Math.abs(v) * p) / p;
+  }
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function len(s) { return Array.from(s).length; }
+  function num(v, d) { var n = parseFloat(v); return isNaN(n) ? d : n; }
+  function str(v) { return v == null ? "" : String(v).trim(); }
+
+  // Shrink to fit `avail`, capped at `max`; below `min`, squeeze instead.
+  function fit(text, perChar, max, avail, min) {
+    var fs = r(Math.min(avail / Math.max(1, len(text)) / perChar, max));
+    return fs < min ? { fs: min, sq: true } : { fs: fs, sq: false };
+  }
+
+  function normalize(o) {
+    var shape = String(o.shape || "oval").toLowerCase();
+    if (shape !== "circle" && shape !== "rect") shape = "oval";
+    var ink = String(o.ink || "maroon").toLowerCase();
+    if (ink !== "chartreuse") ink = "maroon";
+    return {
+      shape: shape, ink: ink,
+      top: str(o.top), big: str(o.big), label: str(o.label), bottom: str(o.bottom),
+      seed: Math.round(Math.abs(num(o.seed, 1))),
+      tilt: num(o.tilt, -3),
+      size: Math.max(40, num(o.size, 180)),
+      rough: clamp(num(o.rough, 1), 0, 2),
+      coverage: clamp(num(o.coverage, 0.75), 0, 1),
+      double: !(o.double === false || o.double === "false"),
+      rules: !(o.rules === false || o.rules === "false")
+    };
+  }
+
+  // The include, in JS.
+  function stampSVG(opts) {
+    var o = normalize(opts), g = GEO[o.shape];
+    var top = o.top.toUpperCase(), big = o.big, label = o.label.toUpperCase(), bottom = o.bottom.toUpperCase();
+    var id = "stamp-" + o.seed + "-lab" + (uid++);
+    var W = g.w, H = g.h, cx = W / 2, cy = H / 2 + g.cy_shift;
+    var said = [o.top, o.big, o.label, o.bottom].filter(function (s) { return s !== ""; }).join(", ");
+    var rect = o.shape === "rect";
+    var rimLen = rect ? g.line_w : g.rim_len, rimMax = rect ? g.line_fs : g.rim_fs;
+    var T = fit(top, 0.8, rimMax, rimLen, 7), B = fit(bottom, 0.8, rimMax, rimLen, 7);
+    var G = fit(big, 0.62, g.big_fs, g.big_w, 14), L = fit(label, 0.72, g.label_fs, g.label_w, 7);
+    var topDy = r(T.fs * 0.35), botDy = r(B.fs * 0.35);
+    var disp = r(o.rough * 2.2), cov = r((o.coverage - 0.7) * 0.8 + 1.3, 3);
+    var gh = GHOSTS[o.seed % 8];
+    var ink = o.ink === "chartreuse" ? "#c7d33b" : "#6b1a2a";
+    var sq = function (on, n) { return on ? ' textLength="' + n + '" lengthAdjust="spacingAndGlyphs"' : ""; };
+    var line = function (x1, y1, x2, y2) { return '\n<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="currentColor" stroke-width="1.1"/>'; };
+
+    var s = '<svg class="stamp stamp--' + o.shape + ' stamp--' + o.ink + '" role="img" aria-label="' + esc("Stamp: " + said) +
+      '" viewBox="0 0 ' + W + ' ' + H + '" width="' + o.size + '" height="' + Math.round(o.size * H / W) +
+      '" style="--tilt: ' + o.tilt + 'deg" data-seed="' + o.seed + '">\n<defs>\n' +
+      '<filter id="' + id + '-ink" x="-8" y="-8" width="' + (W + 16) + '" height="' + (H + 16) + '" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">\n' +
+      '<feTurbulence type="fractalNoise" baseFrequency="0.11" numOctaves="2" seed="' + o.seed + '" result="warp"/>\n' +
+      '<feDisplacementMap in="SourceAlpha" in2="warp" scale="' + disp + '" xChannelSelector="R" yChannelSelector="G" result="rough"/>\n' +
+      '<feGaussianBlur in="rough" stdDeviation="0.35" result="soft"/>\n' +
+      '<feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="' + (o.seed + 1) + '" result="grain"/>\n' +
+      '<feColorMatrix in="grain" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 -1.5" result="grainA"/>\n' +
+      '<feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="' + (o.seed + 2) + '" result="press"/>\n' +
+      '<feColorMatrix in="press" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 -1" result="pressA"/>\n' +
+      '<feComposite in="grainA" in2="pressA" operator="arithmetic" k2="0.65" k3="0.35" result="noise"/>\n' +
+      '<feComposite in="soft" in2="noise" operator="arithmetic" k1="-1" k2="' + cov + '" result="raw"/>\n' +
+      '<feComponentTransfer in="raw" result="mask"><feFuncA type="linear" slope="8" intercept="-3.6"/></feComponentTransfer>\n' +
+      '<feComposite in="mask" in2="pressA" operator="arithmetic" k1="0.3" k2="0.85" result="dense"/>\n' +
+      '<feOffset in="mask" dx="' + gh[0] + '" dy="' + gh[1] + '" result="shifted"/>\n' +
+      '<feComponentTransfer in="shifted" result="ghost"><feFuncA type="linear" slope="0.35"/></feComponentTransfer>\n' +
+      '<feMerge result="inked"><feMergeNode in="ghost"/><feMergeNode in="dense"/></feMerge>\n' +
+      '<feFlood class="stamp-ink" flood-color="' + ink + '"/>\n' +
+      '<feComposite in2="inked" operator="in"/>\n</filter>';
+    if (!rect) {
+      s += '\n<path id="' + id + '-top" d="M' + (cx - g.rim_rx) + ',' + cy + ' A' + g.rim_rx + ',' + g.rim_ry + ' 0 0 1 ' + (cx + g.rim_rx) + ',' + cy + '"/>' +
+           '\n<path id="' + id + '-bottom" d="M' + (cx - g.rim_rx) + ',' + cy + ' A' + g.rim_rx + ',' + g.rim_ry + ' 0 0 0 ' + (cx + g.rim_rx) + ',' + cy + '"/>';
+    }
+    s += '\n</defs>\n<g class="stamp-inked" filter="url(#' + id + '-ink)">';
+
+    if (rect) {
+      var i = g.inset, i2 = g.inset + g.ring2_gap;
+      var mt = top !== "" ? 36 : 10, mb = bottom !== "" ? H - 36 : H - 10;
+      var gap = big !== "" && label !== "" ? G.fs * 0.22 : 0;
+      var est = len(big) * 0.62 * g.big_fs + len(label) * 0.72 * g.label_fs + gap;
+      var k = est > g.big_w ? g.big_w / est : 1;
+      var midSq = k < 18 / g.big_fs;   // too long to shrink legibly: hold at 18 and squeeze
+      if (midSq) k = 18 / g.big_fs;
+      var bfs = r(g.big_fs * k), lfs = r(g.label_fs * k);
+      gap = r(gap * k);
+      var cap = big !== "" ? bfs * 0.7 : lfs * 0.7;
+      var midY = r(cap / 2 + (mt + mb) / 2 + g.cy_shift);
+      s += '\n<rect x="' + i + '" y="' + i + '" width="' + (W - 2 * i) + '" height="' + (H - 2 * i) + '" rx="3" fill="none" stroke="currentColor" stroke-width="' + g.ring + '"/>';
+      if (o.double) s += '\n<rect x="' + i2 + '" y="' + i2 + '" width="' + r(W - 2 * i2) + '" height="' + r(H - 2 * i2) + '" rx="1.5" fill="none" stroke="currentColor" stroke-width="' + g.ring2 + '"/>';
+      if (top !== "") {
+        s += '\n<text class="stamp-rim" x="' + cx + '" y="' + r(25 + topDy) + '" font-size="' + T.fs + '" text-anchor="middle"' + sq(T.sq, rimLen) + '>' + esc(top) + '</text>' + line(20, 36, W - 20, 36);
+      }
+      if (big !== "" || label !== "") {
+        s += '\n<text x="' + cx + '" y="' + midY + '" text-anchor="middle"' + sq(midSq, g.big_w) + '>';
+        if (big !== "") s += '<tspan class="stamp-big" font-size="' + bfs + '">' + esc(big) + '</tspan>';
+        if (label !== "") s += '<tspan class="stamp-label" font-size="' + lfs + '"' + (gap !== 0 ? ' dx="' + gap + '"' : "") + '>' + esc(label) + '</tspan>';
+        s += '</text>';
+      }
+      if (bottom !== "") {
+        s += line(20, H - 36, W - 20, H - 36) + '\n<text class="stamp-rim" x="' + cx + '" y="' + r(H - 25 + botDy) + '" font-size="' + B.fs + '" text-anchor="middle"' + sq(B.sq, rimLen) + '>' + esc(bottom) + '</text>';
+      }
+    } else {
+      var g1 = 8, g2 = 5.5, bigCap = G.fs * 0.7, labCap = L.fs * 0.7, bigY, labY, r1, r2;
+      if (big !== "" && label !== "") {
+        bigY = cy - (bigCap + g1 + g2 + labCap + g2) / 2 + bigCap;
+        r1 = bigY + g1;
+        labY = r1 + g2 + labCap;
+      } else if (big !== "") {
+        bigY = cy + bigCap / 2;
+      } else {
+        labY = cy + labCap / 2;
+        r1 = labY - labCap - g2;
+      }
+      r2 = labY + g2;
+      s += '\n<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + g.rx + '" ry="' + g.ry + '" fill="none" stroke="currentColor" stroke-width="' + g.ring + '"/>';
+      if (o.double) s += '\n<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + r(g.rx - g.ring2_gap) + '" ry="' + r(g.ry - g.ring2_gap) + '" fill="none" stroke="currentColor" stroke-width="' + g.ring2 + '"/>';
+      if (top !== "") s += '\n<text class="stamp-rim" font-size="' + T.fs + '"><textPath href="#' + id + '-top" startOffset="50%" text-anchor="middle"' + sq(T.sq, rimLen) + '><tspan dy="' + topDy + '">' + esc(top) + '</tspan></textPath></text>';
+      if (bottom !== "") s += '\n<text class="stamp-rim" font-size="' + B.fs + '"><textPath href="#' + id + '-bottom" startOffset="50%" text-anchor="middle"' + sq(B.sq, rimLen) + '><tspan dy="' + botDy + '">' + esc(bottom) + '</tspan></textPath></text>';
+      if (big !== "") s += '\n<text class="stamp-big" x="' + cx + '" y="' + r(bigY) + '" font-size="' + G.fs + '" text-anchor="middle"' + sq(G.sq, g.big_w) + '>' + esc(big) + '</text>';
+      if (label !== "") {
+        if (o.rules) s += line(cx - g.rule, r(r1), cx + g.rule, r(r1));
+        s += '\n<text class="stamp-label" x="' + cx + '" y="' + r(labY) + '" font-size="' + L.fs + '" text-anchor="middle"' + sq(L.sq, g.label_w) + '>' + esc(label) + '</text>';
+        if (o.rules) s += line(cx - g.rule, r(r2), cx + g.rule, r(r2));
+      }
+    }
+    return s + '\n</g>\n</svg>';
+  }
+
+  // The one-line include for these options (defaults after `seed` are left out).
+  function includeLine(opts) {
+    var o = normalize(opts);
+    var q = function (k, v) {
+      v = String(v);
+      return " " + k + "=" + (v.indexOf('"') === -1 ? '"' + v + '"' : "'" + v.replace(/'/g, "’") + "'");
+    };
+    var s = "{% include stamp.html" + q("shape", o.shape);
+    ["top", "big", "label", "bottom"].forEach(function (k) { if (o[k] !== "") s += q(k, o[k]); });
+    s += q("tilt", o.tilt) + q("ink", o.ink) + q("size", o.size) + q("seed", o.seed);
+    if (o.rough !== DEFAULTS.rough) s += q("rough", o.rough);
+    if (o.coverage !== DEFAULTS.coverage) s += q("coverage", o.coverage);
+    if (!o.double) s += q("double", "false");
+    if (!o.rules) s += q("rules", "false");
+    return s + " %}";
+  }
+
+  // Compare markup the way the browser sees it: ids, JS-added state and
+  // number formatting (13 vs 13.0) aside.
+  function canon(svg) {
+    var c = svg.cloneNode(true);
+    c.removeAttribute("data-stamp-ready");
+    c.classList.remove("is-armed", "is-stamped", "is-thunk");
+    c.style.removeProperty("--kick");
+    return c.outerHTML
+      .replace(/stamp-\d+-[a-z0-9]+/g, "ID")
+      .replace(/-?\d+\.?\d*/g, function (n) { return String(parseFloat(n)); })
+      .replace(/ class=""/g, "");
+  }
+  function parse(markup) {
+    var t = document.createElement("template");
+    t.innerHTML = markup;
+    return t.content.firstElementChild;
+  }
+
+  function init() {
+    var form = document.querySelector(".stamp-lab-controls");
+    var stage = document.querySelector("[data-preview]");
+    var out = document.querySelector("[data-include]");
+    if (!form || !stage) return;
+
+    function read() {
+      var f = form.elements;
+      return {
+        shape: f.shape.value, top: f.top.value, big: f.big.value, label: f.label.value, bottom: f.bottom.value,
+        ink: f.ink.value, seed: f.seed.value, tilt: f.tilt.value, size: f.size.value,
+        rough: f.rough.value, coverage: f.coverage.value, double: f.double.checked, rules: f.rules.checked
+      };
+    }
+
+    function render(thunk) {
+      var o = read();
+      Array.prototype.forEach.call(form.querySelectorAll("output"), function (el) { el.textContent = o[el.getAttribute("data-for")]; });
+      stage.innerHTML = stampSVG(o);
+      var el = stage.firstElementChild;
+      el.setAttribute("data-stamp-ready", "");
+      el.classList.add("is-stamped");
+      el.addEventListener("click", function () { if (window.Stamps) window.Stamps.land(el); });
+      out.textContent = includeLine(o);
+      if (thunk && window.Stamps) window.Stamps.land(el);
+    }
+
+    form.addEventListener("input", function (e) { render(e.target.tagName === "SELECT"); });
+    form.addEventListener("change", function (e) { if (e.target.type === "checkbox" || e.target.name === "seed") render(true); });
+    form.addEventListener("click", function (e) {
+      var a = e.target.getAttribute && e.target.getAttribute("data-action");
+      if (a === "seed") { form.elements.seed.value = Math.floor(Math.random() * 999); render(true); }
+      if (a === "stamp") render(true);
+    });
+    document.querySelector('[data-action="copy"]').addEventListener("click", function (e) {
+      var b = e.target, text = out.textContent;
+      function done(msg) { b.textContent = msg; setTimeout(function () { b.textContent = "Copy include"; }, 1400); }
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { done("Copied"); }, function () { done("Copy failed"); });
+      else done("Copy failed");
+    });
+    render(false);
+
+    // Gallery: show each include line, and check the JS build matches it.
+    var ok = 0, bad = [];
+    Array.prototype.forEach.call(document.querySelectorAll("[data-stamp-params]"), function (fig) {
+      var params = JSON.parse(fig.getAttribute("data-stamp-params"));
+      var cap = fig.querySelector("figcaption");
+      if (cap) cap.textContent = includeLine(params);
+      var real = fig.querySelector("svg.stamp");
+      if (real && canon(real) === canon(parse(stampSVG(params)))) ok++;
+      else bad.push(params.big || params.top || "?");
+      fig.addEventListener("dblclick", function () { load(params); });
+    });
+    function load(p) {
+      var o = normalize(p), f = form.elements;
+      ["shape", "top", "big", "label", "bottom", "ink", "seed", "tilt", "size", "rough", "coverage"].forEach(function (k) { f[k].value = o[k]; });
+      f.double.checked = o.double; f.rules.checked = o.rules;
+      render(true);
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    var check = document.querySelector("[data-check]");
+    if (check) {
+      check.textContent = bad.length
+        ? "Mismatch: the JS build differs from the include for " + bad.join(", ") + ". Update both."
+        : "JS preview matches the include for all " + ok + " gallery stamps. Double-click a sample to load it.";
+      if (bad.length) { check.style.color = "var(--color-accent)"; console.warn("stamp-lab mismatch", bad); }
+    }
+  }
+
+  window.StampLab = { svg: stampSVG, includeLine: includeLine, canon: canon, parse: parse };   // for poking at in devtools
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+{% endraw %}
+</script>
