@@ -300,6 +300,15 @@ main { padding: var(--space-8) 0 var(--space-16); }
   background: var(--color-pop);
 }
 .news-item { padding-left: var(--space-4); border-left: 2px solid var(--color-rule); }
+/* A stamp beside a news item, with the text wrapping around its oval */
+.news-stamp {
+  float: right;
+  margin: -0.5rem 0 0.75rem 1.5rem;
+  shape-outside: ellipse(50% 45%);
+}
+@media (max-width: 600px) {
+  .news-stamp { float: none; margin: 0 auto 1rem; width: max-content; }
+}
 .news-date {
   margin-right: var(--space-1);
   font-family: var(--font-ui);

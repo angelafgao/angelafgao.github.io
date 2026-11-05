@@ -9,6 +9,7 @@ permalink: /news/
   {% for year in years %}
   <p class="news-year">{{ year.name }}</p>
   {% for item in year.items %}
+  {% if item.stamp %}{% assign s = item.stamp %}<div class="news-stamp">{% include stamp.html shape=s.shape top=s.top big=s.big label=s.label bottom=s.bottom tilt=s.tilt ink=s.ink size=s.size seed=s.seed %}</div>{% endif %}
   <p class="news-item"><span class="news-date">{{ item.month }}</span> {{ item.text | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>
   {% endfor %}
   {% endfor %}
