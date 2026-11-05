@@ -26,4 +26,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+{%- comment -%} Start fetching the paper texture's modules right away so it draws without a delay. {%- endcomment -%}
+{%- assign paper_vendor = "/assets/paper/vendor/paper-shaders-0.0.81/" %}
+<link rel="modulepreload" href="{{ '/assets/paper/paper.js' | relative_url }}">
+{%- assign paper_files = "shader-mount.js,get-shader-color-from-string.js,get-shader-noise-texture.js,shaders/paper-texture.js,shader-utils.js,shader-sizing.js,vertex-shader.js" | split: "," %}
+{%- for f in paper_files %}
+<link rel="modulepreload" href="{{ paper_vendor | append: f | relative_url }}">
+{%- endfor %}
 {% feed_meta %}

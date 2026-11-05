@@ -119,16 +119,13 @@ pre { padding: var(--space-4); overflow-x: auto; }
 /* ---------- Paper (assets/paper/paper.js) ---------- */
 
 /* The page sits on a sheet of real-looking paper in the site's cream, drawn
-   once in WebGL. Until it draws (or without WebGL) the plain cream shows. */
+   once in WebGL as soon as the page loads. Without WebGL the plain cream shows. */
 .paper-layer {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.6s ease;
 }
-.paper-layer.is-drawn { opacity: 1; }
 
 /* ---------- Layout ---------- */
 
@@ -539,7 +536,16 @@ a.project-thumb:hover {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: var(--space-6) var(--space-8);
+  gap: var(--space-4) 0;
+}
+/* A loose pile: neighbours overlap at the edges and sit at staggered heights;
+   where two inks overlap they darken, like a real double impression. */
+.stamp-tray .stamp-holder + .stamp-holder { margin-left: -2.25rem; }
+.stamp-tray .stamp-holder:nth-child(even) { margin-top: 4.5rem; }
+.stamp-tray .stamp-holder:nth-child(3n) { margin-top: -1.5rem; }
+@media (max-width: 600px) {
+  .stamp-tray .stamp-holder + .stamp-holder { margin-left: -1rem; }
+  .stamp-tray .stamp-holder:nth-child(even) { margin-top: 2rem; }
 }
 .stamp-holder {
   position: relative;

@@ -70,13 +70,19 @@ export function mountPaper(el, look, seed) {
     }).catch(function () { /* no WebGL: the element's own background stays */ });
   }
 
-  var io = new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting && !started) start();
-  }, { rootMargin: "800px 0px" });
+  // data-paper-eager (the page background) draws straight away; anything
+  // else waits until it nears the screen.
+  var io = null;
+  if (el.hasAttribute("data-paper-eager")) start();
+  else {
+    io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting && !started) start();
+    }, { rootMargin: "800px 0px" });
+    io.observe(el);
+  }
   var ro = new ResizeObserver(function () { if (mount) mount.setUniforms(size()); });
-  io.observe(el);
   ro.observe(el);
-  return function () { dead = true; io.disconnect(); ro.disconnect(); if (mount) mount.dispose(); };
+  return function () { dead = true; if (io) io.disconnect(); ro.disconnect(); if (mount) mount.dispose(); };
 }
 
 document.querySelectorAll("[data-paper]").forEach(function (el) {

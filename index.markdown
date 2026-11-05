@@ -24,7 +24,8 @@ Click [here](/assets/Angela_Gao_CV_F23.pdf) for a PDF of my CV.
 {% comment %} Movable stamps (assets/js/stamp-drag.js): each holder needs a unique data-stamp-key. {% endcomment %}
 <div class="stamp-tray" data-stamp-tray>
 <span class="stamp-holder" data-stamp-key="caltech">{% include stamp.html shape="circle" top="Caltech" big="PhD" label="Graduated" bottom="Pasadena, CA" tilt="-6" size="190" seed="3" %}</span>
+<span class="stamp-holder" data-stamp-key="neurips">{% include stamp.html shape="oval" top="Published" big="NeurIPS" bottom="2021" tilt="4" size="200" seed="27" %}</span>
 <span class="stamp-holder" data-stamp-key="cmu">{% include stamp.html shape="rect" top="Carnegie Mellon" big="B.S." label="ECE + BME" bottom="Class of 2018" tilt="3" size="230" seed="8" %}</span>
-<span class="stamp-holder" data-stamp-key="fearn">{% include stamp.html shape="oval" top="Fearn" big="CTO" label="Cofounder" tilt="-2" size="210" seed="14" %}</span>
 <span class="stamp-holder" data-stamp-key="eht">{% include stamp.html shape="oval" top="Psst" big="eht" label="Type it" bottom="Anywhere" ink="chartreuse" tilt="5" size="190" seed="21" %}</span>
+<span class="stamp-holder" data-stamp-key="fearn">{% include stamp.html shape="oval" top="Fearn" big="CTO" label="Cofounder" tilt="-2" size="210" seed="14" %}</span>
 </div>
