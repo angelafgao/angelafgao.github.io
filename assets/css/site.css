@@ -756,6 +756,12 @@ a.project-thumb:hover {
 .site-footer ul { display: flex; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
 .site-footer a { text-decoration: none; }
 
+/* ---------- 404 ---------- */
+
+.not-found { text-align: center; padding-top: var(--space-8); }
+.not-found .stamp { margin: 0 auto var(--space-8); }
+.not-found p { color: var(--color-muted); }
+
 /* ---------- Line drawings ---------- */
 /* Inline SVGs from _includes/line-art/, set going by assets/js/line-art.js
    (it adds .is-playing while a drawing is on screen). Drawn in the

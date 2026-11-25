@@ -2,10 +2,10 @@
 layout: page
 permalink: /drawings/
 noindex: true
+published: false   # local only: ./serve.sh builds unpublished pages, the live site never does
 footer_animation: none
-# Line-drawing playground. Only rendered under `jekyll serve` (development);
-# the production build gets a bare "nothing here" page with noindex, and none
-# of the playground code.
+# Line-drawing playground. Only built by ./serve.sh (development); on the
+# live site /drawings/ doesn't exist, so visitors get the 404 page.
 ---
 {% if jekyll.environment == "development" %}
 {%- comment -%}

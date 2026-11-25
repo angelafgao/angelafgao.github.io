@@ -1,11 +1,12 @@
 ---
 permalink: /404.html
-layout: default
+layout: page
+noindex: true
+# GitHub Pages serves this for any address that doesn't exist, at that
+# address, so every link here must be absolute (relative_url gives /...).
 ---
-
-<div class="content" style="text-align:center">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+<div class="not-found">
+{% include stamp.html shape="circle" top="Return to sender" big="404" label="Not found" bottom="Address unknown" tilt="-8" size="240" seed="12" %}
+<p>There’s nothing at this address. The page may have moved, or the link has a typo.</p>
+<p><a href="{{ '/' | relative_url }}">Back to the front page</a>, or try one of the pages above.</p>
 </div>

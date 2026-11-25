@@ -19,4 +19,6 @@ fi
 export BUNDLE_PATH=vendor/bundle
 bundle check >/dev/null 2>&1 || bundle install
 
-exec bundle exec jekyll serve --port "$PORT" --livereload --livereload-port 35250 "$@"
+# --unpublished builds the dev-only playgrounds (/stamps/, /drawings/), which
+# are marked published: false so the live site never has them.
+exec bundle exec jekyll serve --unpublished --port "$PORT" --livereload --livereload-port 35250 "$@"
