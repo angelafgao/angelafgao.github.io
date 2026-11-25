@@ -3,6 +3,7 @@ layout: page
 title: Publications
 permalink: /Publications/
 body_class: publications
+footer_animation: none   # the observatory drawing stands in for it
 ---
 {% comment %} Papers live in _data/publications.yml; this lists them by type. {% endcomment %}
 <p>* denotes equal contribution</p>
@@ -12,6 +13,8 @@ body_class: publications
   {% assign pubs = site.data.publications | where: "type", parts[0] %}
   {% if pubs.size > 0 %}
 <h3 id="{{ parts[1] | slugify }}">{{ parts[1] }}</h3>
+{%- if parts[0] == "journal" %}{% include line-art/quake.html %}{% elsif parts[0] == "conference" %}{% include line-art/eht.html %}{% endif %}
     {% for pub in pubs %}{% include publication.html pub=pub %}{% endfor %}
   {% endif %}
 {% endfor %}
+{% include line-art/observatory.html %}

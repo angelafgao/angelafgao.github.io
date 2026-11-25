@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- A maroon and a chartreuse dot overlapping like a Venn diagram; the
+       overlap is painted half and half so it lands mid-tone -->
+  <defs><clipPath id="left"><circle cx="24" cy="32" r="17"/></clipPath></defs>
+  <circle cx="24" cy="32" r="17" fill="#6b1a2a" fill-opacity="0.85"/>
+  <circle cx="40" cy="32" r="17" fill="#c7d33b" fill-opacity="0.75"/>
+  <circle cx="40" cy="32" r="17" fill="#997632" clip-path="url(#left)"/>
+</svg>

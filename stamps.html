@@ -2,9 +2,10 @@
 layout: page
 permalink: /stamps/
 noindex: true
-# Stamp playground. Only rendered under `jekyll serve` (development); the
-# production build gets a bare "nothing here" page with noindex, and none
-# of the playground code. Gallery samples go through _includes/stamp.html.
+published: false   # local only: ./serve.sh builds unpublished pages, the live site never does
+# Stamp playground. Only built by ./serve.sh (development); on the live site
+# /stamps/ doesn't exist, so visitors get the 404 page. Gallery samples go
+# through _includes/stamp.html.
 samples:
   - { shape: circle, top: "Caltech", big: "PhD", label: "Defended", bottom: "Aug 15, 2025", tilt: -6, size: 190, seed: 3 }
   - { shape: oval, top: "The Gao Gazette", big: "9", label: "Issues", bottom: "Est. 2018", tilt: 4, size: 220, seed: 11 }

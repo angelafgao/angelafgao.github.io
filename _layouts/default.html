@@ -27,6 +27,9 @@
   {%- if content contains 'class="stamp stamp--' %}
   <script src="{{ '/assets/js/stamps.js' | relative_url }}" defer></script>
   {%- endif %}
+  {%- if content contains 'class="line-art line-art--' %}
+  <script src="{{ '/assets/js/line-art.js' | relative_url }}" defer></script>
+  {%- endif %}
   {%- if content contains 'data-stamp-tray' %}
   <script src="{{ '/assets/js/stamp-drag.js' | relative_url }}" defer></script>
   {%- endif %}

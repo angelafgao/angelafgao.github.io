@@ -2,8 +2,8 @@
 // down anywhere on the page's content area, with a mouse, a finger, a pen or
 // the keyboard. Each stamp moves by an offset from its place in the tray, so
 // the page's layout never shifts; it simply lies on top of the text, like a
-// sticker. Where you drop it is remembered on this browser. Double-click (or
-// double-tap, or Home when focused) puts it back.
+// sticker. Nothing is saved: a reload puts every stamp back in the tray.
+// Double-click (or double-tap, or Home when focused) puts it back too.
 //
 // A plain click still re-stamps (stamps.js); a drag re-stamps once, on drop.
 (function () {
@@ -17,17 +17,6 @@
   var NUDGE = 8, BIG_NUDGE = 48;
   var DOUBLE_TAP_MS = 350;
   var top = 10;             // z-index for the most recently moved stamp
-
-  function storeKey(holder) { return "stamp-pos:" + location.pathname + "#" + holder.dataset.stampKey; }
-  function load(holder) {
-    try { return JSON.parse(localStorage.getItem(storeKey(holder))); } catch (e) { return null; }
-  }
-  function save(holder, s) {
-    try {
-      if (s.dx || s.dy) localStorage.setItem(storeKey(holder), JSON.stringify({ dx: s.dx, dy: s.dy }));
-      else localStorage.removeItem(storeKey(holder));
-    } catch (e) { /* private mode: it just won't be remembered */ }
-  }
 
   function restamp(holder) {
     var svg = holder.querySelector("svg.stamp");
@@ -59,7 +48,6 @@
       setTimeout(function () { holder.classList.remove("is-returning"); }, 400);
     }
     apply(holder, s);
-    save(holder, s);
     restamp(holder);
     announce("Stamp put back.");
   }
@@ -82,14 +70,6 @@
     holder.setAttribute("aria-roledescription", "movable stamp");
     holder.setAttribute("aria-label", label + ". Drag, or use the arrow keys, to move it. Double-click or press Home to put it back.");
     holder.title = "Drag to move · double-click to put back";
-
-    var saved = load(holder);
-    if (saved) {
-      s.dx = saved.dx || 0;
-      s.dy = saved.dy || 0;
-      apply(holder, s);
-      raise(holder);
-    }
 
     holder.addEventListener("pointerdown", function (e) {
       if (e.button !== 0) return;
@@ -119,7 +99,6 @@
       dragging = false;
       justDragged = true;
       holder.classList.remove("is-held");
-      save(holder, s);
       restamp(holder);
     }
     holder.addEventListener("pointerup", release);
@@ -151,17 +130,14 @@
       apply(holder, s);
       // Set it down once the keys go quiet.
       clearTimeout(settleTimer);
-      settleTimer = setTimeout(function () { save(holder, s); restamp(holder); announce("Stamp set down."); }, 700);
+      settleTimer = setTimeout(function () { restamp(holder); announce("Stamp set down."); }, 700);
     });
 
-    // Stay inside the content area when the window changes size (and once the
-    // page has its final layout, for a position saved on a different screen).
-    function refit() {
+    // Stay inside the content area when the window changes size.
+    window.addEventListener("resize", function () {
       if (!s.dx && !s.dy) return;
       clamp(holder, s);
       apply(holder, s);
-    }
-    window.addEventListener("resize", refit);
-    window.addEventListener("load", refit);
+    });
   });
 })();
