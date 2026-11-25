@@ -794,6 +794,11 @@ a.project-thumb:hover {
 .line-art .live-trace { stroke: var(--color-text); stroke-width: 1.1; }
 .line-art .nib { fill: var(--color-text); }
 .line-art .pen-arm { transform-box: view-box; transform-origin: 178px 36px; }
+/* Drawn at 72% in the observatory scene: thicken its lines to match the dish */
+.line-art--scene [data-anim="seismo"] .ln { stroke-width: 2.1; }
+.line-art--scene [data-anim="seismo"] .thin,
+.line-art--scene [data-anim="seismo"] .live-trace { stroke-width: 1.5; }
+.line-art--scene [data-anim="seismo"] .old-rows { stroke-width: 0.97; }
 
 /* Radio dish */
 .line-art .bowl { transform-box: view-box; transform-origin: 100px 100px; transform: rotate(-8deg); }

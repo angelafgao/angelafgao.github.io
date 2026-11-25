@@ -3,8 +3,8 @@
   rules in site.css. Built in the playground at /drawings/ (dev only).
 {%- endcomment -%}
 {%- comment -%}
-  Observatory: one horizon with the drum seismograph and the radio dish
-  standing on it. Each instrument is its own nested viewport so its
+  Observatory: one horizon with the radio dish and a smaller drum
+  seismograph standing on it. Each instrument is its own nested viewport so its
   transform origins stay in its own coordinates.
 {%- endcomment -%}
 <svg class="line-art line-art--scene" viewBox="0 -10 800 158" aria-hidden="true" focusable="false">
@@ -15,7 +15,7 @@
     </filter>
   </defs>
   <path class="ln ground" filter="url(#ink-horizon)" d="M2 140 Q200 138 400 140 T798 140"/>
-  <svg x="130" y="5" width="200" height="160" viewBox="0 0 200 160" overflow="visible" data-anim="seismo">
+  <svg x="523.5" y="42.8" width="144" height="115.2" viewBox="0 0 200 160" overflow="visible" data-anim="seismo">
   <defs>
     <filter id="ink-seis" x="-5%" y="-5%" width="110%" height="110%">
       <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="31"/>
@@ -42,7 +42,7 @@
     </g>
   </g>
   </svg>
-  <svg x="470" y="-13" width="200" height="160" viewBox="0 0 200 160" overflow="visible" data-anim="dish">
+  <svg x="104.5" y="-13" width="200" height="160" viewBox="0 0 200 160" overflow="visible" data-anim="dish">
   <defs>
     <filter id="ink-dish" x="-5%" y="-5%" width="110%" height="110%">
       <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="9"/>
