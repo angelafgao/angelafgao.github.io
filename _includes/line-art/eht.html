@@ -1,0 +1,37 @@
+{%- comment -%}
+  Line drawing, animated by assets/js/line-art.js and the "Line drawings"
+  rules in site.css. Built in the playground at /drawings/ (dev only).
+{%- endcomment -%}
+{%- comment -%} Telescopes join up: dishes around the Earth link up and the M87* ring sharpens. {%- endcomment -%}
+<svg class="line-art line-art--side" viewBox="0 0 200 160" data-anim="eht" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="ink-eht" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="17"/>
+      <feDisplacementMap in="SourceGraphic" scale="1.4"/>
+    </filter>
+  </defs>
+  <g class="beams">
+    <path d="M100 30 L40 122 M100 30 L75 113 M100 30 L125 113 M100 30 L160 122"/>
+  </g>
+  <g filter="url(#ink-eht)">
+    <path class="ln" pathLength="1" d="M14 146 Q100 98 186 146"/>
+    <g class="baselines">
+      <path class="ln base" pathLength="1" d="M40 131 Q57.5 104.5 75 122" style="--b:0"/>
+      <path class="ln base" pathLength="1" d="M125 122 Q142.5 104.5 160 131" style="--b:1"/>
+      <path class="ln base" pathLength="1" d="M75 122 Q100 94 125 122" style="--b:2"/>
+      <path class="ln base" pathLength="1" d="M40 131 Q82.5 82.5 125 122" style="--b:3"/>
+      <path class="ln base" pathLength="1" d="M75 122 Q117.5 82.5 160 131" style="--b:4"/>
+      <path class="ln base" pathLength="1" d="M40 131 Q100 71 160 131" style="--b:5"/>
+    </g>
+    <g class="mini-dish" style="--x:40px;--y:131px;--t:29deg;--k:0"><path class="ln" pathLength="1" d="M-8 -10 Q0 -1 8 -10 Z M0 -10 L0 -17 M0 -5 L0 0 M-3.5 0 L3.5 0"/></g>
+    <g class="mini-dish" style="--x:75px;--y:122px;--t:14deg;--k:1"><path class="ln" pathLength="1" d="M-8 -10 Q0 -1 8 -10 Z M0 -10 L0 -17 M0 -5 L0 0 M-3.5 0 L3.5 0"/></g>
+    <g class="mini-dish" style="--x:125px;--y:122px;--t:-14deg;--k:2"><path class="ln" pathLength="1" d="M-8 -10 Q0 -1 8 -10 Z M0 -10 L0 -17 M0 -5 L0 0 M-3.5 0 L3.5 0"/></g>
+    <g class="mini-dish" style="--x:160px;--y:131px;--t:-29deg;--k:3"><path class="ln" pathLength="1" d="M-8 -10 Q0 -1 8 -10 Z M0 -10 L0 -17 M0 -5 L0 0 M-3.5 0 L3.5 0"/></g>
+  </g>
+  <g class="sky">
+    <circle class="ring" cx="100" cy="28" r="9"/>
+    <circle class="dot" cx="40" cy="40" r="1"/>
+    <circle class="dot" cx="166" cy="22" r="1.1"/>
+    <circle class="dot" cx="150" cy="62" r="0.9"/>
+  </g>
+</svg>

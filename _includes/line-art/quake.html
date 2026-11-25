@@ -1,0 +1,33 @@
+{%- comment -%}
+  Line drawing, animated by assets/js/line-art.js and the "Line drawings"
+  rules in site.css. Built in the playground at /drawings/ (dev only).
+{%- endcomment -%}
+{%- comment -%} Earthquake: waves spread through the layers; each station scribbles its seismogram. {%- endcomment -%}
+<svg class="line-art line-art--side" viewBox="0 0 200 160" data-anim="quake" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="ink-quake" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="23"/>
+      <feDisplacementMap in="SourceGraphic" scale="1.4"/>
+    </filter>
+    <clipPath id="under-quake"><rect x="10" y="50" width="180" height="104"/></clipPath>
+  </defs>
+  <g clip-path="url(#under-quake)">
+    <circle class="quake-ring" cx="70" cy="118" r="100" style="--r:0"/>
+    <circle class="quake-ring" cx="70" cy="118" r="100" style="--r:1"/>
+    <circle class="quake-ring" cx="70" cy="118" r="100" style="--r:2"/>
+  </g>
+  <g filter="url(#ink-quake)">
+    <path class="ln" pathLength="1" d="M16 50 Q48 45 80 50 T140 50 T184 50"/>
+    <path class="ln strata" pathLength="1" d="M16 80 Q60 72 100 82 T184 78"/>
+    <path class="ln strata" pathLength="1" d="M16 106 Q50 112 96 104 T184 108"/>
+    <path class="ln strata" pathLength="1" d="M16 134 Q70 128 120 136 T184 132"/>
+    <path class="ln strata" pathLength="1" d="M16 152 L184 152"/>
+    <g class="station" style="--x:50px;--d:1.72s"><path class="ln" pathLength="1" d="M-4 42 L4 42 L0 49 Z"/><path class="ln trace" pathLength="1" d="M-12 30 L-6 30 L-4 25 L-2 36 L0 22 L2 37 L4 26 L6 33 L8 29 L12 30"/></g>
+    <g class="station" style="--x:95px;--d:1.76s"><path class="ln" pathLength="1" d="M-4 43 L4 43 L0 50 Z"/><path class="ln trace" pathLength="1" d="M-12 30 L-6 30 L-4 24 L-2 37 L0 23 L2 35 L4 27 L6 32 L8 29 L12 30"/></g>
+    <g class="station" style="--x:135px;--d:2.28s"><path class="ln" pathLength="1" d="M-4 42 L4 42 L0 49 Z"/><path class="ln trace" pathLength="1" d="M-12 30 L-6 30 L-4 26 L-2 34 L0 25 L2 34 L4 28 L6 31 L8 29.5 L12 30"/></g>
+    <g class="station" style="--x:170px;--d:2.9s"><path class="ln" pathLength="1" d="M-4 43 L4 43 L0 50 Z"/><path class="ln trace" pathLength="1" d="M-12 30 L-6 30 L-4 27 L-2 33 L0 26.5 L2 33 L4 28.5 L6 31 L12 30"/></g>
+  </g>
+  <g class="sky">
+    <path class="spark spark--a" d="M0 -8 L1.8 -1.8 L8 0 L1.8 1.8 L0 8 L-1.8 1.8 L-8 0 L-1.8 -1.8 Z" style="--x:70px;--y:118px"/>
+  </g>
+</svg>

@@ -755,3 +755,88 @@ a.project-thumb:hover {
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); }
 .site-footer ul { display: flex; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
 .site-footer a { text-decoration: none; }
+
+/* ---------- Line drawings ---------- */
+/* Inline SVGs from _includes/line-art/, set going by assets/js/line-art.js
+   (it adds .is-playing while a drawing is on screen). Drawn in the
+   playground at /drawings/ (dev only). Still for reduced motion. */
+
+.line-art { display: block; width: 100%; height: auto; overflow: visible; --slow: 1; --star: var(--color-pop); }
+.line-art .ln { fill: none; stroke: var(--color-text); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.line-art .thin { stroke-width: 1.1; }
+.line-art .fill-bg { fill: var(--color-bg); }
+.line-art .ground { stroke: var(--color-muted); stroke-width: 1.1; }
+.line-art .strata { stroke: var(--color-muted); stroke-width: 1; }
+.line-art .dot { fill: var(--color-muted); }
+.line-art .spark { fill: var(--star); transform-box: view-box; transform-origin: var(--x) var(--y); transform: translate(var(--x), var(--y)); }
+
+/* Beside a section, on the right; the text wraps around it */
+.line-art--side { float: right; width: 13rem; margin: var(--space-2) 0 var(--space-4) var(--space-6); }
+@media (max-width: 40rem) { .line-art--side { width: 8rem; margin-left: var(--space-4); } }
+.publications .page-content h3 { clear: both; }
+/* Across the foot of a page, on one horizon */
+.line-art--scene { clear: both; margin-top: var(--space-16); }
+
+/* Telescopes join up */
+.line-art .mini-dish { transform-box: view-box; transform: translate(var(--x), var(--y)) rotate(var(--t)); }
+.line-art .base { stroke: var(--color-muted); stroke-width: 1; }
+.line-art .beams path { fill: none; stroke: var(--color-muted); stroke-width: 0.8; stroke-dasharray: 1.5 3; opacity: 0.6; }
+.line-art .ring { fill: none; stroke: var(--star); stroke-width: 3.2; }
+
+/* Earthquake */
+.line-art .station { transform-box: view-box; transform: translateX(var(--x)); }
+.line-art .quake-ring { fill: none; stroke: var(--color-text); stroke-width: 1.4; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; scale: 0.75; opacity: 0.35; }
+.line-art .quake-ring:not(:first-child) { opacity: 0; }
+
+/* Seismograph */
+.line-art .paper-roll { fill: none; stroke-linecap: round; stroke-linejoin: round; transform-box: view-box; transform: translateX(-175px); }
+.line-art .old-rows { stroke: var(--color-muted); stroke-width: 0.7; opacity: 0.55; }
+.line-art .live-trace { stroke: var(--color-text); stroke-width: 1.1; }
+.line-art .nib { fill: var(--color-text); }
+.line-art .pen-arm { transform-box: view-box; transform-origin: 178px 36px; }
+
+/* Radio dish */
+.line-art .bowl { transform-box: view-box; transform-origin: 100px 100px; transform: rotate(-8deg); }
+.line-art .wave { fill: none; stroke: var(--star); stroke-width: 1.4; stroke-linecap: round; opacity: 0; transform-box: view-box; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .is-playing[data-anim="eht"] .mini-dish .ln { stroke-dasharray: 1 1; animation: la-draw-in-out calc(9s * var(--slow)) ease-out infinite backwards; animation-delay: calc(var(--k) * 0.18s * var(--slow)); }
+  .is-playing[data-anim="eht"] .base { stroke-dasharray: 1 1; animation: la-baseline calc(9s * var(--slow)) ease-in-out infinite backwards; animation-delay: calc((1.2s + var(--b) * 0.6s) * var(--slow)); }
+  .is-playing[data-anim="eht"] .ring { animation: la-focus-ring calc(9s * var(--slow)) ease-in-out infinite; }
+  .is-playing[data-anim="eht"] .beams { animation: la-beams calc(9s * var(--slow)) ease-in-out infinite; }
+
+  .is-playing[data-anim="quake"] .quake-ring { animation: la-quake-ring calc(7s * var(--slow)) cubic-bezier(0.3, 0.4, 0.6, 1) infinite backwards; animation-delay: calc(var(--r) * 0.22s * var(--slow)); }
+  .is-playing[data-anim="quake"] .trace { stroke-dasharray: 1 1; animation: la-trace calc(7s * var(--slow)) ease-out infinite backwards; animation-delay: calc(var(--d) * var(--slow)); }
+  .is-playing[data-anim="quake"] .station { animation: la-jolt calc(7s * var(--slow)) ease-out infinite; animation-delay: calc(var(--d) * var(--slow)); }
+  .is-playing[data-anim="quake"] .spark { animation: la-rupture calc(7s * var(--slow)) ease-out infinite; }
+
+  .is-playing[data-anim="seismo"] .paper-roll { animation: la-roll calc(9s * var(--slow)) linear infinite; }
+  .is-playing[data-anim="seismo"] .pen-arm { animation: la-scribble calc(9s * var(--slow)) linear infinite; }
+
+  .is-playing[data-anim="dish"] .bowl { animation: la-nod calc(6s * var(--slow)) ease-in-out infinite alternate; }
+  .is-playing[data-anim="dish"] .wave { animation: la-wave calc(2.1s * var(--slow)) ease-in infinite; }
+}
+
+@keyframes la-draw-in-out { 0% { stroke-dashoffset: 1; } 8%, 88% { stroke-dashoffset: 0; opacity: 1; } 96%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes la-baseline { 0% { stroke-dashoffset: 1; opacity: 1; } 6% { stroke-dashoffset: 0; stroke: var(--star); } 16% { stroke: var(--color-muted); } 60% { opacity: 1; } 68%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes la-focus-ring {
+  0%, 12% { filter: blur(5px); opacity: 0.5; stroke-width: 9; }
+  60%, 86% { filter: blur(0); opacity: 1; stroke-width: 3.2; }
+  100% { filter: blur(5px); opacity: 0.5; stroke-width: 9; }
+}
+@keyframes la-beams { 0%, 8% { opacity: 0; } 14%, 80% { opacity: 0.6; } 92%, 100% { opacity: 0; } }
+@keyframes la-quake-ring { 0% { scale: 0; opacity: 1; } 30% { opacity: 0.7; } 45%, 100% { scale: 1.3; opacity: 0; } }
+@keyframes la-trace { 0% { stroke-dashoffset: 1; opacity: 1; } 8% { stroke-dashoffset: 0; } 50% { opacity: 1; } 58%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes la-jolt { 0% { transform: translateX(var(--x)); } 1.5% { transform: translate(calc(var(--x) - 1.2px), -1px); } 3% { transform: translate(calc(var(--x) + 1px), 0.5px); } 5%, 100% { transform: translateX(var(--x)); } }
+@keyframes la-rupture { 0% { scale: 0.2; opacity: 1; } 4% { scale: 1.6; } 12% { scale: 1; opacity: 1; } 40%, 100% { scale: 1; opacity: 0.8; } }
+@keyframes la-roll { from { transform: translateX(0); } to { transform: translateX(-260px); } }
+/* The quake reaches the pen about 45% of the way through the roll */
+@keyframes la-scribble {
+  0%, 45% { transform: rotate(0); }
+  45.6% { transform: rotate(5deg); } 46.3% { transform: rotate(-6deg); } 47% { transform: rotate(6deg); }
+  47.8% { transform: rotate(-5deg); } 48.7% { transform: rotate(4.5deg); } 49.7% { transform: rotate(-4deg); }
+  51% { transform: rotate(3deg); } 52.5% { transform: rotate(-2.4deg); } 54.5% { transform: rotate(1.6deg); }
+  57% { transform: rotate(-1deg); } 60% { transform: rotate(0.5deg); } 64%, 100% { transform: rotate(0); }
+}
+@keyframes la-nod { from { transform: rotate(-14deg); } to { transform: rotate(10deg); } }
+@keyframes la-wave { 0% { transform: translateY(-6px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(16px); opacity: 0; } }
